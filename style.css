@@ -345,39 +345,7 @@
         text-shadow: 0 0 15px rgba(0, 212, 255, 0.5);
       }
 
-      /* Responsive Design */
-      @media (max-width: 768px) {
-        nav {
-          top: 0;
-          left: 0;
-          transform: none;
-          width: 100%;
-          max-width: none;
-        }
-
-        .nav-container {
-          display: none;
-        }
-
-        .mobile-menu,
-        .mobile-brand {
-          display: flex;
-        }
-
-        .mobile-nav {
-          top: 80px;
-          left: 0;
-          right: 0;
-          border-radius: 0;
-          border: none;
-          border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .demo-content {
-          margin-top: 80px;
-        }
-      }
-
+      
       @media (max-width: 480px) {
         nav {
           width: calc(100% - 20px);
