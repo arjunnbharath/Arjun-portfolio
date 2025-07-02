@@ -32,7 +32,7 @@
       <div class="menu-content">
         <div class="menu-links">
           <div class="menu-item" data-target="intro">
-            <span class="label">  Intro <span class="arrow">➝</span> </span>
+            <span class="label"> Intro <span class="arrow">➝</span> </span>
             <div class="subtext">B2B, SaaS, eCom, Brands, Startups</div>
           </div>
 
@@ -42,8 +42,7 @@
           </div>
 
           <div class="menu-item" data-target="projects">
-            <span class="label"> Projects<span class="arrow">➝</span>
-            </span>
+            <span class="label"> Projects<span class="arrow">➝</span> </span>
             <div class="subtext">An accelerator built just for startups.</div>
           </div>
         </div>
@@ -59,14 +58,14 @@
             <div>LINKEDIN</div>
             <div>GITHUB</div>
             <div>TRAIL HEAD</div>
-            <div> INSTAGRAM</div>        
+            <div>INSTAGRAM</div>
           </div>
           <button class="chat-button" data-target="contact">
-            LET'S CHAT ↗
+            <span class="chat-text">LET'S CHAT ↗</span>
           </button>
         </div>
       </div>
-       <div class="theme-toggle" id="themeToggle" title="Toggle Theme">🌙</div>
+      <div class="theme-toggle" id="themeToggle" title="Toggle Theme">🌙</div>
     </div>
 
     <!-- Intro Section -->
@@ -325,7 +324,7 @@
     <footer class="footer">
       <p>&copy; 2024 Your Name. All rights reserved.</p>
     </footer>
-   
+
     <script>
       // === HEADER SCROLL EFFECT ===
       window.addEventListener("scroll", () => {
@@ -406,13 +405,11 @@
         window.addEventListener("scroll", () => {
           const scrollTop =
             window.pageYOffset || document.documentElement.scrollTop;
-
           if (scrollTop > lastScrollTop) {
             mobileBrand.classList.add("hide"); // Scrolling down
           } else {
             mobileBrand.classList.remove("hide"); // Scrolling up
           }
-
           lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
         });
       }
@@ -429,21 +426,16 @@
           menuOverlay.classList.toggle("open");
 
           if (label) label.textContent = isOpen ? "Close" : "Menu";
-
-          // Lock or unlock scroll on mobile menu open
           document.body.style.overflow = isOpen ? "hidden" : "auto";
         });
       }
 
       // === MENU LINKS SCROLL FUNCTIONALITY ===
-
       document.querySelectorAll(".menu-item").forEach((item) => {
         item.addEventListener("click", function () {
           const targetId = this.getAttribute("data-target");
           if (targetId) {
             scrollToSection(targetId);
-
-            // Close mobile menu if open
             if (menuOverlay && menuOverlay.classList.contains("open")) {
               menuOverlay.classList.remove("open");
               menuToggle.classList.remove("open");
@@ -454,14 +446,13 @@
           }
         });
       });
+
       // === CHAT BUTTON SCROLL FUNCTIONALITY ===
       document.querySelectorAll(".chat-button").forEach((button) => {
         button.addEventListener("click", function () {
           const targetId = this.getAttribute("data-target");
           if (targetId) {
             scrollToSection(targetId);
-
-            // Close mobile menu if open
             if (menuOverlay && menuOverlay.classList.contains("open")) {
               menuOverlay.classList.remove("open");
               menuToggle.classList.remove("open");
@@ -472,6 +463,42 @@
           }
         });
       });
+
+      // === CHAT TEXT SCRAMBLE ANIMATION ===
+     const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%";
+  const chatText = document.querySelector(".chat-text");
+  const originalText = chatText?.textContent;
+  let interval = null;
+
+  function scrambleText() {
+    if (!chatText || !originalText) return;
+
+    let iteration = 0;
+    clearInterval(interval);
+
+    interval = setInterval(() => {
+      chatText.textContent = originalText
+        .split("")
+        .map((char, i) => {
+          if (char === " ") return " "; // Preserve spaces
+          if (i < iteration) return originalText[i];
+          return letters[Math.floor(Math.random() * letters.length)];
+        })
+        .join("");
+
+      iteration += 1 / 2;
+
+      if (iteration >= originalText.length) {
+        clearInterval(interval);
+        chatText.textContent = originalText;
+
+        // Repeat after delay
+        setTimeout(scrambleText, 3000); // loop every 3 seconds
+      }
+    }, 50);
+  }
+
+  scrambleText(); // Start animation
     </script>
   </body>
 </html>
