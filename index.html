@@ -19,7 +19,7 @@
     <!-- Header -->
     <!-- Navbar -->
     <div class="navbar">
-      <div class="logo"></div>
+      <div class="logo">ARJUN</div>
       <div class="menu-toggle" id="menuToggle">
         <span class="icon icon-bars">☰</span>
         <span class="icon icon-arrow">→</span>
@@ -33,17 +33,20 @@
         <div class="menu-links">
           <div class="menu-item" data-target="intro">
             <span class="label"> Intro <span class="arrow">➝</span> </span>
-            <div class="subtext">B2B, SaaS, eCom, Brands, Startups</div>
+            <div class="subtext">Hi, I'm Arjun Bharath.</div>
           </div>
 
           <div class="menu-item" data-target="about">
             <span class="label"> About<span class="arrow">➝</span> </span>
-            <div class="subtext">All pinkies up, We live in the details!</div>
+            <div class="subtext">
+              Detail-driven software engineer with a love for clean, purposeful
+              builds.
+            </div>
           </div>
 
           <div class="menu-item" data-target="projects">
             <span class="label"> Projects<span class="arrow">➝</span> </span>
-            <div class="subtext">An accelerator built just for startups.</div>
+            <div class="subtext">Explore the work. Built with purpose.</div>
           </div>
         </div>
 
@@ -55,11 +58,40 @@
           "
         >
           <div class="footer-links">
-            <div>LINKEDIN</div>
-            <div>GITHUB</div>
-            <div>TRAIL HEAD</div>
-            <div>INSTAGRAM</div>
+            <div>
+              <a
+                href="https://www.linkedin.com/in/arjun-bharath-sr/"
+                target="_blank"
+                rel="noopener"
+                >LINKEDIN</a
+              >
+            </div>
+            <div>
+              <a
+                href="https://github.com/arjunnbharath"
+                target="_blank"
+                rel="noopener"
+                >GITHUB</a
+              >
+            </div>
+            <div>
+              <a
+                href="https://www.salesforce.com/trailblazer/arjun-bharath-sr"
+                target="_blank"
+                rel="noopener"
+                >TRAILHEAD</a
+              >
+            </div>
+            <div>
+              <a
+                href="https://discord.com/users/its.me.arjun"
+                target="_blank"
+                rel="noopener"
+                >DISCORD</a
+              >
+            </div>
           </div>
+
           <button class="chat-button" data-target="contact">
             <span class="chat-text">LET'S CHAT ↗</span>
           </button>
@@ -74,21 +106,43 @@
           <div class="intro-text">
             <div class="pretitle">Hello World</div>
             <h1 class="main-title">
-              I am <span>Your Name</span>,<br />
-              a digital designer<br />
-              & frontend<br />
-              developer based<br />
-              in Your City.
+              I'm <span>Arjun</span>,<br />
+              a software developer<br />
+              specialized in Java,<br />
+              Python, Frontend,<br />
+              UI/UX, and Salesforce.
             </h1>
             <p class="intro-description">
-              I create beautiful and functional digital experiences. Passionate
-              about clean code, modern design, and solving complex problems.
+              I design and build robust, scalable, and user-friendly digital
+              experiences. From backend logic to pixel-perfect interfaces and
+              cloud solutions, I bridge functionality and aesthetics with code
+              and creativity.s.
             </p>
             <ul class="social-links">
-              <li><a href="#" target="_blank">Behance</a></li>
-              <li><a href="#" target="_blank">GitHub</a></li>
-              <li><a href="#" target="_blank">LinkedIn</a></li>
-              <li><a href="#" target="_blank">Twitter</a></li>
+              <li>
+                <a href="https://discord.com/users/its.me.arjun" target="_blank"
+                  >Discord</a
+                >
+              </li>
+              <li>
+                <a href="https://github.com/arjunnbharath" target="_blank"
+                  >GitHub</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://www.linkedin.com/in/arjun-bharath-sr/"
+                  target="_blank"
+                  >LinkedIn</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://www.salesforce.com/trailblazer/arjun-bharath-sr"
+                  target="_blank"
+                  >Trail head</a
+                >
+              </li>
             </ul>
           </div>
         </div>
@@ -107,15 +161,16 @@
       <div class="container">
         <div class="about-content fade-in">
           <div class="about-image">
-            <img src="" alt="Your Name" />
+            <img src="me.jpg" alt="Your Name" />
           </div>
           <div class="about-text-content">
             <div class="pretitle">About Me</div>
             <h2 class="section-title">Passionate Developer</h2>
             <p class="about-text">
-              I'm a passionate developer with experience in creating digital
-              solutions that make a difference. I enjoy working with modern
-              technologies and bringing creative ideas to life through code.
+              I craft user-focused digital experiences by blending clean code
+              with modern design. Whether it's building scalable systems or
+              intuitive interfaces, I bring ideas to life through technology and
+              creativity
             </p>
             <p class="about-text">
               When I'm not coding, you can find me exploring new design trends,
@@ -127,12 +182,12 @@
             <div class="skills">
               <h3>Expertise</h3>
               <div class="skills-grid">
+                <div class="skill-item">Java</div>
+                <div class="skill-item">Python</div>
                 <div class="skill-item">Frontend Development</div>
                 <div class="skill-item">UI/UX Design</div>
-                <div class="skill-item">React & Vue.js</div>
-                <div class="skill-item">Node.js</div>
-                <div class="skill-item">Python</div>
-                <div class="skill-item">Mobile Development</div>
+                <div class="skill-item">Salesforce</div>
+                <div class="skill-item">HTML, CSS, JavaScript</div>
               </div>
             </div>
           </div>
@@ -323,181 +378,184 @@
     <footer class="footer">
       <p>&copy; 2024 Your Name. All rights reserved.</p>
     </footer>
-
     <script>
-      // === HEADER SCROLL EFFECT ===
-      window.addEventListener("scroll", () => {
+      document.addEventListener("DOMContentLoaded", () => {
+        // === CONSTANTS ===
         const header = document.getElementById("header");
-        if (window.scrollY > 100) {
-          header.classList.add("scrolled");
-        } else {
-          header.classList.remove("scrolled");
-        }
-      });
+        const themeToggle = document.getElementById("themeToggle");
+        const contactForm = document.querySelector(".contact-form");
+        const mobileBrand = document.querySelector(".mobile-brand");
+        const menuToggle = document.getElementById("menuToggle");
+        const menuOverlay = document.getElementById("menuOverlay");
+        const navbar = document.querySelector(".navbar");
+        const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%";
+        const scrambleSpeed = 90; // ⏱️ Adjust this to control speed (lower = faster)
 
-      // === SMOOTH SCROLL TO SECTION ===
-      function scrollToSection(sectionId) {
-        const section = document.getElementById(sectionId);
-        if (section) {
-          section.scrollIntoView({ behavior: "smooth" });
-        }
-      }
+        let lastScrollTop = 0;
+        let scrollTicking = false;
 
-      // === FADE-IN ANIMATION ON SCROLL ===
-      const observerOptions = {
-        threshold: 0.1,
-        rootMargin: "0px 0px -50px 0px",
-      };
-
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-          }
-        });
-      }, observerOptions);
-
-      document.querySelectorAll(".fade-in").forEach((el) => {
-        observer.observe(el);
-      });
-
-      // === SMOOTH SCROLL FOR ALL INTERNAL LINKS ===
-      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-        anchor.addEventListener("click", function (e) {
-          e.preventDefault();
-          const targetId = this.getAttribute("href").substring(1);
-          scrollToSection(targetId);
-        });
-      });
-
-      // === CONTACT FORM SUBMISSION ===
-      const contactForm = document.querySelector(".contact-form");
-      if (contactForm) {
-        contactForm.addEventListener("submit", function (e) {
-          e.preventDefault();
-          alert("Thank you for your message! I'll get back to you soon.");
-          this.reset();
-        });
-      }
-
-      // === THEME TOGGLE LOGIC ===
-      const themeToggle = document.getElementById("themeToggle");
-      if (themeToggle) {
-        const currentTheme = localStorage.getItem("theme");
-        if (currentTheme === "light") {
-          document.body.classList.add("light-mode");
-          themeToggle.textContent = "☀️";
+        // === SMOOTH SCROLL TO SECTION ===
+        function scrollToSection(sectionId) {
+          const section = document.getElementById(sectionId);
+          if (section) section.scrollIntoView({ behavior: "smooth" });
         }
 
-        themeToggle.addEventListener("click", () => {
-          document.body.classList.toggle("light-mode");
-          const isLight = document.body.classList.contains("light-mode");
-          themeToggle.textContent = isLight ? "☀️" : "🌙";
-          localStorage.setItem("theme", isLight ? "light" : "dark");
-        });
-      }
-
-      // === HIDE/SHOW MOBILE BRAND ON SCROLL ===
-      const mobileBrand = document.querySelector(".mobile-brand");
-      let lastScrollTop = 0;
-      if (mobileBrand) {
-        window.addEventListener("scroll", () => {
+        // === SCROLL EVENT HANDLER ===
+        function handleScroll() {
           const scrollTop =
             window.pageYOffset || document.documentElement.scrollTop;
-          if (scrollTop > lastScrollTop) {
-            mobileBrand.classList.add("hide"); // Scrolling down
-          } else {
-            mobileBrand.classList.remove("hide"); // Scrolling up
+          if (header) header.classList.toggle("scrolled", scrollTop > 100);
+          if (mobileBrand)
+            mobileBrand.classList.toggle("hide", scrollTop > lastScrollTop);
+          if (navbar)
+            navbar.classList.toggle("hide", scrollTop > lastScrollTop);
+          lastScrollTop = Math.max(scrollTop, 0);
+        }
+
+        window.addEventListener("scroll", () => {
+          if (!scrollTicking) {
+            window.requestAnimationFrame(() => {
+              handleScroll();
+              scrollTicking = false;
+            });
+            scrollTicking = true;
           }
-          lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
         });
-      }
 
-      // === MENU TOGGLE LOGIC ===
-      const menuToggle = document.getElementById("menuToggle");
-      const menuOverlay = document.getElementById("menuOverlay");
+        // === FADE-IN ON SCROLL ===
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+              }
+            });
+          },
+          { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
+        );
 
-      if (menuToggle && menuOverlay) {
-        const label = menuToggle.querySelector(".label");
+        document
+          .querySelectorAll(".fade-in")
+          .forEach((el) => observer.observe(el));
 
-        menuToggle.addEventListener("click", () => {
-          const isOpen = menuToggle.classList.toggle("open");
-          menuOverlay.classList.toggle("open");
-
-          if (label) label.textContent = isOpen ? "Close" : "Menu";
-          document.body.style.overflow = isOpen ? "hidden" : "auto";
+        // === SMOOTH SCROLL FOR INTERNAL LINKS ===
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+          anchor.addEventListener("click", (e) => {
+            e.preventDefault();
+            scrollToSection(anchor.getAttribute("href").substring(1));
+          });
         });
-      }
 
-      // === MENU LINKS SCROLL FUNCTIONALITY ===
-      document.querySelectorAll(".menu-item").forEach((item) => {
-        item.addEventListener("click", function () {
-          const targetId = this.getAttribute("data-target");
-          if (targetId) {
-            scrollToSection(targetId);
-            if (menuOverlay && menuOverlay.classList.contains("open")) {
-              menuOverlay.classList.remove("open");
-              menuToggle.classList.remove("open");
-              document.body.style.overflow = "auto";
-              const label = menuToggle.querySelector(".label");
-              if (label) label.textContent = "Menu";
+        // === CONTACT FORM ===
+        if (contactForm) {
+          contactForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            alert("Thank you for your message! I'll get back to you soon.");
+            contactForm.reset();
+          });
+        }
+
+        // === THEME TOGGLE ===
+        function updateThemeIcon() {
+          const isLight = document.body.classList.contains("light-mode");
+          themeToggle.textContent = isLight ? "☀️" : "🌙";
+        }
+
+        if (themeToggle) {
+          const currentTheme = localStorage.getItem("theme");
+          if (currentTheme === "light") {
+            document.body.classList.add("light-mode");
+          }
+          updateThemeIcon();
+
+          themeToggle.addEventListener("click", () => {
+            document.body.classList.toggle("light-mode");
+            localStorage.setItem(
+              "theme",
+              document.body.classList.contains("light-mode") ? "light" : "dark"
+            );
+            updateThemeIcon();
+          });
+        }
+
+        // === SCRAMBLE TEXT LOGIC ===
+        function scrambleElementText(el, originalText) {
+          let iteration = 0;
+
+          const interval = setInterval(() => {
+            el.textContent = originalText
+              .split("")
+              .map((char, i) => {
+                if (char === " " || i < iteration) return originalText[i];
+                return letters[Math.floor(Math.random() * letters.length)];
+              })
+              .join("");
+
+            iteration += 0.5;
+            if (iteration >= originalText.length) {
+              clearInterval(interval);
+              el.textContent = originalText;
             }
-          }
-        });
-      });
+          }, scrambleSpeed);
+        }
 
-      // === CHAT BUTTON SCROLL FUNCTIONALITY ===
-      document.querySelectorAll(".chat-button").forEach((button) => {
-        button.addEventListener("click", function () {
-          const targetId = this.getAttribute("data-target");
-          if (targetId) {
-            scrollToSection(targetId);
-            if (menuOverlay && menuOverlay.classList.contains("open")) {
-              menuOverlay.classList.remove("open");
-              menuToggle.classList.remove("open");
-              document.body.style.overflow = "auto";
-              const label = menuToggle.querySelector(".label");
-              if (label) label.textContent = "Menu";
+        function startScrambleAll() {
+          document.querySelectorAll(".chat-text, .subtext").forEach((el) => {
+            const original = el.dataset.original || el.textContent;
+            el.dataset.original = original;
+            scrambleElementText(el, original);
+          });
+        }
+
+        // === MENU TOGGLE ===
+        if (menuToggle && menuOverlay) {
+          const label = menuToggle.querySelector(".label");
+
+          menuToggle.addEventListener("click", () => {
+            const isOpen = menuToggle.classList.toggle("open");
+            menuOverlay.classList.toggle("open");
+            document.body.style.overflow = isOpen ? "hidden" : "auto";
+            if (label) label.textContent = isOpen ? "Close" : "Menu";
+
+            if (isOpen) {
+              startScrambleAll(); // 🔥 Animate on menu open
             }
-          }
-        });
+          });
+
+          const closeMenu = () => {
+            menuOverlay.classList.remove("open");
+            menuToggle.classList.remove("open");
+            document.body.style.overflow = "auto";
+            const label = menuToggle.querySelector(".label");
+            if (label) label.textContent = "Menu";
+          };
+
+          // === MENU ITEM CLICK ===
+          document.querySelectorAll(".menu-item").forEach((item) => {
+            item.addEventListener("click", () => {
+              const targetId = item.getAttribute("data-target");
+              if (targetId) {
+                scrollToSection(targetId);
+                closeMenu();
+              }
+            });
+          });
+
+          // === CHAT BUTTON CLICK ===
+          document.querySelectorAll(".chat-button").forEach((button) => {
+            button.addEventListener("click", () => {
+              const targetId = button.getAttribute("data-target");
+              if (targetId) {
+                scrollToSection(targetId);
+                closeMenu();
+              }
+            });
+          });
+        }
+
+        // === INITIAL SCRAMBLE ===
+        startScrambleAll();
       });
-
-      // === CHAT TEXT SCRAMBLE ANIMATION ===
-      const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%";
-      const chatText = document.querySelector(".chat-text");
-      const originalText = chatText?.textContent;
-      let interval = null;
-
-      function scrambleText() {
-        if (!chatText || !originalText) return;
-
-        let iteration = 0;
-        clearInterval(interval);
-
-        interval = setInterval(() => {
-          chatText.textContent = originalText
-            .split("")
-            .map((char, i) => {
-              if (char === " ") return " "; // Preserve spaces
-              if (i < iteration) return originalText[i];
-              return letters[Math.floor(Math.random() * letters.length)];
-            })
-            .join("");
-
-          iteration += 1 / 2;
-
-          if (iteration >= originalText.length) {
-            clearInterval(interval);
-            chatText.textContent = originalText;
-
-            // Repeat after delay
-            setTimeout(scrambleText, 3000); // loop every 3 seconds
-          }
-        }, 50);
-      }
-
-      scrambleText(); // Start animation
     </script>
   </body>
 </html>
