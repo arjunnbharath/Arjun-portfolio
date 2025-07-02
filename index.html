@@ -1,4 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Name - Portfolio</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Animated Background -->
+    <div class="circles">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
 
+    <!-- Header -->
+    <!-- Navbar -->
+    <div class="navbar">
+      <div class="logo"></div>
+      <div class="menu-toggle" id="menuToggle">
+        <span class="icon icon-bars">☰</span>
+        <span class="icon icon-arrow">→</span>
+        <span class="label">Menu</span>
+      </div>
+    </div>
+
+    <!-- Menu Overlay -->
+    <div class="menu-overlay" id="menuOverlay">
+      <div class="menu-content">
         <div class="menu-links">
           <div class="menu-item" data-target="intro">
             <span class="label"> Intro <span class="arrow">➝</span> </span>
@@ -34,7 +65,6 @@
           </button>
         </div>
       </div>
-      <div class="theme-toggle" id="themeToggle" title="Toggle Theme">🌙</div>
     </div>
 
     <!-- Intro Section -->
@@ -434,40 +464,40 @@
       });
 
       // === CHAT TEXT SCRAMBLE ANIMATION ===
-     const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%";
-  const chatText = document.querySelector(".chat-text");
-  const originalText = chatText?.textContent;
-  let interval = null;
+      const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%";
+      const chatText = document.querySelector(".chat-text");
+      const originalText = chatText?.textContent;
+      let interval = null;
 
-  function scrambleText() {
-    if (!chatText || !originalText) return;
+      function scrambleText() {
+        if (!chatText || !originalText) return;
 
-    let iteration = 0;
-    clearInterval(interval);
-
-    interval = setInterval(() => {
-      chatText.textContent = originalText
-        .split("")
-        .map((char, i) => {
-          if (char === " ") return " "; // Preserve spaces
-          if (i < iteration) return originalText[i];
-          return letters[Math.floor(Math.random() * letters.length)];
-        })
-        .join("");
-
-      iteration += 1 / 2;
-
-      if (iteration >= originalText.length) {
+        let iteration = 0;
         clearInterval(interval);
-        chatText.textContent = originalText;
 
-        // Repeat after delay
-        setTimeout(scrambleText, 3000); // loop every 3 seconds
+        interval = setInterval(() => {
+          chatText.textContent = originalText
+            .split("")
+            .map((char, i) => {
+              if (char === " ") return " "; // Preserve spaces
+              if (i < iteration) return originalText[i];
+              return letters[Math.floor(Math.random() * letters.length)];
+            })
+            .join("");
+
+          iteration += 1 / 2;
+
+          if (iteration >= originalText.length) {
+            clearInterval(interval);
+            chatText.textContent = originalText;
+
+            // Repeat after delay
+            setTimeout(scrambleText, 3000); // loop every 3 seconds
+          }
+        }, 50);
       }
-    }, 50);
-  }
 
-  scrambleText(); // Start animation
+      scrambleText(); // Start animation
     </script>
   </body>
 </html>
