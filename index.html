@@ -1,474 +1,270 @@
-<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Your Name - Portfolio</title>
-    <link rel="stylesheet" href="style.css" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Animated Nav</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-  </head>
-  <body>
-    <!-- Animated Background -->
-    <div class="circles">
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
+    body {
+      font-family: 'Georgia', serif;
+      background-color: #0b8070;
+      color: white;
+      overflow-x: hidden;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background-color: #000;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 999;
+    }
+
+    .logo {
+      width: 30px;
+      height: 30px;
+      background: white;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo::before {
+      content: '';
+      width: 12px;
+      height: 24px;
+      background: black;
+      border-radius: 50%;
+    }
+
+    .menu-toggle {
+      color: white;
+      font-weight: bold;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      cursor: pointer;
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .menu-toggle::before {
+  content: '☰';
+  margin-right: 8px;
+  margin-bottom: 3px;
+  transition: all 0.3s ease;
+}
+
+
+    .menu-toggle.open::before {
+      content: '→';
+      transform: rotate(0deg);
+    }
+
+    .menu-toggle span {
+      /* border-bottom: 2px solid white; */
+      padding-bottom: 2px;
+      transition: color 0.3s ease, border-color 0.3s ease;
+    }
+
+    .menu-toggle.open span {
+      color: #d91f1f;
+      /* border-color: #d91f1f; */
+    }
+    
+    .menu-toggle {
+  position: relative;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: white;
+  overflow: hidden;
+  padding-bottom: 4px;
+}
+
+/* Initial icon */
+.menu-toggle::before {
+  content: '☰';
+  margin-right: 8px;
+  font-size: 1.2rem;
+  display: inline-block;
+  transform: translateX(0);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Hover arrow transition */
+.menu-toggle:hover::before {
+  content: '→';
+  transform: translateX(4px);
+}
+
+/* Underline */
+.menu-toggle::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 0;
+  background-color: white;
+  transition: width 0.3s ease;
+}
+
+/* On hover, grow line */
+.menu-toggle:hover::after {
+  width: 100%;
+}
+
+/* When menu is open, no hover effects */
+.menu-toggle.open::before {
+  content: '→'; /* stay arrow if you want */
+  transform: translateX(0);
+}
+
+.menu-toggle.open::after {
+  width: 0;
+}
+
+
+
+    .menu-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 0%;
+      width: 100%;
+      background-color: #000;
+      overflow: hidden;
+      transition: height 0.6s ease;
+      z-index: 998;
+    }
+
+    .menu-overlay.open {
+      height: 100%;
+    }
+
+    .menu-content {
+      opacity: 0;
+      padding: 8rem 2rem 2rem;
+      transition: opacity 0.5s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+    }
+
+    .menu-overlay.open .menu-content {
+      opacity: 1;
+    }
+
+    .menu-links {
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+    }
+
+    .menu-item {
+      font-size: 4rem;
+      font-weight: 300;
+      position: relative;
+    }
+
+    .menu-item::after {
+      content: '↗';
+      font-size: 1.5rem;
+      margin-left: 10px;
+    }
+
+    .subtext {
+      color: #d9731f;
+      font-size: 0.9rem;
+      margin-top: 0.3rem;
+      margin-left: 3px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+      font-size: 0.8rem;
+      color: #d9731f;
+    }
+
+    .chat-button {
+      background-color: #d90404;
+      color: white;
+      font-weight: bold;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 40px;
+      cursor: pointer;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      position: absolute;
+      bottom: 2rem;
+      right: 2rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <div class="navbar">
+    <div class="logo"></div>
+    <div class="menu-toggle" id="menuToggle"><span>Menu</span></div>
+  </div>
+
+  <!-- Menu Overlay -->
+  <div class="menu-overlay" id="menuOverlay">
+    <div class="menu-content">
+      <div>
+        <div class="menu-links">
+          <div class="menu-item">Our Work <div class="subtext">B2b, Saas, eCom, Brands, Startups</div></div>
+          <div class="menu-item">About Us <div class="subtext">All pinkies up, We live in the details!</div></div>
+          <div class="menu-item">Reform Nova <div class="subtext">An accelerator built just for startups.</div></div>
+        </div>
+      </div>
+      <div style="display: flex; justify-content: space-between; align-items: flex-end;">
+        <div class="footer-links">
+          <div>LINKEDIN</div>
+          <div>AWWWARDS</div>
+          <div>INSTAGRAM</div>
+          <div>X / TWITTER</div>
+          <div>DRIBBBLE</div>
+        </div>
+        <button class="chat-button">LET'S CHAT ↗</button>
+      </div>
     </div>
+  </div>
 
-    <!-- Header -->
-    <nav>
-      <div class="nav-container">
-        <div class="nav-item">
-          <a href="#home">ARJUN.</a>
-        </div>
-        <div class="nav-item">
-          <a href="#intro">INTRO</a>
-        </div>
-        <div class="nav-item">
-          <a href="#about">ABOUT</a>
-        </div>
-        <div class="nav-item">
-          <a href="#projects">WORKS</a>
-        </div>
-        <div class="nav-item">
-          <a href="#contact">SAY HELLO</a>
-        </div>
-      </div>
+  <script>
+   const menuToggle = document.getElementById("menuToggle");
+const menuOverlay = document.getElementById("menuOverlay");
 
-      <!-- Mobile Navigation -->
-      <div class="mobile-brand">
-        <a href="#home">ARJUN.</a>
-      </div>
+menuToggle.addEventListener("click", () => {
+  menuToggle.classList.toggle("open");
+  menuOverlay.classList.toggle("open");
 
-      <div class="mobile-menu" id="mobileMenu">
-        <div class="hamburger">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-      </div>
+  // Toggle text
+  const span = menuToggle.querySelector("span");
+  span.textContent = span.textContent === "Menu" ? "Close" : "Menu";
+});
+  </script>
 
-      <div class="mobile-nav" id="mobileNav">
-        <div class="mobile-nav-item">
-          <a href="#intro">INTRO</a>
-        </div>
-        <div class="mobile-nav-item">
-          <a href="#about">ABOUT</a>
-        </div>
-        <div class="mobile-nav-item">
-          <a href="#projects">WORKS</a>
-        </div>
-        <div class="mobile-nav-item">
-          <a href="#contact">SAY HELLO</a>
-        </div>
-      </div>
-     
-    </nav>
-
-    <!-- Intro Section -->
-    <section id="intro" class="section intro">
-      <div class="container">
-        <div class="intro-content">
-          <div class="intro-text">
-            <div class="pretitle">Hello World</div>
-            <h1 class="main-title">
-              I am <span>Your Name</span>,<br />
-              a digital designer<br />
-              & frontend<br />
-              developer based<br />
-              in Your City.
-            </h1>
-            <p class="intro-description">
-              I create beautiful and functional digital experiences. Passionate
-              about clean code, modern design, and solving complex problems.
-            </p>
-            <ul class="social-links">
-              <li><a href="#" target="_blank">Behance</a></li>
-              <li><a href="#" target="_blank">GitHub</a></li>
-              <li><a href="#" target="_blank">LinkedIn</a></li>
-              <li><a href="#" target="_blank">Twitter</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="scroll-indicator" onclick="scrollToSection('about')">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
-          <path
-            d="M11 21.883l-6.235-7.527-.765.644 7.521 9 7.479-9-.764-.645-6.236 7.529v-21.884h-1v21.883z"
-          />
-        </svg>
-      </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="section">
-      <div class="container">
-        <div class="about-content fade-in">
-          <div class="about-image">
-            <img src="" alt="Your Name" />
-          </div>
-          <div class="about-text-content">
-            <div class="pretitle">About Me</div>
-            <h2 class="section-title">Passionate Developer</h2>
-            <p class="about-text">
-              I'm a passionate developer with experience in creating digital
-              solutions that make a difference. I enjoy working with modern
-              technologies and bringing creative ideas to life through code.
-            </p>
-            <p class="about-text">
-              When I'm not coding, you can find me exploring new design trends,
-              learning new technologies, or working on personal projects that
-              challenge me to grow.
-            </p>
-            <a href="#contact" class="btn">Get In Touch</a>
-
-            <div class="skills">
-              <h3>Expertise</h3>
-              <div class="skills-grid">
-                <div class="skill-item">Frontend Development</div>
-                <div class="skill-item">UI/UX Design</div>
-                <div class="skill-item">React & Vue.js</div>
-                <div class="skill-item">Node.js</div>
-                <div class="skill-item">Python</div>
-                <div class="skill-item">Mobile Development</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Experience Section -->
-    <section id="experience" class="section">
-      <div class="container">
-        <div class="fade-in">
-          <div class="pretitle">Experience</div>
-          <h2 class="section-title">Work History</h2>
-
-          <div class="timeline">
-            <div class="timeline-item">
-              <h3 class="timeline-title">Senior Frontend Developer</h3>
-              <h4 class="timeline-company">Your Current Company</h4>
-              <p class="timeline-period">2022 - Present</p>
-              <p>
-                Leading frontend development initiatives and mentoring junior
-                developers. Working with React, TypeScript, and modern
-                development practices.
-              </p>
-            </div>
-
-            <div class="timeline-item">
-              <h3 class="timeline-title">Frontend Developer</h3>
-              <h4 class="timeline-company">Previous Company</h4>
-              <p class="timeline-period">2020 - 2022</p>
-              <p>
-                Developed responsive web applications using React and Vue.js.
-                Collaborated with design teams to implement pixel-perfect
-                interfaces.
-              </p>
-            </div>
-
-            <div class="timeline-item">
-              <h3 class="timeline-title">Junior Developer</h3>
-              <h4 class="timeline-company">First Company</h4>
-              <p class="timeline-period">2019 - 2020</p>
-              <p>
-                Started my professional journey building websites and learning
-                industry best practices. Gained experience in HTML, CSS, and
-                JavaScript.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="section">
-      <div class="container">
-        <div class="fade-in">
-          <div class="pretitle">Recent Works</div>
-          <h2 class="section-title">Featured Projects</h2>
-          <p style="font-size: 18px; color: #cccccc; margin-bottom: 20px">
-            Here are some of my favorite projects I have worked on recently.
-            Feel free to check them out.
-          </p>
-
-          <div class="projects-grid">
-            <div class="project-card">
-              <div class="project-image">E-commerce Platform</div>
-              <div class="project-content">
-                <div class="project-category">Web Application</div>
-                <h3 class="project-title">Modern E-commerce Site</h3>
-                <p class="project-description">
-                  A full-stack e-commerce platform built with React and Node.js,
-                  featuring user authentication, payment integration, and admin
-                  dashboard.
-                </p>
-                <a href="#" class="project-link">View Project →</a>
-              </div>
-            </div>
-
-            <div class="project-card">
-              <div class="project-image">Mobile App UI</div>
-              <div class="project-content">
-                <div class="project-category">Mobile Design</div>
-                <h3 class="project-title">Fitness Tracking App</h3>
-                <p class="project-description">
-                  UI/UX design for a fitness tracking mobile application with
-                  clean interface and intuitive user experience.
-                </p>
-                <a href="#" class="project-link">View Project →</a>
-              </div>
-            </div>
-
-            <div class="project-card">
-              <div class="project-image">Dashboard</div>
-              <div class="project-content">
-                <div class="project-category">Web Application</div>
-                <h3 class="project-title">Analytics Dashboard</h3>
-                <p class="project-description">
-                  Interactive data visualization dashboard built with D3.js and
-                  React, providing real-time analytics and reporting features.
-                </p>
-                <a href="#" class="project-link">View Project →</a>
-              </div>
-            </div>
-
-            <div class="project-card">
-              <div class="project-image">Portfolio Site</div>
-              <div class="project-content">
-                <div class="project-category">Website</div>
-                <h3 class="project-title">Creative Portfolio</h3>
-                <p class="project-description">
-                  A creative portfolio website for a digital artist featuring
-                  smooth animations and responsive design.
-                </p>
-                <a href="#" class="project-link">View Project →</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="section">
-      <div class="container">
-        <div class="contact-content fade-in">
-          <div class="pretitle">Get In Touch</div>
-          <h2 class="section-title">Let's Work Together</h2>
-          <p style="font-size: 18px; color: #cccccc; margin-bottom: 30px">
-            I love to hear from you. Whether you have a question or just want to
-            chat about design, tech & development — shoot me a message.
-          </p>
-
-          <form class="contact-form">
-            <div class="form-group">
-              <input
-                type="text"
-                class="form-input"
-                placeholder="Your Name"
-                required
-              />
-              <input
-                type="email"
-                class="form-input"
-                placeholder="Your Email"
-                required
-              />
-            </div>
-            <input
-              type="text"
-              class="form-input"
-              placeholder="Subject"
-              required
-            />
-            <textarea
-              class="form-input form-textarea"
-              placeholder="Your Message"
-              required
-            ></textarea>
-            <button
-              type="submit"
-              class="btn"
-              style="justify-self: center; width: 200px"
-            >
-              Send Message
-            </button>
-          </form>
-
-          <div style="margin-top: 50px">
-            <p><strong>Reach me at:</strong></p>
-            <p style="margin: 10px 0">
-              <a
-                href="mailto:your.email@example.com"
-                style="color: #64ffda; text-decoration: none"
-                >your.email@example.com</a
-              ><br />
-              <a
-                href="tel:+1234567890"
-                style="color: #64ffda; text-decoration: none"
-                >+1 (234) 567-890</a
-              >
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-      <p>&copy; 2024 Your Name. All rights reserved.</p>
-    </footer>
-    <div class="theme-toggle" id="themeToggle" title="Toggle Theme">🌙</div>
-    <script>
-      // Header scroll effect
-      window.addEventListener("scroll", function () {
-        const header = document.getElementById("header");
-        if (window.scrollY > 100) {
-          header.classList.add("scrolled");
-        } else {
-          header.classList.remove("scrolled");
-        }
-      });
-
-      // Smooth scroll function
-      function scrollToSection(sectionId) {
-        document.getElementById(sectionId).scrollIntoView({
-          behavior: "smooth",
-        });
-      }
-
-      // Fade in animation on scroll
-      const observerOptions = {
-        threshold: 0.1,
-        rootMargin: "0px 0px -50px 0px",
-      };
-
-      const observer = new IntersectionObserver(function (entries) {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-          }
-        });
-      }, observerOptions);
-
-      // Observe all fade-in elements
-      document.querySelectorAll(".fade-in").forEach((el) => {
-        observer.observe(el);
-      });
-
-      // Navigation click handlers
-      document.querySelectorAll(".nav-links a").forEach((link) => {
-        link.addEventListener("click", function (e) {
-          e.preventDefault();
-          const targetId = this.getAttribute("href").substring(1);
-          scrollToSection(targetId);
-        });
-      });
-
-      // Contact form handler
-      document
-        .querySelector(".contact-form")
-        .addEventListener("submit", function (e) {
-          e.preventDefault();
-          alert("Thank you for your message! I'll get back to you soon.");
-          this.reset();
-        });
-
-      // Smooth scroll function
-      function scrollToSection(sectionId) {
-        document.getElementById(sectionId).scrollIntoView({
-          behavior: "smooth",
-        });
-      }
-
-      // Mobile menu elements
-      const mobileMenu = document.getElementById("mobileMenu");
-      const mobileNav = document.getElementById("mobileNav");
-
-      // Toggle mobile menu
-      mobileMenu.addEventListener("click", () => {
-        mobileMenu.classList.toggle("active");
-        mobileNav.classList.toggle("active");
-
-        // Lock or unlock body scroll
-        document.body.style.overflow = mobileNav.classList.contains("active")
-          ? "hidden"
-          : "auto";
-      });
-
-      // Close mobile menu when a link is clicked
-      document.querySelectorAll(".mobile-nav-item a").forEach((link) => {
-        link.addEventListener("click", (e) => {
-          e.preventDefault();
-          const targetId = link.getAttribute("href").substring(1);
-          scrollToSection(targetId);
-
-          // Close menu
-          mobileMenu.classList.remove("active");
-          mobileNav.classList.remove("active");
-          document.body.style.overflow = "auto";
-        });
-      });
-
-      // Smooth scroll for all internal links (desktop too)
-      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-        anchor.addEventListener("click", function (e) {
-          e.preventDefault();
-          const targetId = this.getAttribute("href").substring(1);
-          scrollToSection(targetId);
-        });
-      });
-
-      // Close menu when clicking outside
-      document.addEventListener("click", (e) => {
-        if (
-          !mobileMenu.contains(e.target) &&
-          !mobileNav.contains(e.target) &&
-          mobileNav.classList.contains("active")
-        ) {
-          mobileMenu.classList.remove("active");
-          mobileNav.classList.remove("active");
-          document.body.style.overflow = "auto";
-        }
-      });
-
-      // Theme toggle logic
-      const themeToggle = document.getElementById("themeToggle");
-      const currentTheme = localStorage.getItem("theme");
-
-      if (currentTheme === "light") {
-        document.body.classList.add("light-mode");
-        themeToggle.textContent = "☀️";
-      }
-
-      themeToggle.addEventListener("click", () => {
-        document.body.classList.toggle("light-mode");
-        const isLight = document.body.classList.contains("light-mode");
-        themeToggle.textContent = isLight ? "☀️" : "🌙";
-        localStorage.setItem("theme", isLight ? "light" : "dark");
-      });
-      let lastScrollTop = 0;
-      const mobileBrand = document.querySelector(".mobile-brand");
-
-      window.addEventListener("scroll", () => {
-        const scrollTop =
-          window.pageYOffset || document.documentElement.scrollTop;
-
-        if (scrollTop > lastScrollTop) {
-          // Scrolling down — hide
-          mobileBrand.classList.add("hide");
-        } else {
-          // Scrolling up — show
-          mobileBrand.classList.remove("hide");
-        }
-
-        lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Safari bounce
-      });
-    </script>
-  </body>
+</body>
 </html>
