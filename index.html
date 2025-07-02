@@ -4,6 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Your Name - Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
@@ -39,8 +44,7 @@
           <div class="menu-item" data-target="about">
             <span class="label"> About<span class="arrow">➝</span> </span>
             <div class="subtext">
-              Detail-driven software engineer with a love for clean, purposeful
-              builds.
+              Software engineer for a reason.
             </div>
           </div>
 
@@ -108,12 +112,12 @@
             <h1 class="main-title">
   I'm <span>Arjun</span>
 </h1>
-<h2 class="sub-title">
-  A developer skilled in<br />
-  Java, Python, Frontend,<br />
-  UI/UX, and Salesforce.
+ <h2 class="sub-title">
+  A software engineer skilled in
+  <span class="skill-change" id="scramble"></span>
 </h2>
 
+  
 <style>
   .main-title {
     font-size: 2.5rem;
@@ -134,10 +138,7 @@
 </style>
            
             <p class="intro-description">
-              I design and build robust, scalable, and user-friendly digital
-              experiences. From backend logic to pixel-perfect interfaces and
-              cloud solutions, I bridge functionality and aesthetics with code
-              and creativity.s.
+              ɪ ᴅᴇꜱɪɢɴ ᴀɴᴅ ᴅᴇᴠᴇʟᴏᴘ ʀᴏʙᴜꜱᴛ, ꜱᴄᴀʟᴀʙʟᴇ, ᴀɴᴅ ᴜꜱᴇʀ-ᴄᴇɴᴛʀɪᴄ ᴅɪɢɪᴛᴀʟ ꜱᴏʟᴜᴛɪᴏɴꜱ. ꜰʀᴏᴍ ʙᴀᴄᴋᴇɴᴅ ꜱʏꜱᴛᴇᴍꜱ ᴛᴏ ɪɴᴛᴜɪᴛɪᴠᴇ ɪɴᴛᴇʀꜰᴀᴄᴇꜱ ᴀɴᴅ ᴄʟᴏᴜᴅ ɪɴᴛᴇɢʀᴀᴛɪᴏɴꜱ, ɪ ᴍᴇʀɢᴇ ꜰᴜɴᴄᴛɪᴏɴᴀʟɪᴛʏ ᴡɪᴛʜ ᴛʜᴏᴜɢʜᴛꜰᴜʟ ᴅᴇꜱɪɢɴ.
             </p>
             <ul class="social-links">
               <li>
@@ -198,8 +199,9 @@
               learning new technologies, or working on personal projects that
               challenge me to grow.
             </p>
-            <a href="#contact" class="btn">Get In Touch</a>
-
+            <div class="button-wrapper">
+  <a href="your-cv.pdf" class="btn" download>Download CV</a>
+</div>
             <div class="skills">
               <h3>Expertise</h3>
               <div class="skills-grid">
@@ -577,6 +579,52 @@
         // === INITIAL SCRAMBLE ===
         startScrambleAll();
       });
+      function scrollToSection(id) {
+    const section = document.getElementById(id);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    }
+  }
+    const skills = ["Java", "Python", "Frontend", "UI/UX", "Salesforce"];
+    const chars = "!<>-_\\/[]{}—=+*^?#________";
+    const el = document.getElementById("scramble");
+
+    let counter = 0;
+
+    function scrambleText(text, callback) {
+      let output = '';
+      let frame = 0;
+      const totalFrames = 20;
+      const scrambleInterval = setInterval(() => {
+        output = '';
+        for (let i = 0; i < text.length; i++) {
+          if (frame > i * 2) {
+            output += text[i];
+          } else {
+            output += chars[Math.floor(Math.random() * chars.length)];
+          }
+        }
+        el.textContent = output;
+        frame++;
+        if (frame > totalFrames) {
+          clearInterval(scrambleInterval);
+          el.textContent = text;
+          if (callback) setTimeout(callback, 1500);
+        }
+      }, 40);
+    }
+
+    function cycleSkills() {
+      scrambleText(skills[counter], () => {
+        counter = (counter + 1) % skills.length;
+        cycleSkills();
+      });
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+      el.textContent = skills[0]; // Initial render with no flicker
+      setTimeout(cycleSkills, 1500);
+    });s
     </script>
   </body>
 </html>
