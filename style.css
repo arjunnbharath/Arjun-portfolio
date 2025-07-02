@@ -183,13 +183,14 @@ body.light-mode .social-links a:hover {
   width: 100%;
 }
 
+
 /* When open, keep arrow and remove animation */
 .menu-toggle.open::before {
   width: 0;
 }
 
 .menu-toggle.open {
-  color: #d91f1f;
+  color: #d60000;
 }
 
 /* Menu overlay */
@@ -286,31 +287,34 @@ body.light-mode .social-links a:hover {
   gap: 2rem;
   font-size: 0.8rem;
   color: #d9731f;
+  
 }
 
 .chat-button {
   background-color: #d90404;
   color: white;
   font-weight: bold;
-  padding: 1rem 2rem;
+  padding: 1rem 3rem;
   border: none;
   border-radius: 40px;
   cursor: pointer;
-  font-size: 1rem;
+  font-size: 1.6rem;
   display: flex;
   align-items: center;
   gap: 8px;
-  position: absolute;
-  bottom: 2rem;
-  right: 1rem;
-  
-}
-.chat-button {
-  top: 711px;
+  position: fixed;
   left: 2rem;
-  bottom: auto;
-  right: auto;
+  top: 39rem;
+  z-index: 1000;
 }
+.chat-text {
+  display: inline-block;
+  min-width: 12ch; /* prevents flickering */
+  font-family: monospace; /* consistent character widths */
+  white-space: nowrap;
+}
+
+
 
 .mobile-brand {
   display: none;
@@ -932,25 +936,34 @@ body.light-mode .hamburger span {
   min-height: 150px;
   resize: vertical;
 }
-
-/* Theme Toggle */
-.theme-toggle {
+ 
+ /* .theme-toggle {
   position: fixed;
-  bottom: 20px;
-  right: 20px;
-  z-index: 1002;
-  font-size: 1.2rem;
+  bottom: 28px;
+  left: 20px; 
+  font-size: 1.3rem;
   cursor: pointer;
-  background: rgba(20, 20, 20, 0.9);
+  background: #000000;
   color: #fff;
   padding: 12px;
-  border-radius: 25%;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  border-radius: 35%;
+  border: 1px solid rgba(248, 0, 0, 0.897);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.918);
   user-select: none;
   transition: all 0.3s ease;
   backdrop-filter: blur(10px);
+}  */
+
+
+/* Optional: push it further left on bigger screens */
+@media (min-width: 1024px) {
+  .theme-toggle {
+    left: 100px;
+  }
 }
+
+
+
 
 .theme-toggle:hover {
   transform: scale(1.1);
@@ -1082,12 +1095,7 @@ html {
     left: 10px;
   }
 
-  .theme-toggle {
-    bottom: 15px;
-    right: 15px;
-    font-size: 1.3rem;
-    padding: 10px;
-  }
+ 
 }
 
 @media (max-width: 768px) {
