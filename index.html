@@ -4,10 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Your Name - Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
     <link rel="stylesheet" href="style.css" />
   </head>
@@ -21,10 +27,17 @@
       <span></span>
     </div>
 
+    <div class="splash-screen">
+      <div class="top-half red-part"></div>
+      <div class="bottom-half red-part"></div>
+      <div class="name-container">
+        <h1 class="name" id="scramble2">LOADING...</h1>
+      </div>
+    </div>
     <!-- Header -->
     <!-- Navbar -->
     <div class="navbar">
-      <div class="logo">ARJUN</div>
+      <div class="logo" onclick="location.reload()">ARJUN</div>
       <div class="menu-toggle" id="menuToggle">
         <span class="icon icon-bars">☰</span>
         <span class="icon icon-arrow">→</span>
@@ -43,9 +56,7 @@
 
           <div class="menu-item" data-target="about">
             <span class="label"> About<span class="arrow">➝</span> </span>
-            <div class="subtext">
-              Software engineer for a reason.
-            </div>
+            <div class="subtext">Software engineer for a reason.</div>
           </div>
 
           <div class="menu-item" data-target="projects">
@@ -109,36 +120,37 @@
         <div class="intro-content">
           <div class="intro-text">
             <div class="pretitle">Hello World</div>
-            <h1 class="main-title">
-  I'm <span>Arjun</span>
-</h1>
- <h2 class="sub-title">
-  A software engineer skilled in
-  <span class="skill-change" id="scramble"></span>
-</h2>
+            <h1 class="main-title">I'm <span>Arjun</span></h1>
+            <h2 class="sub-title">
+              A software engineer skilled in
+              <span class="skill-change" id="scramble"></span>
+            </h2>
 
-  
-<style>
-  .main-title {
-    font-size: 2.5rem;
-    margin-bottom: 0.3rem;
-  }
+            <style>
+              .main-title {
+                font-size: 2.5rem;
+                margin-bottom: 0.3rem;
+              }
 
-  .main-title span {
-    color: #007acc;
-    font-weight: bold;
-  }
+              .main-title span {
+                color: #007acc;
+                font-weight: bold;
+              }
 
-  .sub-title {
-    font-size: 1.5rem;
-    font-weight: normal;
-    line-height: 1.4;
-    margin-top: 0;
-  }
-</style>
-           
+              .sub-title {
+                font-size: 1.5rem;
+                font-weight: normal;
+                line-height: 1.4;
+                margin-top: 0;
+              }
+            </style>
+
             <p class="intro-description">
-             I design and engineer robust, scalable, and user-focused digital solutions. From high-performance backend systems to intuitive interfaces and seamless cloud integrations, I blend functionality with thoughtful design to create experiences that deliver real value.
+              I design and engineer robust, scalable, and user-focused digital
+              solutions. From high-performance backend systems to intuitive
+              interfaces and seamless cloud integrations, I blend functionality
+              with thoughtful design to create experiences that deliver real
+              value.
             </p>
             <ul class="social-links">
               <li>
@@ -200,8 +212,8 @@
               challenge me to grow.
             </p>
             <div class="button-wrapper">
-  <a href="your-cv.pdf" class="btn" download>Download CV</a>
-</div>
+              <a href="your-cv.pdf" class="btn" download>Download CV</a>
+            </div>
             <div class="skills">
               <h3>Expertise</h3>
               <div class="skills-grid">
@@ -401,6 +413,7 @@
     <footer class="footer">
       <p>&copy; 2024 Your Name. All rights reserved.</p>
     </footer>
+
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         // === CONSTANTS ===
@@ -412,18 +425,18 @@
         const menuOverlay = document.getElementById("menuOverlay");
         const navbar = document.querySelector(".navbar");
         const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%";
-        const scrambleSpeed = 90; // ⏱️ Adjust this to control speed (lower = faster)
-
+        const glitchChars = "!<>-_\\/[]{}—=+*^?#________";
+        const scrambleSpeed = 50;
         let lastScrollTop = 0;
         let scrollTicking = false;
 
-        // === SMOOTH SCROLL TO SECTION ===
-        function scrollToSection(sectionId) {
-          const section = document.getElementById(sectionId);
+        // === SCROLL TO SECTION ===
+        function scrollToSection(id) {
+          const section = document.getElementById(id);
           if (section) section.scrollIntoView({ behavior: "smooth" });
         }
 
-        // === SCROLL EVENT HANDLER ===
+        // === HANDLE SCROLL ===
         function handleScroll() {
           const scrollTop =
             window.pageYOffset || document.documentElement.scrollTop;
@@ -445,13 +458,11 @@
           }
         });
 
-        // === FADE-IN ON SCROLL ===
+        // === FADE-IN ===
         const observer = new IntersectionObserver(
           (entries) => {
             entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                entry.target.classList.add("visible");
-              }
+              if (entry.isIntersecting) entry.target.classList.add("visible");
             });
           },
           { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
@@ -461,7 +472,7 @@
           .querySelectorAll(".fade-in")
           .forEach((el) => observer.observe(el));
 
-        // === SMOOTH SCROLL FOR INTERNAL LINKS ===
+        // === INTERNAL LINK SCROLL ===
         document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
           anchor.addEventListener("click", (e) => {
             e.preventDefault();
@@ -501,10 +512,32 @@
           });
         }
 
-        // === SCRAMBLE TEXT LOGIC ===
+        // === GLITCH TEXT EFFECT ===
+        function glitchReveal(el, text, callback, speed = 40) {
+          let output = "";
+          let frame = 0;
+          const totalFrames = 20;
+          const interval = setInterval(() => {
+            output = "";
+            for (let i = 0; i < text.length; i++) {
+              output +=
+                frame > i * 2
+                  ? text[i]
+                  : glitchChars[Math.floor(Math.random() * glitchChars.length)];
+            }
+            el.textContent = output;
+            frame++;
+            if (frame > totalFrames) {
+              clearInterval(interval);
+              el.textContent = text;
+              if (callback) setTimeout(callback, 1000);
+            }
+          }, speed);
+        }
+
+        // === SCRAMBLE MULTIPLE ELEMENTS ===
         function scrambleElementText(el, originalText) {
           let iteration = 0;
-
           const interval = setInterval(() => {
             el.textContent = originalText
               .split("")
@@ -513,7 +546,6 @@
                 return letters[Math.floor(Math.random() * letters.length)];
               })
               .join("");
-
             iteration += 0.5;
             if (iteration >= originalText.length) {
               clearInterval(interval);
@@ -539,92 +571,67 @@
             menuOverlay.classList.toggle("open");
             document.body.style.overflow = isOpen ? "hidden" : "auto";
             if (label) label.textContent = isOpen ? "Close" : "Menu";
-
-            if (isOpen) {
-              startScrambleAll(); // 🔥 Animate on menu open
-            }
+            if (isOpen) startScrambleAll();
           });
 
           const closeMenu = () => {
             menuOverlay.classList.remove("open");
             menuToggle.classList.remove("open");
             document.body.style.overflow = "auto";
-            const label = menuToggle.querySelector(".label");
             if (label) label.textContent = "Menu";
           };
 
-          // === MENU ITEM CLICK ===
-          document.querySelectorAll(".menu-item").forEach((item) => {
-            item.addEventListener("click", () => {
-              const targetId = item.getAttribute("data-target");
-              if (targetId) {
-                scrollToSection(targetId);
-                closeMenu();
-              }
+          document
+            .querySelectorAll(".menu-item, .chat-button")
+            .forEach((item) => {
+              item.addEventListener("click", () => {
+                const targetId = item.getAttribute("data-target");
+                if (targetId) {
+                  scrollToSection(targetId);
+                  closeMenu();
+                }
+              });
             });
-          });
+        }
 
-          // === CHAT BUTTON CLICK ===
-          document.querySelectorAll(".chat-button").forEach((button) => {
-            button.addEventListener("click", () => {
-              const targetId = button.getAttribute("data-target");
-              if (targetId) {
-                scrollToSection(targetId);
-                closeMenu();
-              }
-            });
+        // === CYCLE SKILLS ===
+        const skills = ["Java", "Python", "Frontend", "UI/UX", "Salesforce"];
+        const skillEl = document.getElementById("scramble");
+        let counter = 0;
+
+        function cycleSkills() {
+          glitchReveal(skillEl, skills[counter], () => {
+            counter = (counter + 1) % skills.length;
+            cycleSkills();
           });
         }
 
-        // === INITIAL SCRAMBLE ===
-        startScrambleAll();
-      });
-      function scrollToSection(id) {
-    const section = document.getElementById(id);
-    if (section) {
-      section.scrollIntoView({ behavior: "smooth" });
-    }
-  }
-    const skills = ["Java", "Python", "Frontend", "UI/UX", "Salesforce"];
-    const chars = "!<>-_\\/[]{}—=+*^?#________";
-    const el = document.getElementById("scramble");
+        if (skillEl) {
+          skillEl.textContent = skills[0];
+          setTimeout(cycleSkills, 1500);
+        }
 
-    let counter = 0;
+        // === SPLASH SCREEN ===
+        const splashEl = document.getElementById("scramble2");
+        const nameToReveal = "ARJUN BHARATH";
 
-    function scrambleText(text, callback) {
-      let output = '';
-      let frame = 0;
-      const totalFrames = 20;
-      const scrambleInterval = setInterval(() => {
-        output = '';
-        for (let i = 0; i < text.length; i++) {
-          if (frame > i * 2) {
-            output += text[i];
-          } else {
-            output += chars[Math.floor(Math.random() * chars.length)];
+        window.addEventListener("load", () => {
+          if (splashEl) {
+            glitchReveal(splashEl, nameToReveal, () => {
+              document.querySelector(".top-half").style.transform =
+                "translateY(-100%)";
+              document.querySelector(".bottom-half").style.transform =
+                "translateY(100%)";
+
+              setTimeout(() => {
+                document.querySelector(".splash-screen").style.display = "none";
+                document.querySelector(".main-content").style.display = "block";
+                document.body.style.overflow = "auto";
+              }, 1000);
+            });
           }
-        }
-        el.textContent = output;
-        frame++;
-        if (frame > totalFrames) {
-          clearInterval(scrambleInterval);
-          el.textContent = text;
-          if (callback) setTimeout(callback, 1500);
-        }
-      }, 40);
-    }
-
-    function cycleSkills() {
-      scrambleText(skills[counter], () => {
-        counter = (counter + 1) % skills.length;
-        cycleSkills();
+        });
       });
-    }
-
-    window.addEventListener("DOMContentLoaded", () => {
-      el.textContent = skills[0]; // Initial render with no flicker
-      setTimeout(cycleSkills, 1500);
-    });s
     </script>
   </body>
 </html>
