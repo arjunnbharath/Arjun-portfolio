@@ -53,12 +53,12 @@ body.light-mode .btn:hover {
   color: white;
 }
 
-body.light-mode .-links a {
+body.light-mode .social-links a {
   color: #212529;
   border-color: #0066cc;
 }
 
-body.light-mode .-links a:hover {
+body.light-mode .social-links a:hover {
   background-color: #0066cc;
   color: #fff;
 }
@@ -239,7 +239,6 @@ body.light-mode .-links a:hover {
   font-weight: 300;
   cursor: pointer;
   transition: transform 0.3s ease;
-  
 }
 
 .label {
@@ -264,20 +263,20 @@ body.light-mode .-links a:hover {
   transform: rotate(-45deg);
 }
 .sub-title {
-      font-size: 1.5rem;
-      font-weight: 500;
-    }
+  font-size: 1.5rem;
+  font-weight: 500;
+}
 
 .skill-change {
   color: #fc4300;
   font-weight: 800; /* increased for bolder look */
   display: inline-block;
-  font-size: 1.9rem;    
+  font-size: 1.9rem;
   min-width: 130px; /* adjust width if longer words are used */
   margin-left: 5px;
   white-space: nowrap;
   letter-spacing: 5px; /* increased spacing between letters */
-  font-family: 'DotGothic16', sans-serif;
+  font-family: "DotGothic16", sans-serif;
   animation: blink 1s step-start infinite;
 }
 
@@ -307,7 +306,7 @@ body.light-mode .-links a:hover {
   font-size: 0.9rem;
   margin-top: 0.3rem;
   margin-left: 3px;
-  font-family: 'DotGothic16', sans-serif;
+  font-family: "DotGothic16", sans-serif;
 }
 
 .footer-links {
@@ -321,7 +320,7 @@ body.light-mode .-links a:hover {
   text-decoration: none;
   color: #d9731f;
   transition: color 0.3s ease;
-  font-family: 'DotGothic16', sans-serif;
+  font-family: "DotGothic16", sans-serif;
 }
 
 .footer-links a:hover {
@@ -697,12 +696,12 @@ body.light-mode .hamburger span {
 
 @media (min-width: 768px) {
   .social-links {
-    flex-direction: column;              /* vertical stack */
+    flex-direction: column; /* vertical stack */
     position: fixed;
     right: 20px;
     top: 45%;
-    transform: translateY(-50%);         /* vertically center */
-    align-items: flex-end;               /* align links to right */
+    transform: translateY(-50%); /* vertically center */
+    align-items: flex-end; /* align links to right */
   }
 }
 
@@ -719,7 +718,6 @@ body.light-mode .hamburger span {
   color: rgb(0, 204, 255);
   transform: translateY(-2px);
 }
-
 
 .scroll-indicator {
   position: absolute;
@@ -788,8 +786,6 @@ body.light-mode .hamburger span {
   }
 }
 
-
-
 .section-title {
   font-size: clamp(2rem, 4vw, 2.5rem);
   margin-bottom: 30px;
@@ -805,7 +801,6 @@ body.light-mode .hamburger span {
   justify-content: center;
   margin-top: 50px; /* Optional: adjust top spacing */
 }
-
 
 .btn {
   display: inline-block;
@@ -831,7 +826,6 @@ body.light-mode .hamburger span {
   box-shadow: 0 0 0 3px rgba(252, 67, 0, 0.4);
 }
 
-
 .skills {
   margin-top: 50px;
 }
@@ -846,7 +840,7 @@ body.light-mode .hamburger span {
 .skill-item {
   padding: 25px 20px;
   background-color: rgba(255, 255, 255, 0.05);
-  border-radius:5px;
+  border-radius: 5px;
   text-align: center;
   transition: all 0.3s ease;
   border: 1px solid rgba(255, 255, 255, 0.05);
@@ -1289,13 +1283,12 @@ html {
   }
 }
 
-
-* -------------------------------- 
-
- Projects
-
--------------------------------- */
-.cd-projects-container {
+*
+  --------------------------------
+  Projects
+  --------------------------------
+  */
+  .cd-projects-container {
   height: 100%;
   width: 100vw;
   position: relative;
@@ -1407,7 +1400,7 @@ html {
 }
 .cd-title::before {
   /* background image */
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -1418,7 +1411,7 @@ html {
 }
 .cd-title::after {
   /* line below title -  visible on hover */
-  content: '';
+  content: "";
   position: absolute;
   left: 50%;
   top: calc(50% + 30px);
@@ -1429,13 +1422,13 @@ html {
   transform: translateX(-50%) translateY(-50%) scaleX(0);
   height: 1px;
   width: 60px;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   -webkit-transition: -webkit-transform 0.2s;
   -moz-transition: -moz-transform 0.2s;
   transition: transform 0.2s;
 }
 .single-project:nth-of-type(1) .cd-title {
-  background-color: #2978A0;
+  background-color: #2978a0;
 }
 .single-project:nth-of-type(1) .cd-title::before {
   background-image: url(../img/img-1.jpg);
@@ -1447,12 +1440,14 @@ html {
   background-image: url(../img/img-2.jpg);
 }
 .single-project:nth-of-type(3) .cd-title {
-  background-color: #BCAB79;
+  background-color: #bcab79;
 }
 .single-project:nth-of-type(3) .cd-title::before {
   background-image: url(../img/img-3.jpg);
 }
-.single-project:nth-of-type(1) .cd-title::before, .single-project:nth-of-type(2) .cd-title::before, .single-project:nth-of-type(3) .cd-title::before {
+.single-project:nth-of-type(1) .cd-title::before,
+.single-project:nth-of-type(2) .cd-title::before,
+.single-project:nth-of-type(3) .cd-title::before {
   background-size: cover;
 }
 .cd-title h2 {
@@ -1460,7 +1455,7 @@ html {
   z-index: 1;
   font-size: 2.5rem;
   font-weight: 700;
-  color: #FFFFFF;
+  color: #ffffff;
   font-family: "Playfair Display", serif;
   /* vertical align inside .cd-title */
   display: table-cell;
@@ -1524,7 +1519,7 @@ html {
 }
 .cd-project-info::before {
   /* use to push the .content-wrapper below the intro project image */
-  content: '';
+  content: "";
   display: block;
   height: 100%;
   width: 100%;
@@ -1534,7 +1529,7 @@ html {
   position: relative;
   z-index: 2;
   padding: 2em 0 3em;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
 }
 .cd-project-info .content-wrapper > * {
   width: 90%;
@@ -1658,7 +1653,8 @@ html {
  Support for no js 
 
 -------------------------------- */
-.no-js .cd-nav-trigger, .no-js .cd-scroll {
+.no-js .cd-nav-trigger,
+.no-js .cd-scroll {
   display: none;
 }
 
@@ -1745,4 +1741,52 @@ html {
 }
 .no-js .cd-project-info .content-wrapper {
   margin-top: 0;
+}
+/* openning screen */
+.splash-screen {
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  z-index: 1000;
+  overflow: hidden;
+}
+
+.red-part {
+  position: absolute;
+  width: 100%;
+  height: 50%;
+  background-color: rgb(208, 4, 1);
+  transition: transform 1s ease-in-out;
+  z-index: 2;
+}
+
+.top-half {
+  top: 0;
+}
+
+.bottom-half {
+  bottom: 0;
+}
+
+.name-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+}
+
+.name {
+  font-size: 3rem;
+  font-weight: bold;
+  color: black;
+  letter-spacing: 2px;
+  white-space: nowrap;
+  min-width: 12ch;
+  text-align: center;
+}
+
+.main-content {
+  display: none;
+  padding: 2rem;
 }
