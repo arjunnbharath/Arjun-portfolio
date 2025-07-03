@@ -14,19 +14,11 @@
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.cells.min.js"></script>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <!-- Animated Background -->
-    <div class="circles">
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-
     <div class="splash-screen">
       <div class="top-half red-part"></div>
       <div class="bottom-half red-part"></div>
@@ -133,7 +125,7 @@
               }
 
               .main-title span {
-                color: #007acc;
+                color: #cc0000;
                 font-weight: bold;
               }
 
@@ -190,6 +182,14 @@
       </div>
     </section>
 
+    <!-- Animated Background -->
+    <div class="circles">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
     <!-- About Section -->
     <section id="about" class="section">
       <div class="container">
@@ -415,6 +415,10 @@
     </footer>
 
     <script>
+      function scrollToSection(id) {
+        const section = document.getElementById(id);
+        if (section) section.scrollIntoView({ behavior: "smooth" });
+      }
       document.addEventListener("DOMContentLoaded", () => {
         // === CONSTANTS ===
         const header = document.getElementById("header");
@@ -430,11 +434,11 @@
         let lastScrollTop = 0;
         let scrollTicking = false;
 
-        // === SCROLL TO SECTION ===
-        function scrollToSection(id) {
-          const section = document.getElementById(id);
-          if (section) section.scrollIntoView({ behavior: "smooth" });
-        }
+        // // === SCROLL TO SECTION ===
+        // function scrollToSection(id) {
+        //   const section = document.getElementById(id);
+        //   if (section) section.scrollIntoView({ behavior: "smooth" });
+        // }
 
         // === HANDLE SCROLL ===
         function handleScroll() {
@@ -630,6 +634,20 @@
               }, 1000);
             });
           }
+        });
+        VANTA.CELLS({
+          el: "#intro",
+          mouseControls: true,
+          touchControls: true,
+          gyroControls: false,
+          minHeight: 200.0,
+          minWidth: 200.0,
+          scale: 1.0,
+          scaleMobile: 1.0, // reduce this if it's zoomed in on small screens
+          size: 1.0,
+          speed: 1.2,
+          color1: 0x20202,
+          color2: 0x26af84,
         });
       });
     </script>
