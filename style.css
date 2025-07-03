@@ -640,19 +640,46 @@ body.light-mode .hamburger span {
 }
 
 /* Intro Section */
-.intro {
-  justify-content: center;
-  text-align: left;
+
+#intro {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  color: white;
+}
+
+#intro canvas {
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
+  z-index: 1; /* behind content */
 }
 
 .intro-content {
-  display: flex;
-  align-items: center;
-  gap: 100px;
+  position: relative;
+  z-index: 2; /* above canvas */
+  width: 100%;
 }
 
 .intro-text {
-  flex: 1;
+  opacity: 0;
+  animation: fadeIn 2s ease forwards;
+  animation-delay: 3s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .pretitle {
@@ -690,18 +717,27 @@ body.light-mode .hamburger span {
   align-items: center;
   list-style: none;
   padding: 0;
-  margin: 0 auto;
-  letter-spacing: 1px; /* optional for more dot-matrix feel */
+  margin: 1rem auto 0;
+  letter-spacing: 1px;
+  z-index: 1000; /* ensure it stays above background */
 }
 
 @media (min-width: 768px) {
   .social-links {
-    flex-direction: column; /* vertical stack */
+    flex-direction: row; /* horizontal layout */
     position: fixed;
-    right: 20px;
-    top: 45%;
-    transform: translateY(-50%); /* vertically center */
-    align-items: flex-end; /* align links to right */
+    bottom: 1rem; /* place near bottom instead of centering vertically */
+    right: 1rem; /* place near right edge */
+    align-items: center;
+    background: rgba(255, 255, 255, 0); /* optional */
+    padding: 0.5rem;
+    border-radius: 8px;
+    gap: 1.5rem; /* spacing between icons */
+  }
+
+  .social-links li a {
+    color: #fff; /* adjust color for contrast */
+    text-decoration: none;
   }
 }
 
