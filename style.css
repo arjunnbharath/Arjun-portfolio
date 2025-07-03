@@ -53,12 +53,12 @@ body.light-mode .btn:hover {
   color: white;
 }
 
-body.light-mode .social-links a {
+body.light-mode .-links a {
   color: #212529;
   border-color: #0066cc;
 }
 
-body.light-mode .social-links a:hover {
+body.light-mode .-links a:hover {
   background-color: #0066cc;
   color: #fff;
 }
@@ -685,7 +685,7 @@ body.light-mode .hamburger span {
 .social-links {
   display: flex;
   justify-content: center;
-  gap: 2rem;
+  gap: 1rem;
   font-size: 0.8rem;
   color: #b40303;
   align-items: center;
