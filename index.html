@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
  <link rel="stylesheet" href="style.css">
+ <link rel="stylesheet" href="resume.css">
      <title>Rylan Phillips - Portfolio</title>
    
 </head>
@@ -55,10 +56,127 @@
             </div>
         </div>
     </section>
+ <section class="info" id="info"></section>
+ <div class="page">
+        <div class="page-header">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 2rem;">
+                <div>
+                    <h2 class="page-title">RESUME</h2>
+                    <p class="page-subtitle">PROFESSIONAL SUMMARY & QUALIFICATIONS</p>
+                </div>
+                <button onclick="downloadResume()" class="download-btn">[ DOWNLOAD RESUME ]</button>
+            </div>
+        </div>
 
+        <div class="resume-section">
+            <h3 class="section-title">[ SUMMARY ]</h3>
+            <p class="summary-text">
+                Salesforce Marketing Cloud Developer with 1+ year of experience in email marketing, 
+                automation, and personalization. Skilled in AMPscript, Journey Builder, and Automation 
+                Studio to enhance customer engagement and campaign performance.
+            </p>
+        </div>
+
+        <div class="resume-section">
+            <h3 class="section-title">[ WORK EXPERIENCE ]</h3>
+            
+            <div class="resume-item">
+                <div class="resume-item-header">
+                    <div class="resume-role">SOFTWARE ENGINEER</div>
+                    <div class="resume-date">APR 2025 – PRESENT</div>
+                </div>
+                <div class="resume-company">G10X (2024 - Present)</div>
+                <div class="resume-description">
+                    <ul>
+                        <li>Developed and customized email templates in Salesforce Marketing Cloud (SFMC) to support personalized marketing campaigns.</li>
+                        <li>Worked on Journey Builder to design and automate customer engagement workflows.</li>
+                        <li>Collaborated on API integrations and automation calls to streamline marketing processes and improve campaign efficiency.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="resume-item">
+                <div class="resume-item-header">
+                    <div class="resume-role">ASSOCIATE SOFTWARE ENGINEER</div>
+                    <div class="resume-date">MAR 2024 – APR 2025</div>
+                </div>
+                <div class="resume-company">G10X</div>
+                <div class="resume-description">
+                    <ul>
+                        <li>Performed Salesforce Marketing Cloud testing with a focus on SFMC Personalization features.</li>
+                        <li>Ensured accuracy and quality of marketing campaigns through detailed validation and testing processes.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="resume-item">
+                <div class="resume-item-header">
+                    <div class="resume-role">JAVA FULL STACK WEB DEVELOPER TRAINEE</div>
+                    <div class="resume-date">MAY 2023 – JAN 2024</div>
+                </div>
+                <div class="resume-company">QUEST Innovative Solutions (2022-2023)</div>
+                <div class="resume-description">
+                    <ul>
+                        <li>Developed and maintained responsive websites using Java, Spring Boot, and front-end technologies like HTML, CSS, and JavaScript.</li>
+                        <li>Built multiple full-stack projects showcasing strong skills in both back-end logic and front-end design.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="resume-section">
+            <h3 class="section-title">[ EDUCATION ]</h3>
+            <div class="resume-item">
+                <div class="resume-item-header">
+                    <div class="resume-role">B.TECH IN COMPUTER SCIENCE</div>
+                    <div class="resume-date">2019</div>
+                </div>
+                <div class="resume-company">APJ Abdul Kalam Technological University</div>
+            </div>
+
+            <div class="resume-item">
+                <div class="resume-item-header">
+                    <div class="resume-role">SENIOR SECONDARY (COMPUTER SCIENCE)</div>
+                    <div class="resume-date">2017</div>
+                </div>
+                <div class="resume-company">St.Mary's HSS Pattom</div>
+            </div>
+        </div>
+
+        <div class="resume-section">
+            <h3 class="section-title">[ SKILLS ]</h3>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <div class="skill-category-title">HARD SKILLS</div>
+                    <div class="skill-list">
+                        Salesforce Marketing Cloud<br>
+                        AMPscript<br>
+                        SQL<br>
+                        HTML / CSS<br>
+                        Journey Builder<br>
+                        Automation Studio<br>
+                        Email Campaigns<br>
+                        Personalization
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <div class="skill-category-title">SOFT SKILLS</div>
+                    <div class="skill-list">
+                        Problem-Solving<br>
+                        Communication<br>
+                        Time Management<br>
+                        Collaboration<br>
+                        Adaptability
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+ </section>
     <footer>
         <a href="#work" class="active">[ WORK ]</a>
-        <a href="#info">INFO</a>
+        <a href="#info"class="active">[ INFO ]</a>
         <a href="#archive">ARCHIVE</a>
     </footer>
 
@@ -126,6 +244,199 @@
 
         // Run glitch effect on page load
         window.addEventListener('load', glitchText);
+     
+     
+        // Glitch text animation on load
+        function glitchText() {
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            const logo = document.querySelector('.logo');
+            let iterations = 0;
+            const maxIterations = 20;
+
+            const interval = setInterval(() => {
+                logo.textContent = 'RYLAN PHILLIPS'.split('').map((char, index) => {
+                    if (char === ' ') return ' ';
+                    if (iterations > index) {
+                        return char;
+                    }
+                    return chars[Math.floor(Math.random() * chars.length)];
+                }).join('');
+
+                iterations++;
+
+                if (iterations > maxIterations) {
+                    clearInterval(interval);
+                    logo.textContent = 'RYLAN PHILLIPS';
+                }
+            }, 50);
+        }
+
+        window.addEventListener('load', glitchText);
+
+        // Download Resume Function
+        function downloadResume() {
+            const resumeContent = `
+RYLAN PHILLIPS
+Salesforce Marketing Cloud Developer
+============================================
+
+SUMMARY
+Salesforce Marketing Cloud Developer with 1+ year of experience in email marketing, automation, and personalization. Skilled in AMPscript, Journey Builder, and Automation Studio to enhance customer engagement and campaign performance.
+
+WORK EXPERIENCE
+============================================
+
+SOFTWARE ENGINEER | APR 2025 – PRESENT
+G10X (2024 - Present)
+• Developed and customized email templates in Salesforce Marketing Cloud (SFMC) to support personalized marketing campaigns.
+• Worked on Journey Builder to design and automate customer engagement workflows.
+• Collaborated on API integrations and automation calls to streamline marketing processes and improve campaign efficiency.
+
+ASSOCIATE SOFTWARE ENGINEER | MAR 2024 – APR 2025
+G10X
+• Performed Salesforce Marketing Cloud testing with a focus on SFMC Personalization features.
+• Ensured accuracy and quality of marketing campaigns through detailed validation and testing processes.
+
+JAVA FULL STACK WEB DEVELOPER TRAINEE | MAY 2023 – JAN 2024
+QUEST Innovative Solutions (2022-2023)
+• Developed and maintained responsive websites using Java, Spring Boot, and front-end technologies like HTML, CSS, and JavaScript.
+• Built multiple full-stack projects showcasing strong skills in both back-end logic and front-end design.
+
+EDUCATION
+============================================
+
+B.TECH IN COMPUTER SCIENCE | 2019
+APJ Abdul Kalam Technological University
+
+SENIOR SECONDARY (COMPUTER SCIENCE) | 2017
+St.Mary's HSS Pattom
+
+CERTIFICATIONS
+============================================
+• Salesforce Certified Marketing Cloud Email Specialist (2025)
+• Salesforce Certified Agentforce Specialist (2025)
+• Salesforce Certified AI Associate (2025)
+• Oracle Certified Generative AI Professional (2025)
+• Oracle Certified OCI Data Science Professional (2025)
+
+SKILLS
+============================================
+
+Hard Skills:
+Salesforce Marketing Cloud, AMPscript, SQL, HTML/CSS, Journey Builder, Automation Studio, Email Campaigns, Personalization
+
+Soft Skills:
+Problem-Solving, Communication, Time Management, Collaboration, Adaptability
+`;
+
+            const blob = new Blob([resumeContent], { type: 'text/plain' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'Rylan_Phillips_Resume.txt';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+        }
+
+        // Glitch all content on page load
+        window.addEventListener('load', function() {
+            glitchText();
+            
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            
+            // Glitch page title
+            const pageTitle = document.querySelector('.page-title');
+            if (pageTitle) {
+                const finalText = pageTitle.textContent;
+                let iterations = 0;
+                const interval = setInterval(() => {
+                    pageTitle.textContent = finalText.split('').map((char, index) => {
+                        if (char === ' ') return ' ';
+                        if (iterations > index) return char;
+                        return chars[Math.floor(Math.random() * chars.length)];
+                    }).join('');
+                    
+                    iterations++;
+                    if (iterations > 20) {
+                        clearInterval(interval);
+                        pageTitle.textContent = finalText;
+                    }
+                }, 50);
+            }
+            
+            // Glitch all section titles
+            const sectionTitles = document.querySelectorAll('.section-title');
+            sectionTitles.forEach((title, titleIndex) => {
+                const finalText = title.textContent;
+                let iterations = 0;
+                
+                setTimeout(() => {
+                    const interval = setInterval(() => {
+                        title.textContent = finalText.split('').map((char, index) => {
+                            if (char === ' ' || char === '[' || char === ']') return char;
+                            if (iterations > index) return char;
+                            return chars[Math.floor(Math.random() * chars.length)];
+                        }).join('');
+                        
+                        iterations++;
+                        if (iterations > 15) {
+                            clearInterval(interval);
+                            title.textContent = finalText;
+                        }
+                    }, 40);
+                }, titleIndex * 200);
+            });
+            
+            // Glitch all resume roles
+            const roles = document.querySelectorAll('.resume-role');
+            roles.forEach((role, roleIndex) => {
+                const finalText = role.textContent;
+                let iterations = 0;
+                
+                setTimeout(() => {
+                    const interval = setInterval(() => {
+                        role.textContent = finalText.split('').map((char, index) => {
+                            if (char === ' ') return char;
+                            if (iterations > index) return char;
+                            return chars[Math.floor(Math.random() * chars.length)];
+                        }).join('');
+                        
+                        iterations++;
+                        if (iterations > 15) {
+                            clearInterval(interval);
+                            role.textContent = finalText;
+                        }
+                    }, 30);
+                }, 500 + (roleIndex * 150));
+            });
+            
+            // Glitch skill category titles
+            const skillTitles = document.querySelectorAll('.skill-category-title');
+            skillTitles.forEach((title, titleIndex) => {
+                const finalText = title.textContent;
+                let iterations = 0;
+                
+                setTimeout(() => {
+                    const interval = setInterval(() => {
+                        title.textContent = finalText.split('').map((char, index) => {
+                            if (char === ' ') return char;
+                            if (iterations > index) return char;
+                            return chars[Math.floor(Math.random() * chars.length)];
+                        }).join('');
+                        
+                        iterations++;
+                        if (iterations > 12) {
+                            clearInterval(interval);
+                            title.textContent = finalText;
+                        }
+                    }, 35);
+                }, 800 + (titleIndex * 100));
+            });
+        });
+    
+
     </script>
 </body>
 </html>
