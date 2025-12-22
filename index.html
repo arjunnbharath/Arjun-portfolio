@@ -1,657 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Your Name - Portfolio</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=DotGothic16&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.cells.min.js"></script>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <div class="splash-screen">
-      <div class="top-half red-part"></div>
-      <div class="bottom-half red-part"></div>
-      <div class="name-container">
-        <h1 class="name" id="scramble2">LOADING...</h1>
-      </div>
-    </div>
-    <!-- Header -->
-    <!-- Navbar -->
-    <div class="navbar">
-      <div class="logo" onclick="location.reload()">ARJUN</div>
-      <div class="menu-toggle" id="menuToggle">
-        <span class="icon icon-bars">☰</span>
-        <span class="icon icon-arrow">→</span>
-        <span class="label">Menu</span>
-      </div>
-    </div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <link rel="stylesheet" href="style.css">
+     <title>Rylan Phillips - Portfolio</title>
+   
+</head>
+<body>
+    <nav>
+        <div class="logo">RYLAN PHILLIPS</div>
+        <ul class="nav-links">
+            <li><a onclick="scrollToSection('work')">[ WORK ]</a></li>
+            <li><a onclick="scrollToSection('info')">INFO</a></li>
+            <li><a onclick="scrollToSection('archive')">ARCHIVE</a></li>
+        </ul>
+    </nav>
 
-    <!-- Menu Overlay -->
-    <div class="menu-overlay" id="menuOverlay">
-      <div class="menu-content">
-        <div class="menu-links">
-          <div class="menu-item" data-target="intro">
-            <span class="label"> Intro <span class="arrow">➝</span> </span>
-            <div class="subtext">Hi, I'm Arjun Bharath.</div>
-          </div>
-
-          <div class="menu-item" data-target="about">
-            <span class="label"> About<span class="arrow">➝</span> </span>
-            <div class="subtext">Software engineer for a reason.</div>
-          </div>
-
-          <div class="menu-item" data-target="projects">
-            <span class="label"> Projects<span class="arrow">➝</span> </span>
-            <div class="subtext">Explore the work. Built with purpose.</div>
-          </div>
+    <section class="hero">
+        <div class="hero-text">
+            <h1>RYLAN<br>PHILLIPS</h1>
         </div>
-        <div class="img2">  
-          
+        <div class="hero-info">
+            <p>DESIGNER &<br>DEVELOPER</p>
+            <p class="location">VIENNA, AT<br>18:32:30</p>
         </div>
-        <div
-          style="
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-          "
-        >
-          <div class="footer-links">
-            <div>
-              <a
-                href="https://www.linkedin.com/in/arjun-bharath-sr/"
-                target="_blank"
-                rel="noopener"
-                >LINKEDIN</a
-              >
-            </div>
-            <div>
-              <a
-                href="https://github.com/arjunnbharath"
-                target="_blank"
-                rel="noopener"
-                >GITHUB</a
-              >
-            </div>
-            <div>
-              <a
-                href="https://www.salesforce.com/trailblazer/arjun-bharath-sr"
-                target="_blank"
-                rel="noopener"
-                >TRAILHEAD</a
-              >
-            </div>
-            <div>
-              <a
-                href="https://discord.com/users/its.me.arjun"
-                target="_blank"
-                rel="noopener"
-                >DISCORD</a
-              >
-            </div>
-          </div>
-
-          <button class="chat-button" data-target="contact">
-            <span class="chat-text">LET'S CHAT ↗</span>
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Intro Section -->
-    <section id="intro" class="section intro">
-      <div class="container">
-        <div class="intro-content">
-          <div class="intro-text">
-            <div class="pretitle">Hello World</div>
-            <h1 class="main-title">I'm <span>Arjun</span></h1>
-            <h2 class="sub-title">
-              A software engineer skilled in
-              <span class="skill-change" id="scramble"></span>
-            </h2>
-
-            <style>
-              .main-title {
-                font-size: 2.5rem;
-                margin-bottom: 0.3rem;
-              }
-
-              .main-title span {
-                color: #cc0000;
-                font-weight: bold;
-              }
-
-              .sub-title {
-                font-size: 1.5rem;
-                font-weight: normal;
-                line-height: 1.4;
-                margin-top: 0;
-              }
-            </style>
-
-            <p class="intro-description">
-              I design and engineer robust, scalable, and user-focused digital
-              solutions. From high-performance backend systems to intuitive
-              interfaces and seamless cloud integrations, I blend functionality
-              with thoughtful design to create experiences that deliver real
-              value.
-            </p>
-            <ul class="social-links">
-              <li>
-                <a href="https://discord.com/users/its.me.arjun" target="_blank"
-                  >Discord</a
-                >
-              </li>
-              <li>
-                <a href="https://github.com/arjunnbharath" target="_blank"
-                  >GitHub</a
-                >
-              </li>
-              <li>
-                <a
-                  href="https://www.linkedin.com/in/arjun-bharath-sr/"
-                  target="_blank"
-                  >LinkedIn</a
-                >
-              </li>
-              <li>
-                <a
-                  href="https://www.salesforce.com/trailblazer/arjun-bharath-sr"
-                  target="_blank"
-                  >Trailhead</a
-                >
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="scroll-indicator" onclick="scrollToSection('about')">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="white">
-          <path
-            d="M11 21.883l-6.235-7.527-.765.644 7.521 9 7.479-9-.764-.645-6.236 7.529v-21.884h-1v21.883z"
-          />
-        </svg>
-      </div>
     </section>
 
-    <!-- Animated Background -->
-    <div class="circles">
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-    <!-- About Section -->
-    <section id="about" class="section">
-      <div class="container">
-        <div class="about-content fade-in">
-          <div class="about-image">
-            <img src="me.jpg" alt="Your Name" />
-          </div>
-          <div class="about-text-content">
-            <div class="pretitle">About Me</div>
-            <h2 class="section-title">Passionate Developer</h2>
-            <p class="about-text">
-              I craft user-focused digital experiences by blending clean code
-              with modern design. Whether it's building scalable systems or
-              intuitive interfaces, I bring ideas to life through technology and
-              creativity
-            </p>
-            <p class="about-text">
-              When I'm not coding, you can find me exploring new design trends,
-              learning new technologies, or working on personal projects that
-              challenge me to grow.
-            </p>
-            <div class="button-wrapper">
-              <a href="your-cv.pdf" class="btn" download>Download CV</a>
-            </div>
-            <div class="skills">
-              <h3>Expertise</h3>
-              <div class="skills-grid">
-                <div class="skill-item">Java</div>
-                <div class="skill-item">Python</div>
-                <div class="skill-item">Frontend Development</div>
-                <div class="skill-item">UI/UX Design</div>
-                <div class="skill-item">Salesforce</div>
-                <div class="skill-item">HTML, CSS, JavaScript</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Experience Section -->
-    <section id="experience" class="section">
-      <div class="container">
-        <div class="fade-in">
-          <div class="pretitle">Experience</div>
-          <h2 class="section-title">Work History</h2>
-
-          <div class="timeline">
-            <div class="timeline-item">
-              <h3 class="timeline-title">Senior Frontend Developer</h3>
-              <h4 class="timeline-company">Your Current Company</h4>
-              <p class="timeline-period">2022 - Present</p>
-              <p>
-                Leading frontend development initiatives and mentoring junior
-                developers. Working with React, TypeScript, and modern
-                development practices.
-              </p>
-            </div>
-
-            <div class="timeline-item">
-              <h3 class="timeline-title">Frontend Developer</h3>
-              <h4 class="timeline-company">Previous Company</h4>
-              <p class="timeline-period">2020 - 2022</p>
-              <p>
-                Developed responsive web applications using React and Vue.js.
-                Collaborated with design teams to implement pixel-perfect
-                interfaces.
-              </p>
-            </div>
-
-            <div class="timeline-item">
-              <h3 class="timeline-title">Junior Developer</h3>
-              <h4 class="timeline-company">First Company</h4>
-              <p class="timeline-period">2019 - 2020</p>
-              <p>
-                Started my professional journey building websites and learning
-                industry best practices. Gained experience in HTML, CSS, and
-                JavaScript.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="section">
-      <div class="container">
-        <div class="fade-in">
-          <div class="pretitle">Recent Works</div>
-          <h2 class="section-title">Featured Projects</h2>
-          <p style="font-size: 18px; color: #cccccc; margin-bottom: 20px">
-            Here are some of my favorite projects I have worked on recently.
-            Feel free to check them out.
-          </p>
-
-          <div class="projects-grid">
+    <section class="projects" id="work">
+        <div class="project-grid">
             <div class="project-card">
-              <div class="project-image">E-commerce Platform</div>
-              <div class="project-content">
-                <div class="project-category">Web Application</div>
-                <h3 class="project-title">Modern E-commerce Site</h3>
-                <p class="project-description">
-                  A full-stack e-commerce platform built with React and Node.js,
-                  featuring user authentication, payment integration, and admin
-                  dashboard.
-                </p>
-                <a href="#" class="project-link">View Project →</a>
-              </div>
+                <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&h=600&fit=crop" alt="Project 1">
+                <div class="project-number">[ 01 ]</div>
             </div>
 
             <div class="project-card">
-              <div class="project-image">Mobile App UI</div>
-              <div class="project-content">
-                <div class="project-category">Mobile Design</div>
-                <h3 class="project-title">Fitness Tracking App</h3>
-                <p class="project-description">
-                  UI/UX design for a fitness tracking mobile application with
-                  clean interface and intuitive user experience.
-                </p>
-                <a href="#" class="project-link">View Project →</a>
-              </div>
+                <img src="https://images.unsplash.com/photo-1558655146-d09347e92766?w=800&h=600&fit=crop" alt="Project 2">
+                <div class="project-number">[ 02 ]</div>
             </div>
 
             <div class="project-card">
-              <div class="project-image">Dashboard</div>
-              <div class="project-content">
-                <div class="project-category">Web Application</div>
-                <h3 class="project-title">Analytics Dashboard</h3>
-                <p class="project-description">
-                  Interactive data visualization dashboard built with D3.js and
-                  React, providing real-time analytics and reporting features.
-                </p>
-                <a href="#" class="project-link">View Project →</a>
-              </div>
+                <img src="https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?w=800&h=600&fit=crop" alt="Project 3">
+                <div class="project-number">[ 03 ]</div>
             </div>
 
             <div class="project-card">
-              <div class="project-image">Portfolio Site</div>
-              <div class="project-content">
-                <div class="project-category">Website</div>
-                <h3 class="project-title">Creative Portfolio</h3>
-                <p class="project-description">
-                  A creative portfolio website for a digital artist featuring
-                  smooth animations and responsive design.
-                </p>
-                <a href="#" class="project-link">View Project →</a>
-              </div>
+                <img src="https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=800&h=600&fit=crop" alt="Project 4">
+                <div class="project-number">[ 04 ]</div>
             </div>
-          </div>
+
+            <div class="project-card">
+                <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=800&h=600&fit=crop" alt="Project 5">
+                <div class="project-number">[ 05 ]</div>
+            </div>
         </div>
-      </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="section">
-      <div class="container">
-        <div class="contact-content fade-in">
-          <div class="pretitle">Get In Touch</div>
-          <h2 class="section-title">Let's Work Together</h2>
-          <p style="font-size: 18px; color: #cccccc; margin-bottom: 30px">
-            I love to hear from you. Whether you have a question or just want to
-            chat about design, tech & development — shoot me a message.
-          </p>
-
-          <form class="contact-form">
-            <div class="form-group">
-              <input
-                type="text"
-                class="form-input"
-                placeholder="Your Name"
-                required
-              />
-              <input
-                type="email"
-                class="form-input"
-                placeholder="Your Email"
-                required
-              />
-            </div>
-            <input
-              type="text"
-              class="form-input"
-              placeholder="Subject"
-              required
-            />
-            <textarea
-              class="form-input form-textarea"
-              placeholder="Your Message"
-              required
-            ></textarea>
-            <button
-              type="submit"
-              class="btn"
-              style="justify-self: center; width: 200px"
-            >
-              Send Message
-            </button>
-          </form>
-
-          <div style="margin-top: 50px">
-            <p><strong>Reach me at:</strong></p>
-            <p style="margin: 10px 0">
-              <a
-                href="mailto:your.email@example.com"
-                style="color: #64ffda; text-decoration: none"
-                >your.email@example.com</a
-              ><br />
-              <a
-                href="tel:+1234567890"
-                style="color: #64ffda; text-decoration: none"
-                >+1 (234) 567-890</a
-              >
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-      <p>&copy; 2024 Your Name. All rights reserved.</p>
+    <footer>
+        <a href="#work" class="active">[ WORK ]</a>
+        <a href="#info">INFO</a>
+        <a href="#archive">ARCHIVE</a>
     </footer>
 
     <script>
-      function scrollToSection(id) {
-        const section = document.getElementById(id);
-        if (section) section.scrollIntoView({ behavior: "smooth" });
-      }
-      document.addEventListener("DOMContentLoaded", () => {
-        // === CONSTANTS ===
-        const header = document.getElementById("header");
-        const themeToggle = document.getElementById("themeToggle");
-        const contactForm = document.querySelector(".contact-form");
-        const mobileBrand = document.querySelector(".mobile-brand");
-        const menuToggle = document.getElementById("menuToggle");
-        const menuOverlay = document.getElementById("menuOverlay");
-        const navbar = document.querySelector(".navbar");
-        const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%";
-        const glitchChars = "!<>-_\\/[]{}—=+*^?#________";
-        const scrambleSpeed = 50;
-        let lastScrollTop = 0;
-        let scrollTicking = false;
-
-        // // === SCROLL TO SECTION ===
-        // function scrollToSection(id) {
-        //   const section = document.getElementById(id);
-        //   if (section) section.scrollIntoView({ behavior: "smooth" });
-        // }
-
-        // === HANDLE SCROLL ===
-        function handleScroll() {
-          const scrollTop =
-            window.pageYOffset || document.documentElement.scrollTop;
-          if (header) header.classList.toggle("scrolled", scrollTop > 100);
-          if (mobileBrand)
-            mobileBrand.classList.toggle("hide", scrollTop > lastScrollTop);
-          if (navbar)
-            navbar.classList.toggle("hide", scrollTop > lastScrollTop);
-          lastScrollTop = Math.max(scrollTop, 0);
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
         }
 
-        window.addEventListener("scroll", () => {
-          if (!scrollTicking) {
-            window.requestAnimationFrame(() => {
-              handleScroll();
-              scrollTicking = false;
+        // Update time
+        function updateTime() {
+            const now = new Date();
+            const time = now.toLocaleTimeString('en-US', { 
+                hour12: false,
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
             });
-            scrollTicking = true;
-          }
-        });
-
-        // === FADE-IN ===
-        const observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) entry.target.classList.add("visible");
+            const locationElements = document.querySelectorAll('.location');
+            locationElements.forEach(element => {
+                const html = element.innerHTML;
+                const baseText = html.split('<br>')[0];
+                element.innerHTML = `${baseText}<br>${time}`;
             });
-          },
-          { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
-        );
-
-        document
-          .querySelectorAll(".fade-in")
-          .forEach((el) => observer.observe(el));
-
-        // === INTERNAL LINK SCROLL ===
-        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-          anchor.addEventListener("click", (e) => {
-            e.preventDefault();
-            scrollToSection(anchor.getAttribute("href").substring(1));
-          });
-        });
-
-        // === CONTACT FORM ===
-        if (contactForm) {
-          contactForm.addEventListener("submit", (e) => {
-            e.preventDefault();
-            alert("Thank you for your message! I'll get back to you soon.");
-            contactForm.reset();
-          });
         }
 
-        // === THEME TOGGLE ===
-        function updateThemeIcon() {
-          const isLight = document.body.classList.contains("light-mode");
-          themeToggle.textContent = isLight ? "☀️" : "🌙";
-        }
+        updateTime();
+        setInterval(updateTime, 1000);
 
-        if (themeToggle) {
-          const currentTheme = localStorage.getItem("theme");
-          if (currentTheme === "light") {
-            document.body.classList.add("light-mode");
-          }
-          updateThemeIcon();
+        // Glitch text animation on load
+        function glitchText() {
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            const finalText = ['RYLAN', 'PHILLIPS'];
+            const h1 = document.querySelector('.hero-text h1');
+            const logo = document.querySelector('.logo');
+            let iterations = 0;
+            const maxIterations = 20;
 
-          themeToggle.addEventListener("click", () => {
-            document.body.classList.toggle("light-mode");
-            localStorage.setItem(
-              "theme",
-              document.body.classList.contains("light-mode") ? "light" : "dark"
-            );
-            updateThemeIcon();
-          });
-        }
+            const interval = setInterval(() => {
+                h1.innerHTML = finalText.map((word, wordIndex) => {
+                    return word.split('').map((char, index) => {
+                        if (iterations > index * 2) {
+                            return char;
+                        }
+                        return chars[Math.floor(Math.random() * chars.length)];
+                    }).join('');
+                }).join('<br>');
 
-        // === GLITCH TEXT EFFECT ===
-        function glitchReveal(el, text, callback, speed = 40) {
-          let output = "";
-          let frame = 0;
-          const totalFrames = 20;
-          const interval = setInterval(() => {
-            output = "";
-            for (let i = 0; i < text.length; i++) {
-              output +=
-                frame > i * 2
-                  ? text[i]
-                  : glitchChars[Math.floor(Math.random() * glitchChars.length)];
-            }
-            el.textContent = output;
-            frame++;
-            if (frame > totalFrames) {
-              clearInterval(interval);
-              el.textContent = text;
-              if (callback) setTimeout(callback, 1000);
-            }
-          }, speed);
-        }
+                logo.textContent = 'RYLAN PHILLIPS'.split('').map((char, index) => {
+                    if (char === ' ') return ' ';
+                    if (iterations > index) {
+                        return char;
+                    }
+                    return chars[Math.floor(Math.random() * chars.length)];
+                }).join('');
 
-        // === SCRAMBLE MULTIPLE ELEMENTS ===
-        function scrambleElementText(el, originalText) {
-          let iteration = 0;
-          const interval = setInterval(() => {
-            el.textContent = originalText
-              .split("")
-              .map((char, i) => {
-                if (char === " " || i < iteration) return originalText[i];
-                return letters[Math.floor(Math.random() * letters.length)];
-              })
-              .join("");
-            iteration += 0.5;
-            if (iteration >= originalText.length) {
-              clearInterval(interval);
-              el.textContent = originalText;
-            }
-          }, scrambleSpeed);
-        }
+                iterations++;
 
-        function startScrambleAll() {
-          document.querySelectorAll(".chat-text, .subtext").forEach((el) => {
-            const original = el.dataset.original || el.textContent;
-            el.dataset.original = original;
-            scrambleElementText(el, original);
-          });
-        }
-
-        // === MENU TOGGLE ===
-        if (menuToggle && menuOverlay) {
-          const label = menuToggle.querySelector(".label");
-
-          menuToggle.addEventListener("click", () => {
-            const isOpen = menuToggle.classList.toggle("open");
-            menuOverlay.classList.toggle("open");
-            document.body.style.overflow = isOpen ? "hidden" : "auto";
-            if (label) label.textContent = isOpen ? "Close" : "Menu";
-            if (isOpen) startScrambleAll();
-          });
-
-          const closeMenu = () => {
-            menuOverlay.classList.remove("open");
-            menuToggle.classList.remove("open");
-            document.body.style.overflow = "auto";
-            if (label) label.textContent = "Menu";
-          };
-
-          document
-            .querySelectorAll(".menu-item, .chat-button")
-            .forEach((item) => {
-              item.addEventListener("click", () => {
-                const targetId = item.getAttribute("data-target");
-                if (targetId) {
-                  scrollToSection(targetId);
-                  closeMenu();
+                if (iterations > maxIterations) {
+                    clearInterval(interval);
+                    h1.innerHTML = finalText.join('<br>');
+                    logo.textContent = 'RYLAN PHILLIPS';
                 }
-              });
-            });
+            }, 50);
         }
 
-        // === CYCLE SKILLS ===
-        const skills = ["Java", "Python", "Frontend", "UI/UX", "Salesforce"];
-        const skillEl = document.getElementById("scramble");
-        let counter = 0;
-
-        function cycleSkills() {
-          glitchReveal(skillEl, skills[counter], () => {
-            counter = (counter + 1) % skills.length;
-            cycleSkills();
-          });
-        }
-
-        if (skillEl) {
-          skillEl.textContent = skills[0];
-          setTimeout(cycleSkills, 1500);
-        }
-
-        // === SPLASH SCREEN ===
-        const splashEl = document.getElementById("scramble2");
-        const nameToReveal = "ARJUN BHARATH";
-
-        window.addEventListener("load", () => {
-          if (splashEl) {
-            glitchReveal(splashEl, nameToReveal, () => {
-              document.querySelector(".top-half").style.transform =
-                "translateY(-100%)";
-              document.querySelector(".bottom-half").style.transform =
-                "translateY(100%)";
-
-              setTimeout(() => {
-                document.querySelector(".splash-screen").style.display = "none";
-                document.querySelector(".main-content").style.display = "block";
-                document.body.style.overflow = "auto";
-              }, 1000);
-            });
-          }
-        });
-        VANTA.CELLS({
-          el: "#contact",
-          mouseControls: true,
-          touchControls: true,
-          gyroControls: false,
-          minHeight: 200.0,
-          minWidth: 200.0,
-          scale: 1.0,
-          scaleMobile: 1.0, // reduce this if it's zoomed in on small screens
-          size: 1.0,
-          speed: 1.2,
-          color1: 0x20202,
-          color2: 0x26af84,
-        });
-      });
+        // Run glitch effect on page load
+        window.addEventListener('load', glitchText);
     </script>
-  </body>
+</body>
 </html>
