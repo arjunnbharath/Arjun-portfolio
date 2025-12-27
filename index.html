@@ -3,88 +3,862 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="home.css">
-    <title>Rylan Phillips - Portfolio</title>
+    <title>Arjun Bharath SR - Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background-color: #000000;
+            background-image: radial-gradient(circle, #1a1a1a 1px, transparent 1px);
+            background-size: 40px 40px;
+            background-attachment: fixed;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            z-index: 1000;
+            background-color: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid #222;
+        }
+
+        .logo {
+            font-size: 0.85rem;
+            letter-spacing: 0.2em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        .logo:hover {
+            opacity: 0.6;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            transition: all 0.3s;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: #ffffff;
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            opacity: 1;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .mobile-menu-btn span {
+            width: 25px;
+            height: 2px;
+            background: #ffffff;
+            transition: all 0.3s;
+        }
+
+        .mobile-menu-btn.active span:nth-child(1) {
+            transform: rotate(45deg) translate(7px, 7px);
+        }
+
+        .mobile-menu-btn.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .mobile-menu-btn.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        .page {
+            min-height: 100vh;
+            padding: 8rem 2rem 4rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2rem;
+            position: relative;
+        }
+
+        .hero-text h1 {
+            font-size: clamp(3.5rem, 10vw, 8rem);
+            font-weight: 700;
+            line-height: 0.95;
+            letter-spacing: 0.05em;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .hero-info {
+            position: absolute;
+            right: 5rem;
+            bottom: 20rem;
+            text-align: left;
+            display: flex;
+            gap: 4rem;
+        }
+
+        .hero-info p {
+            font-size: 0.85rem;
+            letter-spacing: 0.15em;
+            line-height: 1.6;
+            opacity: 0.8;
+        }
+
+        .page-header {
+            margin-bottom: 4rem;
+        }
+
+        .page-title {
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            font-family: 'Arial', sans-serif;
+            margin-bottom: 1rem;
+        }
+
+        .page-subtitle {
+            font-size: 0.9rem;
+            letter-spacing: 0.15em;
+            opacity: 0.6;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            letter-spacing: 0.15em;
+            margin-bottom: 2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #333;
+        }
+
+        .work-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .work-item {
+            border: 1px solid #333;
+            padding: 2rem;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .work-item:hover {
+            border-color: #ffffff;
+            transform: translateY(-5px);
+        }
+
+        .work-company {
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            opacity: 0.5;
+            margin-bottom: 0.5rem;
+        }
+
+        .work-role {
+            font-size: 1.2rem;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+        }
+
+        .work-date {
+            font-size: 0.7rem;
+            opacity: 0.5;
+            margin-bottom: 1.5rem;
+        }
+
+        .work-description {
+            font-size: 0.85rem;
+            line-height: 1.6;
+            opacity: 0.7;
+        }
+
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .cert-card {
+            border: 1px solid #333;
+            padding: 2rem;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cert-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #ffffff, transparent);
+            transition: left 0.5s;
+        }
+
+        .cert-card:hover::before {
+            left: 100%;
+        }
+
+        .cert-card:hover {
+            border-color: #ffffff;
+            transform: translateY(-5px);
+        }
+
+        .cert-issuer {
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            opacity: 0.5;
+            margin-bottom: 0.5rem;
+        }
+
+        .cert-name {
+            font-size: 1rem;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.75rem;
+            line-height: 1.4;
+        }
+
+        .cert-year {
+            font-size: 0.65rem;
+            opacity: 0.5;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .skill-category {
+            padding: 2rem;
+            border: 1px solid #333;
+            transition: all 0.3s;
+        }
+
+        .skill-category:hover {
+            border-color: #ffffff;
+            transform: translateY(-3px);
+        }
+
+        .skill-category-title {
+            font-size: 0.9rem;
+            letter-spacing: 0.15em;
+            margin-bottom: 1.5rem;
+            opacity: 0.8;
+        }
+
+        .skill-list {
+            font-size: 0.75rem;
+            line-height: 2;
+            opacity: 0.6;
+        }
+
+        .contact-info {
+            margin-top: 3rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .contact-item {
+            padding: 2rem;
+            border: 1px solid #333;
+            transition: all 0.3s;
+        }
+
+        .contact-item:hover {
+            border-color: #ffffff;
+            transform: translateY(-3px);
+        }
+
+        .contact-label {
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            opacity: 0.5;
+            margin-bottom: 1rem;
+        }
+
+        .contact-value {
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+        }
+
+        .contact-value a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+
+        .contact-value a:hover {
+            opacity: 0.6;
+        }
+
+        @media (max-width: 968px) {
+            nav {
+                padding: 1.5rem;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background-color: rgba(0, 0, 0, 0.98);
+                backdrop-filter: blur(12px);
+                flex-direction: column;
+                padding: 6rem 2rem;
+                gap: 2rem;
+                transition: right 0.3s;
+                border-left: 1px solid #222;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links a {
+                font-size: 1.2rem;
+            }
+
+            .mobile-menu-btn {
+                display: flex;
+            }
+
+            .hero {
+                height: 90vh;
+                padding: 0 1.5rem;
+                flex-direction: column;
+                justify-content: center;
+                align-items: flex-start;
+            }
+
+            .hero-text h1 {
+                font-size: 3rem;
+                margin-bottom: 3rem;
+            }
+
+            .hero-info {
+                position: static;
+                flex-direction: column;
+                gap: 2rem;
+                width: 100%;
+            }
+
+            .page {
+                padding: 6rem 1.5rem 3rem;
+            }
+
+            .work-grid,
+            .cert-grid,
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-form {
+                padding: 2rem 1.5rem;
+            }
+        }
+
+        .summary-text {
+            font-size: 0.9rem;
+            line-height: 1.8;
+            opacity: 0.7;
+            letter-spacing: 0.03em;
+            margin-top: 2rem;
+        }
+
+        .download-btn {
+            padding: 1rem 2rem;
+            border: 1px solid #ffffff;
+            background: transparent;
+            color: #ffffff;
+            font-family: 'Courier New', monospace;
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 2rem;
+        }
+
+        .download-btn:hover {
+            background-color: #ffffff;
+            color: #000000;
+        }
+
+        .contact-form-container {
+            margin-top: 3rem;
+            max-width: 800px;
+        }
+
+        .contact-form {
+            border: 1px solid #333;
+            padding: 3rem;
+            transition: all 0.3s;
+        }
+
+        .contact-form:hover {
+            border-color: #555;
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            opacity: 0.6;
+            margin-bottom: 0.75rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid #333;
+            color: #ffffff;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            padding: 0.75rem 0;
+            transition: all 0.3s;
+            letter-spacing: 0.05em;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-bottom-color: #ffffff;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: #666;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-btn {
+            padding: 1rem 2rem;
+            border: 1px solid #ffffff;
+            background: transparent;
+            color: #ffffff;
+            font-family: 'Courier New', monospace;
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 1rem;
+        }
+
+        .submit-btn:hover {
+            background-color: #ffffff;
+            color: #000000;
+        }
+
+        .submit-btn:active {
+            transform: scale(0.98);
+        }
+
+        .form-status {
+            margin-top: 1.5rem;
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .form-status.show {
+            opacity: 1;
+        }
+
+        .form-status.success {
+            color: #4ade80;
+        }
+
+        .form-status.error {
+            color: #ef4444;
+        }
+    </style>
 </head>
 <body>
-
-  <nav>
-    <div class="logo">ARJUN BHARATH</div>
-    <ul class="nav-links">
-        <li><a data-text="HOME" onclick="scrollToSection('home')">HOME</a></li>
-       <li><a href="resume.html">ABOUT</a></li>
-
-        <li><a data-text="SKILLS" onclick="scrollToSection('skills')">SKILLS</a></li>
-        <li><a data-text="PROJECTS" onclick="scrollToSection('projects')">PROJECTS</a></li>
-        <li><a data-text="CERTIFICATIONS" onclick="scrollToSection('certifications')">CERTIFICATIONS</a></li>
-        <li><a data-text="CONTACT" onclick="scrollToSection('contact')">CONTACT</a></li>
-    </ul>
-</nav>
-
-
-
-    <section class="hero">
-        <div class="hero-text">
-            <h1>ARJUN<br>BHARATH</h1>
+    <nav>
+        <div class="logo" onclick="showPage('home')">ARJUN BHARATH SR</div>
+        <ul class="nav-links">
+            <li><a onclick="showPage('home')" class="active">HOME</a></li>
+            <li><a onclick="showPage('about')">ABOUT</a></li>
+            <li><a onclick="showPage('work')">WORK</a></li>
+            <li><a onclick="showPage('certifications')">CERTIFICATIONS</a></li>
+            <li><a onclick="showPage('contact')">CONTACT</a></li>
+        </ul>
+        <div class="mobile-menu-btn" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
-        <div class="hero-info">
-            <p>DESIGNER &<br>DEVELOPER</p>
-            <p class="location">Kerala, India · IST </p>
+    </nav>
 
+    <!-- HOME PAGE -->
+    <section id="home" class="page active">
+        <div class="hero">
+            <div class="hero-text">
+                <h1>ARJUN<br>BHARATH SR</h1>
+            </div>
+            <div class="hero-info">
+                <p>SALESFORCE MARKETING<br>CLOUD DEVELOPER</p>
+                <p class="location">Thiruvananthapuram,<br>Kerala, India</p>
+            </div>
         </div>
     </section>
 
+    <!-- ABOUT PAGE -->
+    <section id="about" class="page">
+        <div class="page-header">
+            <h2 class="page-title">ABOUT</h2>
+            <p class="page-subtitle">PROFESSIONAL SUMMARY & SKILLS</p>
+        </div>
 
+        <div class="summary-text">
+            Salesforce Marketing Cloud Developer with 1+ year of experience in email marketing, 
+            automation, and personalization. Skilled in AMPscript, Journey Builder, and Automation 
+            Studio to enhance customer engagement and campaign performance. Passionate about creating 
+            data-driven marketing solutions that deliver measurable results.
+        </div>
+
+        <h3 class="section-title" style="margin-top: 4rem;">[ SKILLS ]</h3>
+        <div class="skills-grid">
+            <div class="skill-category">
+                <div class="skill-category-title">TECHNICAL SKILLS</div>
+                <div class="skill-list">
+                    Salesforce Marketing Cloud<br>
+                    AMPscript<br>
+                    SQL<br>
+                    HTML / CSS<br>
+                    JavaScript<br>
+                    Journey Builder<br>
+                    Automation Studio<br>
+                    Email Studio<br>
+                    Personalization
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <div class="skill-category-title">DEVELOPMENT</div>
+                <div class="skill-list">
+                    Java<br>
+                    Spring Boot<br>
+                    Full Stack Development<br>
+                    API Integration<br>
+                    Responsive Design<br>
+                    Testing & QA
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <div class="skill-category-title">SOFT SKILLS</div>
+                <div class="skill-list">
+                    Problem-Solving<br>
+                    Team Collaboration<br>
+                    Communication<br>
+                    Time Management<br>
+                    Adaptability<br>
+                    Attention to Detail
+                </div>
+            </div>
+        </div>
+
+        <h3 class="section-title" style="margin-top: 4rem;">[ EDUCATION ]</h3>
+        <div class="work-grid">
+            <div class="work-item">
+                <div class="work-company">APJ ABDUL KALAM TECHNOLOGICAL UNIVERSITY</div>
+                <div class="work-role">B.Tech in Computer Science</div>
+                <div class="work-date">2019</div>
+            </div>
+            <div class="work-item">
+                <div class="work-company">ST.MARY'S HSS PATTOM</div>
+                <div class="work-role">Senior Secondary (Computer Science)</div>
+                <div class="work-date">2017</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WORK PAGE -->
+    <section id="work" class="page">
+        <div class="page-header">
+            <h2 class="page-title">WORK</h2>
+            <p class="page-subtitle">PROFESSIONAL EXPERIENCE</p>
+        </div>
+
+        <div class="work-grid">
+            <div class="work-item">
+                <div class="work-company">G10X</div>
+                <div class="work-role">Software Engineer</div>
+                <div class="work-date">APR 2025 – PRESENT</div>
+                <div class="work-description">
+                    Developing and customizing email templates in Salesforce Marketing Cloud (SFMC) 
+                    to support personalized marketing campaigns. Working on Journey Builder to design 
+                    and automate customer engagement workflows. Collaborating on API integrations and 
+                    automation calls to streamline marketing processes and improve campaign efficiency.
+                </div>
+            </div>
+
+            <div class="work-item">
+                <div class="work-company">G10X</div>
+                <div class="work-role">Associate Software Engineer</div>
+                <div class="work-date">MAR 2024 – APR 2025</div>
+                <div class="work-description">
+                    Performed Salesforce Marketing Cloud testing with a focus on SFMC Personalization 
+                    features. Ensured accuracy and quality of marketing campaigns through detailed 
+                    validation and testing processes. Collaborated with cross-functional teams to 
+                    deliver high-quality solutions.
+                </div>
+            </div>
+
+            <div class="work-item">
+                <div class="work-company">QUEST INNOVATIVE SOLUTIONS</div>
+                <div class="work-role">Java Full Stack Web Developer Trainee</div>
+                <div class="work-date">MAY 2023 – JAN 2024</div>
+                <div class="work-description">
+                    Developed and maintained responsive websites using Java, Spring Boot, and front-end 
+                    technologies like HTML, CSS, and JavaScript. Built multiple full-stack projects 
+                    showcasing strong skills in both back-end logic and front-end design. Gained hands-on 
+                    experience in modern web development practices.
+                </div>
+            </div>
+        </div>
+
+        <button onclick="downloadResume()" class="download-btn">[ DOWNLOAD FULL RESUME ]</button>
+    </section>
+
+    <!-- CERTIFICATIONS PAGE -->
+    <section id="certifications" class="page">
+        <div class="page-header">
+            <h2 class="page-title">CERTIFICATIONS</h2>
+            <p class="page-subtitle">PROFESSIONAL CREDENTIALS</p>
+        </div>
+
+        <div class="cert-grid">
+            <div class="cert-card">
+                <div class="cert-issuer">SALESFORCE</div>
+                <div class="cert-name">Certified Marketing Cloud Email Specialist</div>
+                <div class="cert-year">2025</div>
+            </div>
+
+            <div class="cert-card">
+                <div class="cert-issuer">SALESFORCE</div>
+                <div class="cert-name">Certified Agentforce Specialist</div>
+                <div class="cert-year">2025</div>
+            </div>
+
+            <div class="cert-card">
+                <div class="cert-issuer">SALESFORCE</div>
+                <div class="cert-name">Certified AI Associate</div>
+                <div class="cert-year">2025</div>
+            </div>
+
+            <div class="cert-card">
+                <div class="cert-issuer">ORACLE</div>
+                <div class="cert-name">Certified Generative AI Professional</div>
+                <div class="cert-year">2025</div>
+            </div>
+
+            <div class="cert-card">
+                <div class="cert-issuer">ORACLE</div>
+                <div class="cert-name">Certified OCI Data Science Professional</div>
+                <div class="cert-year">2025</div>
+            </div>
+        </div>
+
+        <div class="summary-text" style="margin-top: 4rem;">
+            These certifications demonstrate my commitment to continuous learning and expertise in 
+            Salesforce Marketing Cloud, AI technologies, and data science. Each credential represents 
+            rigorous training and validation of skills essential for modern marketing technology roles.
+        </div>
+    </section>
+
+    <!-- CONTACT PAGE -->
+    <section id="contact" class="page">
+        <div class="page-header">
+            <h2 class="page-title">CONTACT</h2>
+            <p class="page-subtitle">LET'S CONNECT</p>
+        </div>
+
+        <div class="summary-text">
+            I'm always interested in hearing about new opportunities, collaborations, or just 
+            connecting with fellow professionals. Feel free to reach out through any of the 
+            channels below or send me a message using the form.
+        </div>
+
+        <div class="contact-info">
+            <div class="contact-item">
+                <div class="contact-label">EMAIL</div>
+                <div class="contact-value">
+                    <a href="mailto:arjun.bharath@email.com">arjun.bharath@email.com</a>
+                </div>
+            </div>
+
+            <div class="contact-item">
+                <div class="contact-label">LINKEDIN</div>
+                <div class="contact-value">
+                    <a href="https://linkedin.com/in/arjunbharathsr" target="_blank">linkedin.com/in/arjunbharathsr</a>
+                </div>
+            </div>
+
+            <div class="contact-item">
+                <div class="contact-label">GITHUB</div>
+                <div class="contact-value">
+                    <a href="https://github.com/arjunbharathsr" target="_blank">github.com/arjunbharathsr</a>
+                </div>
+            </div>
+
+            <div class="contact-item">
+                <div class="contact-label">LOCATION</div>
+                <div class="contact-value">
+                    Thiruvananthapuram, Kerala, India
+                </div>
+            </div>
+        </div>
+
+        <h3 class="section-title" style="margin-top: 4rem;">[ SEND A MESSAGE ]</h3>
+        <div class="contact-form-container">
+            <div class="contact-form">
+                <div class="form-group">
+                    <label for="name">NAME</label>
+                    <input type="text" id="name" placeholder="Your name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">EMAIL</label>
+                    <input type="email" id="email" placeholder="your.email@example.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="subject">SUBJECT</label>
+                    <input type="text" id="subject" placeholder="What's this about?" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">MESSAGE</label>
+                    <textarea id="message" rows="6" placeholder="Your message here..." required></textarea>
+                </div>
+
+                <button onclick="handleSubmit(event)" class="submit-btn">[ SEND MESSAGE ]</button>
+                <div id="form-status" class="form-status"></div>
+            </div>
+        </div>
+    </section>
 
     <script>
-        function scrollToSection(id) {
-            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        function showPage(pageId) {
+            const pages = document.querySelectorAll('.page');
+            const links = document.querySelectorAll('.nav-links a');
+            
+            pages.forEach(page => page.classList.remove('active'));
+            links.forEach(link => link.classList.remove('active'));
+            
+            document.getElementById(pageId).classList.add('active');
+            event.target.classList.add('active');
+            
+            if (window.innerWidth <= 968) {
+                toggleMenu();
+            }
+            
+            window.scrollTo(0, 0);
         }
 
-        // Update time
-        function updateTime() {
-            const now = new Date();
-            const time = now.toLocaleTimeString('en-US', { 
-                hour12: false,
-                hour: '2-digit',
-                minute: '2-digit',
-                second: '2-digit'
-            });
-            const locationElements = document.querySelectorAll('.location');
-            locationElements.forEach(element => {
-                const html = element.innerHTML;
-                const baseText = html.split('<br>')[0];
-                element.innerHTML = `${baseText}<br>${time}`;
-            });
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            const menuBtn = document.querySelector('.mobile-menu-btn');
+            navLinks.classList.toggle('active');
+            menuBtn.classList.toggle('active');
         }
 
-        updateTime();
-        setInterval(updateTime, 1000);
-
-        // Glitch text animation on load
         function glitchText() {
             const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-            const finalText = ['ARJUN', 'BHARATH'];
+            const finalText = ['ARJUN', 'BHARATH SR'];
             const h1 = document.querySelector('.hero-text h1');
             const logo = document.querySelector('.logo');
             let iterations = 0;
             const maxIterations = 20;
 
             const interval = setInterval(() => {
-                h1.innerHTML = finalText.map((word, wordIndex) => {
-                    return word.split('').map((char, index) => {
-                        if (iterations > index * 2) {
-                            return char;
-                        }
-                        return chars[Math.floor(Math.random() * chars.length)];
-                    }).join('');
-                }).join('<br>');
+                if (h1) {
+                    h1.innerHTML = finalText.map(word => {
+                        return word.split('').map((char, index) => {
+                            if (char === ' ') return ' ';
+                            if (iterations > index * 2) return char;
+                            return chars[Math.floor(Math.random() * chars.length)];
+                        }).join('');
+                    }).join('<br>');
+                }
 
-                logo.textContent = 'ARJUN BHARATH'.split('').map((char, index) => {
+                logo.textContent = 'ARJUN BHARATH SR'.split('').map((char, index) => {
                     if (char === ' ') return ' ';
-                    if (iterations > index) {
-                        return char;
-                    }
+                    if (iterations > index) return char;
                     return chars[Math.floor(Math.random() * chars.length)];
                 }).join('');
 
@@ -92,16 +866,138 @@
 
                 if (iterations > maxIterations) {
                     clearInterval(interval);
-                    h1.innerHTML = finalText.join('<br>');
-                    logo.textContent = 'ARJUN BHARATH';
+                    if (h1) h1.innerHTML = finalText.join('<br>');
+                    logo.textContent = 'ARJUN BHARATH SR';
                 }
             }, 50);
         }
 
+        function downloadResume() {
+            const resumeContent = `ARJUN BHARATH SR
+Salesforce Marketing Cloud Developer
+============================================
+
+CONTACT
+Email: arjun.bharath@email.com
+LinkedIn: linkedin.com/in/arjunbharathsr
+Location: Thiruvananthapuram, Kerala, India
+
+SUMMARY
+Salesforce Marketing Cloud Developer with 1+ year of experience in email marketing, automation, and personalization. Skilled in AMPscript, Journey Builder, and Automation Studio to enhance customer engagement and campaign performance.
+
+WORK EXPERIENCE
+============================================
+
+SOFTWARE ENGINEER | APR 2025 – PRESENT
+G10X
+• Developed and customized email templates in Salesforce Marketing Cloud (SFMC)
+• Worked on Journey Builder to design and automate customer engagement workflows
+• Collaborated on API integrations and automation calls
+
+ASSOCIATE SOFTWARE ENGINEER | MAR 2024 – APR 2025
+G10X
+• Performed Salesforce Marketing Cloud testing with focus on SFMC Personalization
+• Ensured accuracy and quality of marketing campaigns
+
+JAVA FULL STACK WEB DEVELOPER TRAINEE | MAY 2023 – JAN 2024
+QUEST Innovative Solutions
+• Developed responsive websites using Java, Spring Boot, HTML, CSS, and JavaScript
+• Built multiple full-stack projects
+
+EDUCATION
+============================================
+B.TECH IN COMPUTER SCIENCE | 2019
+APJ Abdul Kalam Technological University
+
+CERTIFICATIONS
+============================================
+• Salesforce Certified Marketing Cloud Email Specialist (2025)
+• Salesforce Certified Agentforce Specialist (2025)
+• Salesforce Certified AI Associate (2025)
+• Oracle Certified Generative AI Professional (2025)
+• Oracle Certified OCI Data Science Professional (2025)
+
+SKILLS
+============================================
+Technical: Salesforce Marketing Cloud, AMPscript, SQL, HTML/CSS, JavaScript, Journey Builder, Automation Studio
+Development: Java, Spring Boot, Full Stack Development, API Integration
+Soft Skills: Problem-Solving, Communication, Time Management, Collaboration, Adaptability`;
+
+            const blob = new Blob([resumeContent], { type: 'text/plain' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'Arjun_Bharath_SR_Resume.txt';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+        }
+
         window.addEventListener('load', glitchText);
 
+        function handleSubmit(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const subject = document.getElementById('subject').value.trim();
+            const message = document.getElementById('message').value.trim();
+            const statusDiv = document.getElementById('form-status');
+            
+            // Validation
+            if (!name || !email || !subject || !message) {
+                showStatus('Please fill in all fields', 'error');
+                return;
+            }
+            
+            if (!isValidEmail(email)) {
+                showStatus('Please enter a valid email address', 'error');
+                return;
+            }
+            
+            // Simulate form submission
+            const submitBtn = event.target;
+            submitBtn.textContent = '[ SENDING... ]';
+            submitBtn.disabled = true;
+            
+            setTimeout(() => {
+                showStatus('Message sent successfully! I\'ll get back to you soon.', 'success');
+                submitBtn.textContent = '[ SEND MESSAGE ]';
+                submitBtn.disabled = false;
+                
+                // Clear form
+                document.getElementById('name').value = '';
+                document.getElementById('email').value = '';
+                document.getElementById('subject').value = '';
+                document.getElementById('message').value = '';
+            }, 1500);
+        }
         
-    </script>
+        function showStatus(message, type) {
+            const statusDiv = document.getElementById('form-status');
+            statusDiv.textContent = message;
+            statusDiv.className = 'form-status show ' + type;
+            
+            setTimeout(() => {
+                statusDiv.classList.remove('show');
+            }, 5000);
+        }
+        
+        function isValidEmail(email) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
 
+        document.addEventListener('click', (e) => {
+            const navLinks = document.querySelector('.nav-links');
+            const menuBtn = document.querySelector('.mobile-menu-btn');
+            
+            if (navLinks.classList.contains('active') && 
+                !navLinks.contains(e.target) && 
+                !menuBtn.contains(e.target)) {
+                toggleMenu();
+            }
+        });
+    </script>
 </body>
 </html>
