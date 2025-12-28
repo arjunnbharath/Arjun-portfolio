@@ -1291,7 +1291,7 @@
 
                     <div class="cert-card-title-section">
                         <div class="cert-issuer">SALESFORCE</div>
-                        <div class="cert-name">Certified Marketing Cloud Email Specialist</div>
+                        <div class="cert-name">Marketing Cloud Email Specialist</div>
                     </div>
                 </div>
                 <div class="cert-card-body">
@@ -1326,7 +1326,7 @@
                     </div>
                     <div class="cert-card-title-section">
                         <div class="cert-issuer">SALESFORCE</div>
-                        <div class="cert-name">Certified Agentforce Specialist</div>
+                        <div class="cert-name">Agentforce Specialist</div>
                     </div>
                 </div>
                 <div class="cert-card-body">
@@ -1361,7 +1361,7 @@
                     </div>
                     <div class="cert-card-title-section">
                         <div class="cert-issuer">SALESFORCE</div>
-                        <div class="cert-name">Certified AI Associate</div>
+                        <div class="cert-name">AI Associate</div>
                     </div>
                 </div>
                 <div class="cert-card-body">
@@ -1396,7 +1396,7 @@
                     </div>
                     <div class="cert-card-title-section">
                         <div class="cert-issuer">ORACLE</div>
-                        <div class="cert-name">Certified Generative AI Professional</div>
+                        <div class="cert-name">Generative AI Professional</div>
                     </div>
                 </div>
                 <div class="cert-card-body">
@@ -1431,7 +1431,7 @@
                     </div>
                     <div class="cert-card-title-section">
                         <div class="cert-issuer">ORACLE</div>
-                        <div class="cert-name">Certified OCI Data Science Professional</div>
+                        <div class="cert-name">OCI Data Science Professional</div>
                     </div>
                 </div>
                 <div class="cert-card-body">
@@ -1665,6 +1665,72 @@
                 }
             }, 50);
         }
+        /* ================================
+   GREEN GLITCH TEXT EFFECT – ABOUT PAGE
+   No HTML or CSS changes required
+================================ */
+
+(function () {
+
+    function glitchElement(el, speed = 40) {
+        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const finalText = el.textContent;
+        const originalColor = window.getComputedStyle(el).color;
+
+        let iterations = 0;
+
+        // Apply green glitch color
+        el.style.color = '#00ff66';
+
+        const interval = setInterval(() => {
+            el.textContent = finalText
+                .split('')
+                .map((char, index) => {
+                    if (char === ' ') return ' ';
+                    if (iterations > index) return char;
+                    return chars[Math.floor(Math.random() * chars.length)];
+                })
+                .join('');
+
+            iterations++;
+
+            if (iterations > finalText.length) {
+                clearInterval(interval);
+                el.textContent = finalText;
+
+                // Restore original color smoothly
+                el.style.transition = 'color 0.3s ease';
+                el.style.color = originalColor;
+            }
+        }, speed);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const aboutSection = document.querySelector('#about');
+        if (!aboutSection) return;
+
+        const glitchTargets = aboutSection.querySelectorAll(
+            '.page-title, .page-subtitle, .section-title, .skill-category-title'
+        );
+
+        if (!glitchTargets.length) return;
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    glitchTargets.forEach((el, index) => {
+                        setTimeout(() => glitchElement(el), index * 120);
+                    });
+                    observer.disconnect(); // run once
+                }
+            });
+        }, { threshold: 0.3 });
+
+        observer.observe(aboutSection);
+    });
+
+})();
+
         function downloadResume() {
             const link = document.createElement("a");
             link.href = "assets/Arjun Bharath SR - Salesforce Developer - Resume.pdf"; // path to your PDF
@@ -1731,7 +1797,7 @@
         const certData = {
             'sfmc-email': {
                 issuer: 'SALESFORCE',
-                name: 'Certified Marketing Cloud Email Specialist',
+                name: 'Marketing Cloud Email Specialist',
                 year: '2025',
                 credentialId: 'SFMC-EMAIL-2025-001',
                 description: 'This certification demonstrates comprehensive expertise in email marketing strategy, subscriber and data management, inbox delivery, and email automation using Salesforce Marketing Cloud. It validates the ability to design, build, and execute sophisticated email campaigns that drive engagement and conversions.',
@@ -1747,7 +1813,7 @@
             },
             'agentforce': {
                 issuer: 'SALESFORCE',
-                name: 'Certified Agentforce Specialist',
+                name: 'Agentforce Specialist',
                 year: '2025',
                 credentialId: 'SF-AGENT-2025-002',
                 description: 'This credential validates advanced skills in building and deploying AI agents within the Salesforce ecosystem. It covers automation workflows, intelligent customer interactions, and the integration of AI-powered solutions to enhance business processes and customer experiences.',
@@ -1763,7 +1829,7 @@
             },
             'ai-associate': {
                 issuer: 'SALESFORCE',
-                name: 'Certified AI Associate',
+                name: 'AI Associate',
                 year: '2025',
                 credentialId: 'SF-AI-2025-003',
                 description: 'This foundational certification covers AI principles, ethical considerations, and practical applications of artificial intelligence in business contexts. It demonstrates understanding of how AI can be responsibly implemented to solve real-world business challenges.',
@@ -1779,7 +1845,7 @@
             },
             'oracle-genai': {
                 issuer: 'ORACLE',
-                name: 'Certified Generative AI Professional',
+                name: 'Generative AI Professional',
                 year: '2025',
                 credentialId: 'ORA-GENAI-2025-004',
                 description: 'This professional certification demonstrates expertise in implementing and managing generative AI solutions. It covers large language models, AI-powered content generation systems, and the practical application of generative AI technologies in enterprise environments.',
@@ -1795,7 +1861,7 @@
             },
             'oracle-datascience': {
                 issuer: 'ORACLE',
-                name: 'Certified OCI Data Science Professional',
+                name: 'OCI Data Science Professional',
                 year: '2025',
                 credentialId: 'ORA-DS-2025-005',
                 description: 'This advanced certification validates proficiency in Oracle Cloud Infrastructure Data Science services. It demonstrates expertise in machine learning model development, deployment, lifecycle management, and the use of OCI tools for data science workflows.',
