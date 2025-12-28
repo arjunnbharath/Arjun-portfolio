@@ -71,7 +71,7 @@
             left: 0;
             width: 0;
             height: 1px;
-            background: #ffffff;
+            background: #09b103;
             transition: width 0.3s;
         }
 
@@ -557,7 +557,7 @@
                 padding: 6rem 2rem;
                 gap: 2rem;
                 transition: right 0.3s;
-                border-left: 1px solid #222;
+                border-left: 1px solid #00000000;
             }
 
             .nav-links.active {
@@ -1287,6 +1287,7 @@
             <span></span>
             <span></span>
         </div>
+        
     </nav>
 
     <!-- HOME PAGE -->
@@ -2135,7 +2136,7 @@
     const CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     const GREEN = '#00ff66';
 
-    function glitchElement(el, speed = 40) {
+    function glitchElement(el, speed = 30) {
         const finalText = el.textContent;
         const originalColor = window.getComputedStyle(el).color;
         let iterations = 0;
@@ -2195,19 +2196,19 @@
         /* ===== EXPERIENCE ===== */
         observeSection(
             '#experience',
-            '.page-title, .page-subtitle, .work-company, .work-role, .work-date'
+            '.page-title, .page-subtitle,.work-date'
         );
 
         /* ===== CERTIFICATIONS ===== */
         observeSection(
             '#certifications',
-            '.page-title, .page-subtitle, .cert-issuer, .cert-name, .cert-year, .cert-status'
+            '.page-title, .page-subtitle, .cert-issuer, .cert-year, .cert-status'
         );
 
         /* ===== CONTACT ===== */
         observeSection(
             '#contact',
-            '.page-title, .page-subtitle, .section-title, label, .submit-btn'
+            '.page-title, .page-subtitle, .section-title, label'
         );
 
     });
