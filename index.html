@@ -353,24 +353,45 @@
             border-bottom: 1px solid #333;
         }
 
-        .cert-badge-icon {
-            width: 60px;
-            height: 60px;
-            border: 2px solid #333;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(255, 255, 255, 0.03);
-            transition: all 0.3s;
-            flex-shrink: 0;
-        }
+     .cert-badge-icon {
+    width: 60px;
+    height: 60px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+}
+
+.cert-badge-logo {
+    
+    height: 44px;
+
+    display: block;
+    background: transparent;
+}
+.cert-badge-logo2{
+
+    height: 64px;
+
+    display: block;
+    background: transparent;
+
+}
+
 
         .cert-card:hover .cert-badge-icon {
-            border-color: #ffffff;
-            transform: rotate(360deg);
-            background: rgba(255, 255, 255, 0.08);
-        }
+    transform: scale(1.2);
+    box-shadow: 0 0 12px rgba(0, 174, 255, 0);
+    background-color: transparent;
+}
+
 
         .cert-badge-icon svg {
             width: 30px;
@@ -902,8 +923,7 @@
         .cert-modal-badge {
             width: 70px;
             height: 70px;
-            border: 2px solid #333;
-            border-radius: 50%;
+            
             display: flex;
             align-items: center;
             justify-content: center;
@@ -1261,11 +1281,14 @@
         <div class="cert-grid">
             <div class="cert-card" onclick="openCertModal('sfmc-email')">
                 <div class="cert-card-header">
-                    <!-- <div class="cert-badge-icon">
-                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V9h7V2.99l8 4V12h-8z"/>
-                        </svg>
-                    </div> -->
+                   <div class="cert-badge-icon">
+                        <img
+                            src="images/Salesforce.com_logo.svg.png"
+                            alt="Salesforce Logo"
+                            class="cert-badge-logo"
+                        />
+                    </div>
+
                     <div class="cert-card-title-section">
                         <div class="cert-issuer">SALESFORCE</div>
                         <div class="cert-name">Certified Marketing Cloud Email Specialist</div>
@@ -1294,11 +1317,13 @@
 
             <div class="cert-card" onclick="openCertModal('agentforce')">
                 <div class="cert-card-header">
-                    <!-- <div class="cert-badge-icon">
-                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V9h7V2.99l8 4V12h-8z"/>
-                        </svg>
-                    </div> -->
+                      <div class="cert-badge-icon">
+                        <img
+                            src="images/Salesforce.com_logo.svg.png"
+                            alt="Salesforce Logo"
+                            class="cert-badge-logo"
+                        />
+                    </div>
                     <div class="cert-card-title-section">
                         <div class="cert-issuer">SALESFORCE</div>
                         <div class="cert-name">Certified Agentforce Specialist</div>
@@ -1327,11 +1352,13 @@
 
             <div class="cert-card" onclick="openCertModal('ai-associate')">
                 <div class="cert-card-header">
-                    <!-- <div class="cert-badge-icon">
-                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V9h7V2.99l8 4V12h-8z"/>
-                        </svg>
-                    </div> -->
+                      <div class="cert-badge-icon">
+                        <img
+                            src="images/Salesforce.com_logo.svg.png"
+                            alt="Salesforce Logo"
+                            class="cert-badge-logo"
+                        />
+                    </div>
                     <div class="cert-card-title-section">
                         <div class="cert-issuer">SALESFORCE</div>
                         <div class="cert-name">Certified AI Associate</div>
@@ -1360,11 +1387,13 @@
 
             <div class="cert-card" onclick="openCertModal('oracle-genai')">
                 <div class="cert-card-header">
-                    <!-- <div class="cert-badge-icon">
-                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V9h7V2.99l8 4V12h-8z"/>
-                        </svg>
-                    </div> -->
+                      <div class="cert-badge-icon">
+                        <img
+                            src="images/oracle.png"
+                            alt="Salesforce Logo"
+                            class="cert-badge-logo2"
+                        />
+                    </div>
                     <div class="cert-card-title-section">
                         <div class="cert-issuer">ORACLE</div>
                         <div class="cert-name">Certified Generative AI Professional</div>
@@ -1393,11 +1422,13 @@
 
             <div class="cert-card" onclick="openCertModal('oracle-datascience')">
                 <div class="cert-card-header">
-                    <!-- <div class="cert-badge-icon">
-                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V9h7V2.99l8 4V12h-8z"/>
-                        </svg>
-                    </div> -->
+                    <div class="cert-badge-icon">
+                        <img
+                            src="images/oracle.png"
+                            alt="Salesforce Logo"
+                            class="cert-badge-logo2"
+                        />
+                    </div>
                     <div class="cert-card-title-section">
                         <div class="cert-issuer">ORACLE</div>
                         <div class="cert-name">Certified OCI Data Science Professional</div>
@@ -1438,11 +1469,8 @@
             <button class="cert-modal-close" onclick="closeCertModal()">×</button>
             
             <div class="cert-modal-header">
-                <div class="cert-modal-badge">
-                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V9h7V2.99l8 4V12h-8z"/>
-                    </svg>
-                </div>
+                <div class="cert-modal-badge" id="modalBadge"></div>
+
                 <div class="cert-modal-title-section">
                     <div class="cert-modal-issuer" id="modalIssuer"></div>
                     <h3 class="cert-modal-title" id="modalTitle"></h3>
@@ -1708,7 +1736,14 @@
                 credentialId: 'SFMC-EMAIL-2025-001',
                 description: 'This certification demonstrates comprehensive expertise in email marketing strategy, subscriber and data management, inbox delivery, and email automation using Salesforce Marketing Cloud. It validates the ability to design, build, and execute sophisticated email campaigns that drive engagement and conversions.',
                 skills: ['Email Studio', 'AMPscript', 'Journey Builder', 'Automation Studio', 'Data Extensions', 'SQL Queries'],
-                image: 'images/email.jpg' // Add your certificate image URL here
+                image: 'images/email.jpg',
+                logo: `
+                    <img
+                        src="images/Salesforce.com_logo.svg.png"
+                        alt="Oracle Logo"
+                        class="cert-badge-logo"
+                    />
+                `
             },
             'agentforce': {
                 issuer: 'SALESFORCE',
@@ -1717,7 +1752,14 @@
                 credentialId: 'SF-AGENT-2025-002',
                 description: 'This credential validates advanced skills in building and deploying AI agents within the Salesforce ecosystem. It covers automation workflows, intelligent customer interactions, and the integration of AI-powered solutions to enhance business processes and customer experiences.',
                 skills: ['AI Agents', 'Automation', 'Workflows', 'Einstein Bots', 'Process Builder'],
-                image: 'images/agent.jpg'
+                image: 'images/agent.jpg',
+                logo: `
+                    <img
+                        src="images/Salesforce.com_logo.svg.png"
+                        alt="Oracle Logo"
+                        class="cert-badge-logo"
+                    />
+                `
             },
             'ai-associate': {
                 issuer: 'SALESFORCE',
@@ -1726,7 +1768,14 @@
                 credentialId: 'SF-AI-2025-003',
                 description: 'This foundational certification covers AI principles, ethical considerations, and practical applications of artificial intelligence in business contexts. It demonstrates understanding of how AI can be responsibly implemented to solve real-world business challenges.',
                 skills: ['AI Fundamentals', 'Ethics', 'Einstein AI', 'Machine Learning Basics', 'AI Strategy'],
-                image: 'images/Ai.jpg'
+                image: 'images/Ai.jpg',
+                logo: `
+                    <img
+                        src="images/Salesforce.com_logo.svg.png"
+                        alt="Oracle Logo"
+                        class="cert-badge-logo"
+                    />
+                `
             },
             'oracle-genai': {
                 issuer: 'ORACLE',
@@ -1735,7 +1784,14 @@
                 credentialId: 'ORA-GENAI-2025-004',
                 description: 'This professional certification demonstrates expertise in implementing and managing generative AI solutions. It covers large language models, AI-powered content generation systems, and the practical application of generative AI technologies in enterprise environments.',
                 skills: ['Generative AI', 'LLMs', 'OCI AI Services', 'Prompt Engineering', 'AI Integration'],
-                image: 'images/or-ai.jpg'
+                image: 'images/or-ai.jpg',
+                logo: `
+                    <img
+                        src="images/oracle.png"
+                        alt="Oracle Logo"
+                        class="cert-badge-logo2"
+                    />
+                `
             },
             'oracle-datascience': {
                 issuer: 'ORACLE',
@@ -1744,7 +1800,14 @@
                 credentialId: 'ORA-DS-2025-005',
                 description: 'This advanced certification validates proficiency in Oracle Cloud Infrastructure Data Science services. It demonstrates expertise in machine learning model development, deployment, lifecycle management, and the use of OCI tools for data science workflows.',
                 skills: ['Data Science', 'ML Models', 'OCI', 'Python', 'Model Deployment', 'MLOps'],
-                image: 'images/or-das.jpg'
+                image: 'images/or-das.jpg',
+                logo: `
+                    <img
+                        src="images/oracle.png"
+                        alt="Oracle Logo"
+                        class="cert-badge-logo2"
+                    />
+                `
             }
         };
 
@@ -1781,6 +1844,10 @@
                 tag.textContent = skill.toUpperCase();
                 skillsContainer.appendChild(tag);
             });
+
+            const badge = document.getElementById('modalBadge');
+    badge.innerHTML = cert.logo || '';
+
 
             document.getElementById('certModal').classList.add('active');
             document.body.style.overflow = 'hidden';
