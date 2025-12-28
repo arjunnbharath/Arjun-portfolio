@@ -263,56 +263,14 @@
             border-bottom: 1px solid #333;
         }
 
-        .work-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .work-item {
-            border: 1px solid #333;
-            padding: 2rem;
-            transition: all 0.3s;
-            cursor: pointer;
-        }
-
-        .work-item:hover {
-            border-color: #ffffff;
-            transform: translateY(-5px);
-        }
-
-        .work-company {
-            font-size: 0.75rem;
-            letter-spacing: 0.15em;
-            opacity: 0.5;
-            margin-bottom: 0.5rem;
-        }
-
-        .work-role {
-            font-size: 1.2rem;
-            letter-spacing: 0.1em;
-            margin-bottom: 1rem;
-        }
-
-        .work-date {
-            font-size: 0.7rem;
-            opacity: 0.5;
-            margin-bottom: 1.5rem;
-        }
-
-        .work-description {
-            font-size: 0.85rem;
-            line-height: 1.6;
-            opacity: 0.7;
-        }
-
+        
         .cert-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 2rem;
             margin-top: 3rem;
         }
+        
 
         .cert-card {
             border: 1px solid #333;
@@ -666,7 +624,7 @@
                 padding: 6rem 1.5rem 3rem;
             }
 
-            .work-grid,
+           
             .cert-grid,
             .skills-grid {
                 grid-template-columns: 1fr;
@@ -771,7 +729,7 @@
             background: transparent;
             border: none;
             border-bottom: 1px solid #333;
-            color: #ffffff;
+            color: #06b314;
             font-family: 'Courier New', monospace;
             font-size: 0.85rem;
             padding: 0.75rem 0;
@@ -1072,7 +1030,216 @@
             border-color: #ffffff;
             opacity: 1;
         }
+           .work-list {
+            display: flex;
+            flex-direction: column;
+            gap: 4rem;
+        }
 
+        .work-item {
+            display: flex;
+            gap: 3rem;
+            padding-bottom: 4rem;
+            border-bottom: 1px solid #222;
+            transition: border-color 0.3s;
+        }
+
+        .work-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .work-item:hover {
+            border-bottom-color: #444;
+        }
+
+        .work-logo {
+            flex-shrink: 0;
+            width: 110px;
+            height: 110px;
+            border: 1px solid #33333300;
+            display: flex;
+            align-items: center;
+             /* filter: grayscale(100%); */
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        /* .work-item:hover .work-logo {
+            border-color: #666;
+        } */
+
+        .work-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 12px;
+            
+            transition: filter 0.3s;
+        }
+
+        .work-item:hover .work-logo img {
+            filter: grayscale(0%) brightness(1);
+        }
+
+        .work-logo-placeholder {
+            font-size: 1rem;
+            opacity: 0.3;
+            letter-spacing: 0.1em;
+        }
+
+        .work-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .work-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 2rem;
+        }
+
+        .work-title-group {
+            flex: 1;
+        }
+
+        /* Hide inline logo on desktop */
+        .work-title-group .work-logo {
+            display: none;
+        }
+
+        .work-company {
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            opacity: 0.5;
+            margin-bottom: 0.5rem;
+        }
+
+        .work-role {
+            font-size: 1.5rem;
+            letter-spacing: 0.05em;
+            line-height: 1.3;
+        }
+
+        .work-date {
+            font-size: 0.7rem;
+            opacity: 0.5;
+            letter-spacing: 0.15em;
+            white-space: nowrap;
+        }
+
+        .work-description {
+            font-size: 0.9rem;
+            line-height: 1.8;
+            opacity: 0.7;
+            letter-spacing: 0.03em;
+        }
+
+        .work-tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tech-tag {
+            font-size: 0.65rem;
+            letter-spacing: 0.1em;
+            padding: 0.4rem 0.8rem;
+            border: 1px solid #333;
+            opacity: 0.6;
+            transition: all 0.3s;
+        }
+
+        .work-item:hover .tech-tag {
+            opacity: 0.8;
+        }
+
+        .download-section {
+            margin-top: 5rem;
+            text-align: center;
+        }
+
+        .download-btn {
+            padding: 1rem 2rem;
+            border: 1px solid #ffffff;
+            background: transparent;
+            color: #ffffff;
+            font-family: 'Courier New', monospace;
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .download-btn:hover {
+            background-color: #ffffff;
+            color: #000000;
+        }
+
+        .download-btn:active {
+            transform: scale(0.98);
+        }
+
+        /* Mobile styles */
+        @media (max-width: 768px) {
+            body {
+                padding: 2rem 1rem;
+            }
+
+            .work-item {
+                flex-direction: column;
+                gap: 0;
+            }
+
+            /* Hide the standalone logo on mobile */
+            .work-item > .work-logo {
+                display: none;
+            }
+
+            .work-content {
+                gap: 1.5rem;
+            }
+
+            .work-header {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .work-title-group {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+            }
+
+            /* Show logo next to heading on mobile */
+            .work-title-group .work-logo {
+                display: flex;
+             
+            }
+
+            .work-role {
+                font-size: 1.2rem;
+            }
+
+            .work-date {
+                white-space: normal;
+            }
+           .work-logo {
+            flex-shrink: 0;
+            width: 100px;
+            height: 100px;
+            border: 1px solid #33333300;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+        }
+
+        
         @media (max-width: 968px) {
             .cert-modal-content {
                 padding: 2rem 1.5rem;
@@ -1110,6 +1277,7 @@
             <li><a onclick="showPage('home')" class="active">HOME</a></li>
             <li><a onclick="showPage('about')">ABOUT</a></li>
             <li><a onclick="showPage('experience')">EXPERIENCE</a></li>
+            <li><a onclick="showPage('projects')">PROJECTS</a></li>
             <li><a onclick="showPage('certifications')">CERTIFICATIONS</a></li>
             <li><a onclick="showPage('contact')">CONTACT</a></li>
         </ul>
@@ -1224,53 +1392,122 @@
     </section>
 
     <!-- WORK PAGE -->
-    <section id="experience" class="page">
+     <section id="experience" class="page">
         <div class="page-header">
-            <h2 class="page-title">WORK</h2>
+            <h2 class="page-title">EXPERIENCE</h2>
             <p class="page-subtitle">PROFESSIONAL EXPERIENCE</p>
         </div>
 
-        <div class="work-grid">
+        <div class="work-list">
             <div class="work-item">
-                <div class="work-company">G10X</div>
-                <div class="work-role">Software Engineer</div>
-                <div class="work-date">APR 2025 – PRESENT</div>
-                <div class="work-description">
-                    Developing and customizing email templates in Salesforce Marketing Cloud (SFMC) 
-                    to support personalized marketing campaigns. Working on Journey Builder to design 
-                    and automate customer engagement workflows. Collaborating on API integrations and 
-                    automation calls to streamline marketing processes and improve campaign efficiency.
+                <div class="work-logo">
+                    <img src="images/g10x.png" alt="G10X" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+                    <div class="work-logo-placeholder" style="display:none">G10X</div>
+                </div>
+                <div class="work-content">
+                    <div class="work-header">
+                        <div class="work-title-group">
+                            <div class="work-logo">
+                                <img src="images/g10x.png" alt="G10X" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+                                <div class="work-logo-placeholder" style="display:none">G10X</div>
+                            </div>
+                            <div>
+                                <div class="work-company">G10X</div>
+                                <h3 class="work-role">Software Engineer</h3>
+                            </div>
+                        </div>
+                        <div class="work-date">APR 2025 – PRESENT</div>
+                    </div>
+                    <p class="work-description">
+                        Developing and customizing email templates in Salesforce Marketing Cloud (SFMC) 
+                        to support personalized marketing campaigns. Working on Journey Builder to design 
+                        and automate customer engagement workflows. Collaborating on API integrations and 
+                        automation calls to streamline marketing processes and improve campaign efficiency.
+                    </p>
+                    <div class="work-tech-stack">
+                        <span class="tech-tag">SALESFORCE</span>
+                        <span class="tech-tag">SFMC</span>
+                        <span class="tech-tag">JOURNEY BUILDER</span>
+                        <span class="tech-tag">API</span>
+                        <span class="tech-tag">AUTOMATION</span>
+                    </div>
                 </div>
             </div>
 
             <div class="work-item">
-                <div class="work-company">G10X</div>
-                <div class="work-role">Associate Software Engineer</div>
-                <div class="work-date">MAR 2024 – APR 2025</div>
-                <div class="work-description">
-                    Performed Salesforce Marketing Cloud testing with a focus on SFMC Personalization 
-                    features. Ensured accuracy and quality of marketing campaigns through detailed 
-                    validation and testing processes. Collaborated with cross-functional teams to 
-                    deliver high-quality solutions.
+                <div class="work-logo">
+                    <img src="images/g10x.png" alt="G10X" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+                    <div class="work-logo-placeholder" style="display:none">G10X</div>
+                </div>
+                <div class="work-content">
+                    <div class="work-header">
+                        <div class="work-title-group">
+                            <div class="work-logo">
+                                <img src="images/g10x.png" alt="G10X" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+                                <div class="work-logo-placeholder" style="display:none">G10X</div>
+                            </div>
+                            <div>
+                                <div class="work-company">G10X</div>
+                                <h3 class="work-role">Associate Software Engineer</h3>
+                            </div>
+                        </div>
+                        <div class="work-date">MAR 2024 – APR 2025</div>
+                    </div>
+                    <p class="work-description">
+                        Performed Salesforce Marketing Cloud testing with a focus on SFMC Personalization 
+                        features. Ensured accuracy and quality of marketing campaigns through detailed 
+                        validation and testing processes. Collaborated with cross-functional teams to 
+                        deliver high-quality solutions.
+                    </p>
+                    <div class="work-tech-stack">
+                        <span class="tech-tag">SFMC TESTING</span>
+                        <span class="tech-tag">PERSONALIZATION</span>
+                        <span class="tech-tag">QA</span>
+                        <span class="tech-tag">VALIDATION</span>
+                    </div>
                 </div>
             </div>
 
             <div class="work-item">
-                <div class="work-company">QUEST INNOVATIVE SOLUTIONS</div>
-                <div class="work-role">Java Full Stack Web Developer Trainee</div>
-                <div class="work-date">MAY 2023 – JAN 2024</div>
-                <div class="work-description">
-                    Developed and maintained responsive websites using Java, Spring Boot, and front-end 
-                    technologies like HTML, CSS, and JavaScript. Built multiple full-stack projects 
-                    showcasing strong skills in both back-end logic and front-end design. Gained hands-on 
-                    experience in modern web development practices.
+                <div class="work-logo">
+                    <img src="images/quest.png" alt="Quest" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+                    <div class="work-logo-placeholder" style="display:none">QUEST</div>
+                </div>
+                <div class="work-content">
+                    <div class="work-header">
+                        <div class="work-title-group">
+                            <div class="work-logo">
+                                <img src="images/quest.png" alt="Quest" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+                                <div class="work-logo-placeholder" style="display:none">QUEST</div>
+                            </div>
+                            <div>
+                                <div class="work-company">QUEST INNOVATIVE SOLUTIONS</div>
+                                <h3 class="work-role">Java Full Stack Web Developer Trainee</h3>
+                            </div>
+                        </div>
+                        <div class="work-date">MAY 2023 – JAN 2024</div>
+                    </div>
+                    <p class="work-description">
+                        Developed and maintained responsive websites using Java, Spring Boot, and front-end 
+                        technologies like HTML, CSS, and JavaScript. Built multiple full-stack projects 
+                        showcasing strong skills in both back-end logic and front-end design. Gained hands-on 
+                        experience in modern web development practices.
+                    </p>
+                    <div class="work-tech-stack">
+                        <span class="tech-tag">JAVA</span>
+                        <span class="tech-tag">SPRING BOOT</span>
+                        <span class="tech-tag">HTML/CSS</span>
+                        <span class="tech-tag">JAVASCRIPT</span>
+                        <span class="tech-tag">FULL STACK</span>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <button onclick="downloadResume()" class="download-btn">[ DOWNLOAD FULL RESUME ]</button>
+        <div class="download-section">
+            <button onclick="downloadResume()" class="download-btn">[ DOWNLOAD FULL RESUME ]</button>
+        </div>
     </section>
-
     <!-- CERTIFICATIONS PAGE -->
     <section id="certifications" class="page">
         <div class="page-header">
@@ -1665,71 +1902,9 @@
                 }
             }, 50);
         }
-        /* ================================
-   GREEN GLITCH TEXT EFFECT – ABOUT PAGE
-   No HTML or CSS changes required
-================================ */
-
-(function () {
-
-    function glitchElement(el, speed = 40) {
-        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        const finalText = el.textContent;
-        const originalColor = window.getComputedStyle(el).color;
-
-        let iterations = 0;
-
-        // Apply green glitch color
-        el.style.color = '#00ff66';
-
-        const interval = setInterval(() => {
-            el.textContent = finalText
-                .split('')
-                .map((char, index) => {
-                    if (char === ' ') return ' ';
-                    if (iterations > index) return char;
-                    return chars[Math.floor(Math.random() * chars.length)];
-                })
-                .join('');
-
-            iterations++;
-
-            if (iterations > finalText.length) {
-                clearInterval(interval);
-                el.textContent = finalText;
-
-                // Restore original color smoothly
-                el.style.transition = 'color 0.3s ease';
-                el.style.color = originalColor;
-            }
-        }, speed);
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-        const aboutSection = document.querySelector('#about');
-        if (!aboutSection) return;
-
-        const glitchTargets = aboutSection.querySelectorAll(
-            '.page-title, .page-subtitle, .section-title, .skill-category-title'
-        );
-
-        if (!glitchTargets.length) return;
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    glitchTargets.forEach((el, index) => {
-                        setTimeout(() => glitchElement(el), index * 120);
-                    });
-                    observer.disconnect(); // run once
-                }
-            });
-        }, { threshold: 0.3 });
-
-        observer.observe(aboutSection);
-    });
-
-})();
+        
+        
+    
 
         function downloadResume() {
             const link = document.createElement("a");
@@ -1948,6 +2123,99 @@
                 toggleMenu();
             }
         });
+/* =====================================
+   GREEN GLITCH EFFECT – ALL SECTIONS
+   Same behavior everywhere
+   No HTML / CSS changes
+===================================== */
+
+(function () {
+
+    const CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const GREEN = '#00ff66';
+
+    function glitchElement(el, speed = 40) {
+        const finalText = el.textContent;
+        const originalColor = window.getComputedStyle(el).color;
+        let iterations = 0;
+
+        el.style.color = GREEN;
+
+        const interval = setInterval(() => {
+            el.textContent = finalText
+                .split('')
+                .map((char, index) => {
+                    if (char === ' ') return ' ';
+                    if (iterations > index) return char;
+                    return CHARS[Math.floor(Math.random() * CHARS.length)];
+                })
+                .join('');
+
+            iterations++;
+
+            if (iterations > finalText.length) {
+                clearInterval(interval);
+                el.textContent = finalText;
+                el.style.transition = 'color 0.3s ease';
+                el.style.color = originalColor;
+            }
+        }, speed);
+    }
+
+    function observeSection(sectionId, selectors) {
+        const section = document.querySelector(sectionId);
+        if (!section) return;
+
+        const targets = section.querySelectorAll(selectors);
+        if (!targets.length) return;
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    targets.forEach((el, index) => {
+                        setTimeout(() => glitchElement(el), index * 120);
+                    });
+                    observer.disconnect(); // run once
+                }
+            });
+        }, { threshold: 0.3 });
+
+        observer.observe(section);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+
+        /* ===== ABOUT ===== */
+        observeSection(
+            '#about',
+            '.page-title, .page-subtitle, .section-title, .skill-category-title'
+        );
+
+        /* ===== EXPERIENCE ===== */
+        observeSection(
+            '#experience',
+            '.page-title, .page-subtitle, .work-company, .work-role, .work-date'
+        );
+
+        /* ===== CERTIFICATIONS ===== */
+        observeSection(
+            '#certifications',
+            '.page-title, .page-subtitle, .cert-issuer, .cert-name, .cert-year, .cert-status'
+        );
+
+        /* ===== CONTACT ===== */
+        observeSection(
+            '#contact',
+            '.page-title, .page-subtitle, .section-title, label, .submit-btn'
+        );
+
+    });
+
+})();
+
+
+
+
     </script>
 </body>
 </html>
