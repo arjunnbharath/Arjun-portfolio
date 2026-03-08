@@ -1288,6 +1288,244 @@
             .cert-modal-meta {
                 grid-template-columns: 1fr;
             }
+
+        }
+
+        .project-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 3rem;
+        }
+        .filter-btn {
+            font-family: 'Courier New', monospace;
+            font-size: 0.65rem;
+            letter-spacing: 0.15em;
+            padding: 0.5rem 1.1rem;
+            border: 1px solid #333;
+            background: transparent;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.25s;
+        }
+        .filter-btn:hover,
+        .filter-btn.active {
+            border-color: #09b103;
+            color: #09b103;
+        }
+
+        /* ── PROJECT GRID ── */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 2rem;
+        }
+
+        /* ── PROJECT CARD ── */
+        .project-card {
+            border: 1px solid #333;
+            background: linear-gradient(135deg, rgba(26,26,26,0.5) 0%, rgba(0,0,0,0.9) 100%);
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+        }
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.03), transparent);
+            transition: left 0.6s;
+        }
+        .project-card:hover::before { left: 100%; }
+        .project-card:hover {
+            border-color: #fff;
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+
+        /* featured card spans 2 columns */
+        .project-card.featured {
+            grid-column: span 2;
+        }
+
+        /* ── CARD IMAGE AREA ── */
+        .project-image {
+            width: 100%;
+            height: 200px;
+            background: #0a0a0a;
+            border-bottom: 1px solid #222;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .project-card.featured .project-image { height: 260px; }
+
+        /* animated scanline on top of image */
+        .project-image::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 2px;
+            background: linear-gradient(90deg, transparent, #09b103, transparent);
+            animation: scan 3s linear infinite;
+        }
+        @keyframes scan {
+            0%   { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        /* ascii / emoji placeholder graphic */
+        .project-image-placeholder {
+            font-size: 0.7rem;
+            letter-spacing: 0.12em;
+            opacity: 0.2;
+            line-height: 1.6;
+            text-align: center;
+            padding: 1rem;
+            pointer-events: none;
+            user-select: none;
+        }
+        .project-image img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%) contrast(1.1);
+            transition: filter 0.5s;
+        }
+        .project-card:hover .project-image img {
+            filter: grayscale(0%) contrast(1);
+        }
+
+        /* top-right tag */
+        .project-type-tag {
+            position: absolute;
+            top: 1rem; right: 1rem;
+            font-size: 0.6rem;
+            letter-spacing: 0.15em;
+            padding: 0.35rem 0.75rem;
+            border: 1px solid #09b103;
+            color: #09b103;
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(4px);
+        }
+
+        /* ── CARD BODY ── */
+        .project-body {
+            padding: 1.75rem 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            flex: 1;
+        }
+
+        .project-number {
+            font-size: 0.6rem;
+            letter-spacing: 0.2em;
+            opacity: 0.3;
+        }
+
+        .project-title {
+            font-size: 1.15rem;
+            letter-spacing: 0.06em;
+            line-height: 1.3;
+        }
+        .project-card.featured .project-title { font-size: 1.4rem; }
+
+        .project-description {
+            font-size: 0.75rem;
+            line-height: 1.8;
+            opacity: 0.6;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: auto;
+            padding-top: 0.5rem;
+        }
+        .project-tag {
+            font-size: 0.62rem;
+            letter-spacing: 0.1em;
+            padding: 0.35rem 0.7rem;
+            border: 1px solid #333;
+            opacity: 0.65;
+            transition: all 0.3s;
+        }
+        .project-card:hover .project-tag {
+            border-color: #555;
+            opacity: 1;
+        }
+
+        /* ── HOVER OVERLAY ── */
+        .project-hover-overlay {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            padding: 1.25rem 2rem;
+            background: linear-gradient(to top,
+                rgba(0,0,0,1),
+                rgba(0,0,0,0.92),
+                rgba(0,0,0,0.7),
+                transparent);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+        .project-card:hover .project-hover-overlay { transform: translateY(0); }
+
+        .project-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+        .project-link {
+            font-size: 0.72rem;
+            letter-spacing: 0.15em;
+            color: #09b103;
+            text-decoration: none;
+            transition: opacity 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .project-link:hover { opacity: 0.7; }
+        .project-link svg {
+            width: 14px; height: 14px;
+            fill: #09b103;
+        }
+
+        .project-arrow {
+            font-size: 1.1rem;
+            transition: transform 0.3s;
+        }
+        .project-card:hover .project-arrow { transform: translateX(5px); }
+
+        /* ── SUMMARY ── */
+        .summary-text {
+            font-size: 0.9rem;
+            line-height: 1.8;
+            opacity: 0.7;
+            letter-spacing: 0.03em;
+            margin-top: 4rem;
+        }
+
+        /* ── HIDE / FILTER ANIMATION ── */
+        .project-card.hidden {
+            display: none;
+        }
+
+        /* ── MOBILE ── */
+        @media (max-width: 768px) {
+            .page { padding: 6rem 1.5rem 3rem; }
+            .project-grid { grid-template-columns: 1fr; }
+            .project-card.featured { grid-column: span 1; }
+            .project-card.featured .project-image { height: 200px; }
         }
     </style>
 </head>
@@ -1534,7 +1772,235 @@
         </div>
     </section>
     <section id="project" class=""page>
-        
+    <!-- ════════════════════════════════════════════
+     PROJECTS PAGE  — drop this <section> into your HTML
+     Replace the empty <section id="project"> tag
+════════════════════════════════════════════ -->
+<section id="projects" class="page">
+
+    <div class="page-header">
+        <h2 class="page-title">PROJECTS</h2>
+        <p class="page-subtitle">SELECTED WORK & BUILDS</p>
+    </div>
+
+    <!-- Filter buttons -->
+    <div class="project-filters">
+        <button class="filter-btn active" onclick="filterProjects('all', this)">[ ALL ]</button>
+        <button class="filter-btn" onclick="filterProjects('sfmc', this)">[ SFMC ]</button>
+        <button class="filter-btn" onclick="filterProjects('fullstack', this)">[ FULL STACK ]</button>
+        <button class="filter-btn" onclick="filterProjects('ai', this)">[ AI / ML ]</button>
+        <button class="filter-btn" onclick="filterProjects('automation', this)">[ AUTOMATION ]</button>
+    </div>
+
+    <!-- Project grid -->
+    <div class="project-grid" id="projectGrid">
+
+        <!-- PROJECT 1 – Featured -->
+        <div class="project-card featured" data-category="sfmc">
+            <div class="project-image">
+                <!--  Replace with: <img src="images/project1.png" alt="...">  -->
+                <div class="project-image-placeholder">
+                    ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░<br>
+                    ░  SALESFORCE MARKETING CLOUD      ░<br>
+                    ░  EMAIL AUTOMATION SYSTEM         ░<br>
+                    ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+                </div>
+                <div class="project-type-tag">FEATURED</div>
+            </div>
+            <div class="project-body">
+                <div class="project-number">01 //</div>
+                <div class="project-title">SFMC Email Automation Pipeline</div>
+                <div class="project-description">
+                    End-to-end email automation system built on Salesforce Marketing Cloud. 
+                    Leverages AMPscript for dynamic personalisation, Journey Builder for 
+                    multi-step drip flows, and Automation Studio for scheduled data syncs — 
+                    resulting in a 40 % uplift in open rates and significant reduction in 
+                    manual campaign effort.
+                </div>
+                <div class="project-tags">
+                    <span class="project-tag">SFMC</span>
+                    <span class="project-tag">AMPSCRIPT</span>
+                    <span class="project-tag">JOURNEY BUILDER</span>
+                    <span class="project-tag">SQL</span>
+                    <span class="project-tag">AUTOMATION STUDIO</span>
+                </div>
+            </div>
+            <div class="project-hover-overlay">
+                <div class="project-links">
+                    <!-- swap href values with your real links -->
+                    <a href="#" class="project-link">
+                        <svg viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                        GITHUB
+                    </a>
+                    <a href="#" class="project-link">
+                        <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+                        LIVE DEMO
+                    </a>
+                </div>
+                <span class="project-arrow">→</span>
+            </div>
+        </div>
+
+        <!-- PROJECT 2 -->
+        <div class="project-card" data-category="fullstack">
+            <div class="project-image">
+                <div class="project-image-placeholder">
+                    ░░░░░░░░░░░░░░░░░░░<br>
+                    ░  FULL STACK APP  ░<br>
+                    ░░░░░░░░░░░░░░░░░░░
+                </div>
+                <div class="project-type-tag">FULL STACK</div>
+            </div>
+            <div class="project-body">
+                <div class="project-number">02 //</div>
+                <div class="project-title">Spring Boot REST API Platform</div>
+                <div class="project-description">
+                    Scalable Java REST API built with Spring Boot featuring JWT authentication, 
+                    role-based access control, and a responsive HTML/CSS/JS frontend. 
+                    Deployed on a cloud environment with CI/CD pipelines.
+                </div>
+                <div class="project-tags">
+                    <span class="project-tag">JAVA</span>
+                    <span class="project-tag">SPRING BOOT</span>
+                    <span class="project-tag">REST API</span>
+                    <span class="project-tag">HTML/CSS</span>
+                    <span class="project-tag">JWT</span>
+                </div>
+            </div>
+            <div class="project-hover-overlay">
+                <div class="project-links">
+                    <a href="#" class="project-link">
+                        <svg viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                        GITHUB
+                    </a>
+                </div>
+                <span class="project-arrow">→</span>
+            </div>
+        </div>
+
+        <!-- PROJECT 3 -->
+        <div class="project-card" data-category="ai">
+            <div class="project-image">
+                <div class="project-image-placeholder">
+                    ░░░░░░░░░░░░░░░░░<br>
+                    ░  AI / ML BUILD ░<br>
+                    ░░░░░░░░░░░░░░░░░
+                </div>
+                <div class="project-type-tag">AI / ML</div>
+            </div>
+            <div class="project-body">
+                <div class="project-number">03 //</div>
+                <div class="project-title">OCI Generative AI Integration</div>
+                <div class="project-description">
+                    Proof-of-concept application integrating Oracle Cloud Infrastructure's 
+                    Generative AI services for automated content summarisation and intelligent 
+                    query handling. Demonstrates LLM prompt engineering and OCI API usage.
+                </div>
+                <div class="project-tags">
+                    <span class="project-tag">ORACLE OCI</span>
+                    <span class="project-tag">GENERATIVE AI</span>
+                    <span class="project-tag">LLM</span>
+                    <span class="project-tag">PYTHON</span>
+                </div>
+            </div>
+            <div class="project-hover-overlay">
+                <div class="project-links">
+                    <a href="#" class="project-link">
+                        <svg viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                        GITHUB
+                    </a>
+                </div>
+                <span class="project-arrow">→</span>
+            </div>
+        </div>
+
+        <!-- PROJECT 4 -->
+        <div class="project-card" data-category="automation">
+            <div class="project-image">
+                <div class="project-image-placeholder">
+                    ░░░░░░░░░░░░░░░░░░░<br>
+                    ░  AUTOMATION BOT  ░<br>
+                    ░░░░░░░░░░░░░░░░░░░
+                </div>
+                <div class="project-type-tag">AUTOMATION</div>
+            </div>
+            <div class="project-body">
+                <div class="project-number">04 //</div>
+                <div class="project-title">SFMC Personalisation Testing Suite</div>
+                <div class="project-description">
+                    Automated QA framework for Salesforce Marketing Cloud Personalisation 
+                    features. Validates campaign accuracy, segment logic, and real-time 
+                    content blocks — reducing regression testing time by 60 %.
+                </div>
+                <div class="project-tags">
+                    <span class="project-tag">SFMC</span>
+                    <span class="project-tag">QA AUTOMATION</span>
+                    <span class="project-tag">PERSONALIZATION</span>
+                    <span class="project-tag">TESTING</span>
+                </div>
+            </div>
+            <div class="project-hover-overlay">
+                <div class="project-links">
+                    <a href="#" class="project-link">
+                        <svg viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                        GITHUB
+                    </a>
+                </div>
+                <span class="project-arrow">→</span>
+            </div>
+        </div>
+
+        <!-- PROJECT 5 -->
+        <div class="project-card" data-category="fullstack">
+            <div class="project-image">
+                <div class="project-image-placeholder">
+                    ░░░░░░░░░░░░░░░░░░░░<br>
+                    ░  WEB APPLICATION  ░<br>
+                    ░░░░░░░░░░░░░░░░░░░░
+                </div>
+                <div class="project-type-tag">FULL STACK</div>
+            </div>
+            <div class="project-body">
+                <div class="project-number">05 //</div>
+                <div class="project-title">Responsive Portfolio & CMS</div>
+                <div class="project-description">
+                    Personal portfolio website with a lightweight content management layer, 
+                    built from scratch using vanilla HTML, CSS, and JavaScript. Features 
+                    glitch animations, dark monochrome aesthetics, and mobile-first design.
+                </div>
+                <div class="project-tags">
+                    <span class="project-tag">HTML</span>
+                    <span class="project-tag">CSS</span>
+                    <span class="project-tag">JAVASCRIPT</span>
+                    <span class="project-tag">RESPONSIVE</span>
+                </div>
+            </div>
+            <div class="project-hover-overlay">
+                <div class="project-links">
+                    <a href="#" class="project-link">
+                        <svg viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                        GITHUB
+                    </a>
+                    <a href="#" class="project-link">
+                        LIVE →
+                    </a>
+                </div>
+                <span class="project-arrow">→</span>
+            </div>
+        </div>
+
+    </div><!-- /project-grid -->
+
+    <div class="summary-text">
+        Each project reflects my commitment to clean architecture, purposeful automation, 
+        and delivering measurable outcomes. From Salesforce Marketing Cloud pipelines to 
+        full-stack Java applications, I focus on solutions that are both technically sound 
+        and business-impactful.
+    </div>
+
+</section>
+
+     
     </section>
     <!-- CERTIFICATIONS PAGE -->
     <section id="certifications" class="page">
@@ -2231,15 +2697,52 @@
             '.page-title, .page-subtitle, .cert-issuer, .cert-year, .cert-status'
         );
 
+        /* ===== PROJECTS ===== */
+        observeSection(
+              '#projects',
+             '.page-title, .page-subtitle, .project-number, .project-type-tag'
+);
+
         /* ===== CONTACT ===== */
         observeSection(
             '#contact',
             '.page-title, .page-subtitle, .section-title, label'
         );
 
+function filterProjects(category, btn) {
+    // Update active button
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    // Show / hide cards
+    document.querySelectorAll('.project-card').forEach(card => {
+        const match = category === 'all' || card.dataset.category === category;
+        card.classList.toggle('hidden', !match);
+    });
+}
+
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const section = document.querySelector('#projects');
+        if (!section) return;
+        const targets = section.querySelectorAll('.page-title, .page-subtitle, .project-number');
+        if (!targets.length) return;
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    targets.forEach((el, i) => setTimeout(() => glitchElement(el), i * 120));
+                    observer.disconnect();
+                }
+            });
+        }, { threshold: 0.3 });
+
+        observer.observe(section);
+    });
+})();
     });
 
-})();
+
 
 
 
