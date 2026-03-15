@@ -59,7 +59,6 @@
       pointer-events: none; z-index: 11;
     }
 
-    /* glitch flicker on loader */
     @keyframes flicker {
       0%,100%{opacity:1} 92%{opacity:1} 93%{opacity:0.7} 94%{opacity:1} 97%{opacity:0.85} 98%{opacity:1}
     }
@@ -71,7 +70,6 @@
     .section-title { font-size: 12px; letter-spacing: 0.14em; color: var(--w); margin-bottom: 8px; }
     .divider { border: none; border-top: 1px solid var(--w-trace); margin-bottom: 16px; }
 
-    /* typed log lines - characters appear one by one */
     .log-line {
       font-size: 12px; color: var(--w-mid); line-height: 1.95; min-height: 1.95em;
     }
@@ -80,7 +78,6 @@
     .log-line .typed-char { opacity: 0; }
     .log-line .typed-char.show { opacity: 1; }
 
-    /* glitch text effect on active line */
     @keyframes glitch-shift {
       0%{transform:translateX(0)} 20%{transform:translateX(-2px)} 40%{transform:translateX(2px)}
       60%{transform:translateX(-1px)} 80%{transform:translateX(1px)} 100%{transform:translateX(0)}
@@ -96,7 +93,7 @@
     .bar-fill {
       height: 100%; width: 0%; background: var(--w);
       box-shadow: 0 0 10px rgba(255,255,255,0.3);
-      transition: width 0.25s ease;
+      transition: width 0.15s ease;
     }
 
     .info-row {
@@ -314,8 +311,7 @@
     const delay = ms => new Promise(r => setTimeout(r, ms));
 
     /* ════════════════════════════════════════════
-       AUDIO ENGINE — Glitch + Typing sounds
-       All synthesised via Web Audio API.
+       AUDIO ENGINE
     ════════════════════════════════════════════ */
     let audioCtx = null;
     const getCtx = () => {
@@ -334,35 +330,25 @@
       master = comp; return master;
     };
 
-    // ── TYPING CLICK ──
-    // Short filtered noise burst — mechanical key press feel
     function playTypingClick() {
       const ctx = getCtx(), out = getMaster();
       const bufLen = Math.floor(ctx.sampleRate * 0.018);
       const buf = ctx.createBuffer(1, bufLen, ctx.sampleRate);
       const d = buf.getChannelData(0);
       for (let i = 0; i < bufLen; i++) d[i] = (Math.random() * 2 - 1);
-
       const src = ctx.createBufferSource();
       src.buffer = buf;
-
-      // bandpass around 2–4kHz = clicky mechanical key
       const bp = ctx.createBiquadFilter();
       bp.type = 'bandpass';
       bp.frequency.value = 2200 + Math.random() * 1600;
       bp.Q.value = 1.8;
-
-      // sharp transient envelope
       const gain = ctx.createGain();
       gain.gain.setValueAtTime(0.22, ctx.currentTime);
       gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.018);
-
       src.connect(bp); bp.connect(gain); gain.connect(out);
       src.start(); src.stop(ctx.currentTime + 0.022);
     }
 
-    // ── GLITCH BURST ──
-    // Sparse noise through bandpass, random pitch — corrupted data feel
     function playGlitch(vol = 0.18, dur = 0.07) {
       const ctx = getCtx(), out = getMaster();
       const bufLen = Math.floor(ctx.sampleRate * dur);
@@ -374,22 +360,17 @@
       const src = ctx.createBufferSource();
       src.buffer = buf;
       src.playbackRate.value = 0.6 + Math.random() * 0.9;
-
       const bp = ctx.createBiquadFilter();
       bp.type = 'bandpass';
       bp.frequency.value = 900 + Math.random() * 2200;
       bp.Q.value = 0.5 + Math.random() * 1.4;
-
       const gain = ctx.createGain();
       gain.gain.setValueAtTime(vol, ctx.currentTime);
       gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + dur);
-
       src.connect(bp); bp.connect(gain); gain.connect(out);
       src.start(); src.stop(ctx.currentTime + dur + 0.01);
     }
 
-    // ── PROGRESS TICK ──
-    // Tiny glitch blip per asset — fast sparse noise spike
     function playTick() {
       const ctx = getCtx(), out = getMaster();
       const bufLen = Math.floor(ctx.sampleRate * 0.012);
@@ -407,8 +388,6 @@
       src.start(); src.stop(ctx.currentTime + 0.015);
     }
 
-    // ── SCAN HUM ──
-    // Low electrical hum during progress bar
     let humSrc = null, humGain = null;
     function startHum() {
       const ctx = getCtx(), out = getMaster();
@@ -428,32 +407,8 @@
       setTimeout(() => { try { humSrc.stop(); } catch(e){} }, 600);
     }
 
-    // ── TRANSITION GLITCH BLAST ──
-    // 5 overlapping glitch bursts + pitch-drop for scene change
-    function playTransitionBlast() {
-      for (let i = 0; i < 5; i++) {
-        setTimeout(() => playGlitch(0.25 + Math.random()*0.1, 0.1 + Math.random()*0.08), i * 40);
-      }
-      // pitch sweep down
-      setTimeout(() => {
-        const ctx = getCtx(), out = getMaster();
-        const osc = ctx.createOscillator();
-        osc.type = 'sawtooth';
-        osc.frequency.setValueAtTime(900, ctx.currentTime);
-        osc.frequency.exponentialRampToValueAtTime(60, ctx.currentTime + 0.5);
-        const gain = ctx.createGain();
-        gain.gain.setValueAtTime(0.08, ctx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.5);
-        osc.connect(gain); gain.connect(out);
-        osc.start(); osc.stop(ctx.currentTime + 0.55);
-      }, 100);
-    }
-
-    /* ════════ TYPE-OUT ANIMATION ════════
-       Each character typed one at a time with
-       a typing click sound per character.
-    ════════════════════════════════════ */
-    async function typeLine(containerEl, text, isPrompt = false) {
+    /* ════════ TYPE-OUT ANIMATION — FASTER ════════ */
+    async function typeLine(containerEl, text) {
       const line = document.createElement('div');
       line.className = 'log-line';
       containerEl.appendChild(line);
@@ -464,22 +419,20 @@
         span.className = 'typed-char';
         span.textContent = chars[i];
         line.appendChild(span);
-        await delay(10);
+        await delay(5); // was 10
         span.classList.add('show');
 
-        // typing click on most characters, occasional glitch spike
         if (chars[i] !== ' ') {
           playTypingClick();
           if (Math.random() < 0.06) {
-            // random glitch flicker during typing
             setTimeout(() => playGlitch(0.09, 0.04), 5);
             line.classList.add('glitching');
             setTimeout(() => line.classList.remove('glitching'), 10000);
           }
         }
-        await delay(28 + Math.random() * 32);
+        await delay(12 + Math.random() * 14); // was 28 + random * 32
       }
-      await delay(120);
+      await delay(50); // was 120
       return line;
     }
 
@@ -488,15 +441,14 @@
       startHum();
       const total = 20;
       for (let i = 1; i <= total; i++) {
-        await delay(90 + Math.random() * 80);
+        await delay(45 + Math.random() * 35); // was 90 + random * 80
         assetsLabel.textContent = `Assets : ${i} / ${total}`;
         barFill.style.width = `${(i / total) * 100}%`;
         playTick();
-        // occasional glitch burst mid-load
         if (Math.random() < 0.3) setTimeout(() => playGlitch(0.12, 0.05), 20);
       }
       stopHum();
-      await delay(260);
+      await delay(150); // was 260
     }
 
     async function showWelcome() {
@@ -506,18 +458,17 @@
         row.className = 'info-row';
         row.innerHTML = `<span class="info-key">${key}</span><span class="info-sep"> : </span><span class="info-val">${val}</span>`;
         infoContainer.appendChild(row);
-        await delay(40);
+        await delay(20); // was 40
         row.classList.add('visible');
         playTypingClick();
-        await delay(150);
+        await delay(80); // was 150
       }
     }
 
     async function run() {
-      // opening glitch burst on start
       playGlitch(0.2, 0.12);
       setTimeout(() => playGlitch(0.15, 0.08), 80);
-      await delay(500);
+      await delay(250); // was 500
 
       for (const msg of logMessages) {
         await typeLine(logContainer, msg);
@@ -527,20 +478,20 @@
 
       logContainer.querySelectorAll('.log-line').forEach(l => l.classList.add('dimmed'));
 
-      await delay(300);
+      await delay(150); // was 300
       await showWelcome();
-      await delay(600);
+      await delay(300); // was 600
 
       transitionSection.style.display = 'block';
       await delay(40);
       transLine1.classList.add('visible');
       playGlitch(0.1, 0.06);
-      await delay(300);
+      await delay(200); // was 300
       transLine2.classList.add('visible');
-      await delay(1400);
+      await delay(700); // was 1400
 
-      playTransitionBlast();
-      await delay(160);
+      // ── transition: flash only, NO sound blast ──
+      await delay(100);
       flash.style.opacity = '0.22';
       await delay(65);
       flash.style.opacity = '0';
