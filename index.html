@@ -671,7 +671,7 @@ body:has(a:hover) #cursor-ring,body:has(button:hover) #cursor-ring,body:has([dat
       </div>
     </div>
   </div>
-  <div class="corner-tag">arjun200118bharath@gmail.com</div>
+  <div class="corner-tag"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="08697a627d663a38383939306a60697a697c60486f65696164266b6765">[email&#160;protected]</a></div>
   <div class="status-dot"><div class="dot-pulse"></div><span class="dot-label">KOCHI, KERALA</span></div>
 </div>
 
@@ -864,9 +864,9 @@ body:has(a:hover) #cursor-ring,body:has(button:hover) #cursor-ring,body:has([dat
         <div class="contact-data-item"><span class="cdi-key">STATUS</span><span class="cdi-sep">·</span><span class="cdi-val" style="color:var(--green)">OPEN TO WORK</span></div>
       </div>
       <div class="contact-channels-grid">
-        <a href="mailto:arjun200118bharath@gmail.com" class="contact-tile email-tile">
+        <a href="/cdn-cgi/l/email-protection#2647544c534814161617171e444e475447524e66414b474f4a0845494b" class="contact-tile email-tile">
           <div class="ct-top"><div class="ct-icon">✉</div><span class="ct-ext">↗</span></div>
-          <div class="ct-bottom"><div class="ct-platform">EMAIL</div><div class="ct-handle">arjun200118bharath@gmail.com</div><div class="ct-action">SEND EMAIL</div></div>
+          <div class="ct-bottom"><div class="ct-platform">EMAIL</div><div class="ct-handle"><span class="__cf_email__" data-cfemail="5435263e213a66646465656c363c352635203c143339353d387a373b39">[email&#160;protected]</span></div><div class="ct-action">SEND EMAIL</div></div>
         </a>
         <a href="https://linkedin.com/in/arjun-bharath-sr/" target="_blank" class="contact-tile li-tile">
           <div class="ct-top"><div class="ct-icon" style="font-size:12px;font-weight:700">in</div><span class="ct-ext">↗</span></div>
@@ -982,7 +982,7 @@ body:has(a:hover) #cursor-ring,body:has(button:hover) #cursor-ring,body:has([dat
   <div class="fpv-label">// PRESS ESC OR CLOSE TO RETURN</div>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 const pages=['home','work','experience','projects','certifications','contact'];
 pages.forEach(pid=>{
   const navEl=document.getElementById('nav-'+pid);if(!navEl)return;
@@ -1110,16 +1110,17 @@ fpYes.addEventListener('click', ()=>{
   setTimeout(closeFeedbackPopup, 2400);
 });
 
-// NO — close popup, show video overlay with audio
+// NO — close popup, pause BGM, show video overlay with audio
 fpNo.addEventListener('click', ()=>{
   if(soundEnabled) playNavClick();
   closeFeedbackPopup();
   setTimeout(()=>{
+    // Pause BGM before playing feedback video
+    if(bgmPlaying) stopBgm();
     fpVideoOverlay.classList.add('open');
     fpVideo.currentTime = 0;
     fpVideo.muted = false;
     fpVideo.play().catch(e=>{
-      // If autoplay with sound blocked, try muted first then unmute
       fpVideo.muted = true;
       fpVideo.play().then(()=>{ fpVideo.muted = false; }).catch(()=>{});
     });
@@ -1137,6 +1138,8 @@ function closeVideoOverlay(){
   fpVideo.pause();
   fpVideo.currentTime = 0;
   fpVideoOverlay.classList.remove('open');
+  // Resume BGM after video closes
+  startBgm();
 }
 fpvClose.addEventListener('click', closeVideoOverlay);
 fpVideoOverlay.addEventListener('click', e=>{
