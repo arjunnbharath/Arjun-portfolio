@@ -8,24 +8,24 @@
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --w:#ffffff;--w-mid:#cccccc;--w-dim:#888888;--w-faint:#444444;--w-trace:#1a1a1a;
-  --bg:#080808;--bg2:#0c0c0c;--scan:rgba(255,255,255,0.018);
+  --w:#ffffff;--w-mid:#e8e8e8;--w-dim:#c0c0c0;--w-faint:#888888;--w-trace:#333333;
+  --bg:#080808;--bg2:#111111;--scan:rgba(255,255,255,0.008);
   --accent:#ffffff;--green:#39ff14;--green-dim:rgba(57,255,20,0.15);
 }
 html,body{width:100%;height:100%;background:var(--bg);font-family:'Share Tech Mono','Courier New',monospace;overflow:hidden;cursor:none}
 *{cursor:none!important}
 
 /* CUSTOM CURSOR */
-#cursor{position:fixed;width:8px;height:8px;background:var(--w);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width 0.15s,height 0.15s,opacity 0.15s;mix-blend-mode:difference}
-#cursor-ring{position:fixed;width:28px;height:28px;border:1px solid rgba(255,255,255,0.4);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:all 0.1s ease;mix-blend-mode:difference}
-body:has(a:hover) #cursor,body:has(button:hover) #cursor,body:has([data-nav]:hover) #cursor{width:14px;height:14px}
-body:has(a:hover) #cursor-ring,body:has(button:hover) #cursor-ring,body:has([data-nav]:hover) #cursor-ring{width:44px;height:44px;border-color:rgba(255,255,255,0.6)}
+#cursor{position:fixed;width:10px;height:10px;background:var(--w);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width 0.15s,height 0.15s;box-shadow:0 0 6px rgba(255,255,255,0.8)}
+#cursor-ring{position:fixed;width:32px;height:32px;border:1px solid rgba(255,255,255,0.6);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width 0.2s,height 0.2s,border-color 0.2s}
+body:has(a:hover) #cursor,body:has(button:hover) #cursor,body:has([data-nav]:hover) #cursor{width:16px;height:16px}
+body:has(a:hover) #cursor-ring,body:has(button:hover) #cursor-ring,body:has([data-nav]:hover) #cursor-ring{width:46px;height:46px;border-color:rgba(255,255,255,0.9)}
 
-/* GRID BG */
-.grid-bg{position:fixed;inset:0;z-index:0;background-image:linear-gradient(rgba(255,255,255,0.015) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.015) 1px,transparent 1px);background-size:44px 44px;animation:gridDrift 28s linear infinite;pointer-events:none}
+/* GRID BG — subtle only */
+.grid-bg{position:fixed;inset:0;z-index:0;background-image:linear-gradient(rgba(255,255,255,0.012) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.012) 1px,transparent 1px);background-size:44px 44px;animation:gridDrift 28s linear infinite;pointer-events:none}
 @keyframes gridDrift{from{transform:translate(0,0)}to{transform:translate(44px,44px)}}
-.scanlines{position:fixed;inset:0;z-index:1;background:repeating-linear-gradient(0deg,transparent,transparent 3px,var(--scan) 3px,var(--scan) 4px);pointer-events:none}
-.vignette{position:fixed;inset:0;z-index:2;background:radial-gradient(ellipse at center,transparent 50%,rgba(0,0,0,0.75) 100%);pointer-events:none}
+.scanlines{display:none}
+.vignette{display:none}
 
 /* FLASH */
 .flash-overlay{position:fixed;inset:0;background:#fff;opacity:0;pointer-events:none;z-index:500;transition:opacity 0.05s}
@@ -35,8 +35,8 @@ body:has(a:hover) #cursor-ring,body:has(button:hover) #cursor-ring,body:has([dat
 #start-screen.hide{opacity:0;pointer-events:none}
 .start-box{text-align:center;position:relative}
 .start-tag{font-size:10px;letter-spacing:0.28em;color:var(--w-faint);margin-bottom:36px}
-.start-version{font-size:9px;letter-spacing:0.18em;color:var(--w-trace);margin-bottom:24px}
-.start-label{font-size:14px;letter-spacing:0.22em;color:var(--w);animation:pulse 1.4s ease-in-out infinite;border:1px solid var(--w-faint);padding:14px 32px;display:inline-block}
+.start-version{font-size:9px;letter-spacing:0.18em;color:var(--w-dim);margin-bottom:24px}
+.start-label{font-size:14px;letter-spacing:0.22em;color:var(--w);animation:pulse 1.4s ease-in-out infinite;border:1px solid rgba(255,255,255,0.4);padding:14px 32px;display:inline-block}
 .start-hint{font-size:9px;letter-spacing:0.14em;color:var(--w-faint);margin-top:18px}
 .start-corners::before,.start-corners::after{content:'';position:absolute;width:12px;height:12px;border-color:var(--w-faint);border-style:solid}
 .start-corners::before{top:-10px;left:-10px;border-width:1px 0 0 1px}
@@ -49,10 +49,10 @@ body:has(a:hover) #cursor-ring,body:has(button:hover) #cursor-ring,body:has([dat
 @keyframes flicker{0%,100%{opacity:1}91%{opacity:1}92%{opacity:0.7}93%{opacity:1}97%{opacity:0.88}98%{opacity:1}}
 .loader-content{position:relative;z-index:12;width:380px}
 .l-tag{font-size:9px;letter-spacing:0.28em;color:var(--w-faint);margin-bottom:18px}
-.l-title{font-size:11px;letter-spacing:0.18em;color:var(--w-dim);margin-bottom:8px}
+.l-title{font-size:11px;letter-spacing:0.18em;color:var(--w);margin-bottom:8px}
 .l-divider{border:none;border-top:1px solid var(--w-trace);margin-bottom:14px}
-.log-line{font-size:11px;color:var(--w-dim);line-height:2;min-height:1.95em}
-.log-line.dimmed{color:#252525}
+.log-line{font-size:12px;color:var(--w-dim);line-height:2;min-height:1.95em}
+.log-line.dimmed{color:#404040}
 .log-line .tc{opacity:0}
 .log-line .tc.show{opacity:1}
 @keyframes glitch-shift{0%{transform:translateX(0)}20%{transform:translateX(-2px)}40%{transform:translateX(2px)}60%{transform:translateX(-1px)}80%{transform:translateX(1px)}100%{transform:translateX(0)}}
@@ -61,12 +61,12 @@ body:has(a:hover) #cursor-ring,body:has(button:hover) #cursor-ring,body:has([dat
 .assets-label{min-width:86px;color:var(--w-faint)}
 .bar-track{flex:1;height:6px;background:#111;border:1px solid var(--w-faint);overflow:hidden}
 .bar-fill{height:100%;width:0%;background:var(--w);box-shadow:0 0 12px rgba(255,255,255,0.4);transition:width 0.12s ease}
-.info-row{font-size:11px;line-height:2.2;display:flex;opacity:0;transform:translateX(-8px);transition:opacity 0.18s ease,transform 0.18s ease}
+.info-row{font-size:12px;line-height:2.2;display:flex;opacity:0;transform:translateX(-8px);transition:opacity 0.18s ease,transform 0.18s ease}
 .info-row.visible{opacity:1;transform:translateX(0)}
 .info-key{color:var(--w-faint);min-width:66px}
-.info-sep{color:var(--w-trace);margin:0 8px}
+.info-sep{color:var(--w-dim);margin:0 8px}
 .info-val{color:var(--w)}
-.transition-line{font-size:11px;color:var(--w-mid);line-height:2;opacity:0;transition:opacity 0.3s ease}
+.transition-line{font-size:12px;color:var(--w);line-height:2;opacity:0;transition:opacity 0.3s ease}
 .transition-line.visible{opacity:1}
 .cursor-blink{display:inline-block;width:7px;height:13px;background:var(--w);vertical-align:middle;animation:blink 0.85s step-end infinite;margin-left:1px}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
@@ -76,30 +76,50 @@ body:has(a:hover) #cursor-ring,body:has(button:hover) #cursor-ring,body:has([dat
 .page.visible{opacity:1;pointer-events:all}
 
 /* ═══ NAVBAR ═══ */
-.site-nav{position:absolute;top:0;left:0;right:0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:28px 60px;opacity:0;transform:translateY(-10px);transition:opacity 0.5s ease 0.2s,transform 0.5s ease 0.2s}
+.site-nav{position:absolute;top:0;left:0;right:0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:22px 60px;opacity:0;transform:translateY(-10px);transition:opacity 0.5s ease 0.2s,transform 0.5s ease 0.2s;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);background:rgba(8,8,8,0.55);border-bottom:1px solid rgba(255,255,255,0.06)}
 .page.visible .site-nav{opacity:1;transform:translateY(0)}
 .nav-logo{font-size:11px;letter-spacing:0.22em;color:var(--w-dim);transition:color 0.2s}
 .nav-logo:hover{color:var(--w)}
 .nav-right{display:flex;align-items:center;gap:30px}
 .nav-links{display:flex;gap:26px}
-.nav-links a{font-size:9px;color:var(--w-faint);text-decoration:none;letter-spacing:0.2em;transition:color 0.2s;position:relative}
+.nav-links a{font-size:9px;color:var(--w-dim);text-decoration:none;letter-spacing:0.2em;transition:color 0.2s;position:relative}
 .nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;right:100%;height:1px;background:var(--w);transition:right 0.22s ease}
 .nav-links a:hover,.nav-links a.active{color:var(--w)}
 .nav-links a:hover::after,.nav-links a.active::after{right:0}
-.nav-sep{width:1px;height:12px;background:var(--w-faint);opacity:0.3}
-.snd-btn{display:flex;align-items:center;gap:6px;background:transparent;border:none;color:var(--w-faint);font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:0.14em;padding:0;transition:color 0.2s;user-select:none}
-.snd-btn:hover{color:var(--w-dim)}
-.snd-btn.muted{color:var(--w-trace)}
+.nav-sep{width:1px;height:12px;background:var(--w-dim);opacity:0.4}
+
+/* SFX / SND button */
+.snd-btn{display:flex;align-items:center;gap:6px;background:transparent;border:none;color:var(--w-dim);font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:0.14em;padding:0;transition:color 0.2s;user-select:none}
+.snd-btn:hover{color:var(--w)}
+.snd-btn.muted{color:var(--w-faint)}
 .tog-icon{display:flex;align-items:center;gap:2px}
 .tog-icon span{display:inline-block;width:2px;background:currentColor;border-radius:1px;transition:height 0.18s,opacity 0.18s}
 .tog-icon span:nth-child(1){height:3px}.tog-icon span:nth-child(2){height:7px}.tog-icon span:nth-child(3){height:11px}.tog-icon span:nth-child(4){height:7px}.tog-icon span:nth-child(5){height:3px}
 .snd-btn.muted .tog-icon span{height:2px!important;opacity:0.2}
+
+/* BGM button */
+.bgm-btn{display:flex;align-items:center;gap:6px;background:transparent;border:1px solid rgba(255,255,255,0.25);color:var(--w-dim);font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:0.14em;padding:5px 10px;transition:color 0.2s,border-color 0.2s;user-select:none}
+.bgm-btn:hover{color:var(--w);border-color:rgba(255,255,255,0.5)}
+.bgm-btn.playing{color:#39ff14;border-color:#39ff14;text-shadow:0 0 8px rgba(57,255,20,0.4)}
+.bgm-eq{display:flex;align-items:flex-end;gap:2px;height:11px;margin-right:2px;opacity:0.35;transition:opacity 0.2s}
+.bgm-btn.playing .bgm-eq{opacity:1}
+.bgm-eq span{display:inline-block;width:2px;background:currentColor;border-radius:1px;transform-origin:bottom;height:3px}
+.bgm-btn.playing .bgm-eq span:nth-child(1){animation:eq1 0.5s ease-in-out infinite alternate}
+.bgm-btn.playing .bgm-eq span:nth-child(2){animation:eq2 0.4s ease-in-out infinite alternate 0.1s}
+.bgm-btn.playing .bgm-eq span:nth-child(3){animation:eq3 0.6s ease-in-out infinite alternate 0.05s}
+.bgm-btn.playing .bgm-eq span:nth-child(4){animation:eq4 0.45s ease-in-out infinite alternate 0.15s}
+@keyframes eq1{from{height:3px}to{height:10px}}
+@keyframes eq2{from{height:7px}to{height:3px}}
+@keyframes eq3{from{height:10px}to{height:5px}}
+@keyframes eq4{from{height:4px}to{height:9px}}
+
 /* burger */
 .nav-burger{display:none;flex-direction:column;justify-content:center;gap:5px;background:transparent;border:none;padding:4px;z-index:22}
 .nav-burger span{display:block;width:18px;height:1px;background:var(--w-dim);transition:transform 0.3s,opacity 0.3s,width 0.3s;transform-origin:center}
 .nav-burger.open span:nth-child(1){transform:translateY(6px) rotate(45deg);background:var(--w)}
 .nav-burger.open span:nth-child(2){opacity:0;width:0}
 .nav-burger.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg);background:var(--w)}
+
 /* mobile drawer */
 #mob-menu{display:none;position:fixed;inset:0;z-index:100;background:rgba(8,8,8,0.98);flex-direction:column;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.3s}
 #mob-menu.open{opacity:1;pointer-events:all}
@@ -108,22 +128,27 @@ body:has(a:hover) #cursor-ring,body:has(button:hover) #cursor-ring,body:has([dat
 .mob-links a::after{content:'';position:absolute;bottom:8px;left:50%;right:50%;height:1px;background:var(--w);transition:left 0.25s,right 0.25s}
 .mob-links a:hover,.mob-links a.active{color:var(--w)}
 .mob-links a:hover::after,.mob-links a.active::after{left:0;right:0}
-.mob-snd{margin-top:32px}
+.mob-snd{margin-top:32px;display:flex;gap:18px;align-items:center}
+
+/* ═══ HOME VIDEO BG ═══ */
+#home-video-bg{position:absolute;inset:0;z-index:1;overflow:hidden}
+#home-video-bg video{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.18)}
+#home-video-bg .video-dim{position:absolute;inset:0;background:rgba(0,0,0,0.62)}
 
 /* ═══ HOME ═══ */
 #home .home-wrap{position:relative;z-index:5;width:100%;height:100%;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:0 80px}
 .home-left{}
-.home-eyebrow{font-size:9px;letter-spacing:0.3em;color:var(--w-faint);margin-bottom:22px;opacity:0;transform:translateX(-14px);transition:opacity 0.5s ease 0.4s,transform 0.5s ease 0.4s}
+.home-eyebrow{font-size:9px;letter-spacing:0.3em;color:var(--w-dim);margin-bottom:22px;opacity:0;transform:translateX(-14px);transition:opacity 0.5s ease 0.4s,transform 0.5s ease 0.4s}
 #home.visible .home-eyebrow{opacity:1;transform:translateX(0)}
 .home-name{font-size:clamp(44px,6vw,82px);color:var(--w);line-height:0.92;text-shadow:0 0 80px rgba(255,255,255,0.06);opacity:0;transform:translateY(22px);transition:opacity 0.7s ease 0.5s,transform 0.7s ease 0.5s}
 #home.visible .home-name{opacity:1;transform:translateY(0)}
 .home-name .first{display:block}
 .home-name .last{display:block;color:var(--w-dim)}
-.home-title{font-size:11px;color:var(--w-dim);margin-top:20px;letter-spacing:0.08em;opacity:0;transform:translateY(10px);transition:opacity 0.5s ease 0.72s,transform 0.5s ease 0.72s}
+.home-title{font-size:12px;color:var(--w-mid);margin-top:20px;letter-spacing:0.08em;opacity:0;transform:translateY(10px);transition:opacity 0.5s ease 0.72s,transform 0.5s ease 0.72s}
 #home.visible .home-title{opacity:1;transform:translateY(0)}
-.home-rule{width:0;height:1px;background:var(--w-faint);margin:28px 0;transition:width 0.7s ease 0.88s}
+.home-rule{width:0;height:1px;background:rgba(255,255,255,0.3);margin:28px 0;transition:width 0.7s ease 0.88s}
 #home.visible .home-rule{width:50px}
-.home-summary{font-size:11px;color:var(--w-faint);line-height:2.05;max-width:380px;opacity:0;transform:translateY(8px);transition:opacity 0.5s ease 0.98s,transform 0.5s ease 0.98s}
+.home-summary{font-size:12px;color:var(--w-dim);line-height:2.05;max-width:380px;opacity:0;transform:translateY(8px);transition:opacity 0.5s ease 0.98s,transform 0.5s ease 0.98s}
 #home.visible .home-summary{opacity:1;transform:translateY(0)}
 .home-cta{display:flex;gap:18px;margin-top:30px;opacity:0;transform:translateY(8px);transition:opacity 0.5s ease 1.12s,transform 0.5s ease 1.12s}
 #home.visible .home-cta{opacity:1;transform:translateY(0)}
@@ -131,26 +156,25 @@ body:has(a:hover) #cursor-ring,body:has(button:hover) #cursor-ring,body:has([dat
 .btn-primary:hover{background:rgba(255,255,255,0.05);border-color:var(--w)}
 .btn-ghost{font-size:9px;letter-spacing:0.2em;color:var(--w-faint);border:none;padding:11px 0;text-decoration:none;background:transparent;font-family:'Share Tech Mono',monospace;transition:color 0.2s}
 .btn-ghost:hover{color:var(--w)}
-/* right col */
 .home-right{display:flex;flex-direction:column;align-items:flex-end;opacity:0;transform:translateX(20px);transition:opacity 0.6s ease 0.78s,transform 0.6s ease 0.78s}
 #home.visible .home-right{opacity:1;transform:translateX(0)}
 .stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--w-trace);width:100%;max-width:380px}
 .stat-cell{background:var(--bg);padding:26px 22px;transition:background 0.2s}
 .stat-cell:hover{background:var(--bg2)}
 .stat-num{font-size:clamp(26px,3vw,40px);color:var(--w);line-height:1;margin-bottom:6px}
-.stat-label{font-size:9px;letter-spacing:0.16em;color:var(--w-faint)}
+.stat-label{font-size:9px;letter-spacing:0.16em;color:var(--w-dim)}
 .home-cert-strip{margin-top:1px;background:var(--bg);width:100%;max-width:380px;border-top:1px solid var(--w-trace);padding:16px 22px}
-.cert-strip-label{font-size:8px;letter-spacing:0.24em;color:var(--w-faint);margin-bottom:10px}
+.cert-strip-label{font-size:8px;letter-spacing:0.24em;color:var(--w-dim);margin-bottom:10px}
 .cert-chips{display:flex;flex-wrap:wrap;gap:6px}
-.cert-chip{font-size:8px;letter-spacing:0.08em;color:var(--w-faint);border:1px solid var(--w-trace);padding:3px 8px;transition:border-color 0.2s,color 0.2s}
-.cert-chip:hover{border-color:var(--w-faint);color:var(--w-dim)}
-.corner-tag{position:absolute;bottom:32px;left:80px;font-size:9px;color:var(--w-trace);letter-spacing:0.1em;z-index:5;opacity:0;transition:opacity 0.5s ease 1.4s}
+.cert-chip{font-size:8px;letter-spacing:0.08em;color:var(--w-dim);border:1px solid rgba(255,255,255,0.2);padding:3px 8px;transition:border-color 0.2s,color 0.2s}
+.cert-chip:hover{border-color:rgba(255,255,255,0.5);color:var(--w)}
+.corner-tag{position:absolute;bottom:32px;left:80px;font-size:9px;color:var(--w-faint);letter-spacing:0.1em;z-index:5;opacity:0;transition:opacity 0.5s ease 1.4s}
 #home.visible .corner-tag{opacity:1}
 .status-dot{position:absolute;bottom:34px;right:60px;z-index:5;display:flex;align-items:center;gap:8px;opacity:0;transition:opacity 0.5s ease 1.5s}
 #home.visible .status-dot{opacity:1}
 .dot-pulse{width:6px;height:6px;border-radius:50%;background:var(--green);animation:dotpulse 2s ease-in-out infinite;box-shadow:0 0 8px var(--green)}
 @keyframes dotpulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.3;transform:scale(0.7)}}
-.dot-label{font-size:8px;letter-spacing:0.18em;color:var(--w-faint)}
+.dot-label{font-size:8px;letter-spacing:0.18em;color:var(--w-dim)}
 
 /* ═══ PAGE SHELL ═══ */
 .page-content{position:relative;z-index:5;width:100%;height:100%;overflow-y:auto;padding:100px 80px 80px;scrollbar-width:thin;scrollbar-color:var(--w-faint) transparent}
@@ -158,21 +182,21 @@ body:has(a:hover) #cursor-ring,body:has(button:hover) #cursor-ring,body:has([dat
 .page-content::-webkit-scrollbar-thumb{background:var(--w-faint);border-radius:2px}
 .page-header{margin-bottom:44px;opacity:0;transform:translateY(14px);transition:opacity 0.5s ease 0.3s,transform 0.5s ease 0.3s}
 .page.visible .page-header{opacity:1;transform:translateY(0)}
-.page-label{font-size:8px;letter-spacing:0.34em;color:var(--w-faint);margin-bottom:10px}
+.page-label{font-size:8px;letter-spacing:0.34em;color:var(--w-dim);margin-bottom:10px}
 .page-title{font-size:clamp(28px,4.2vw,48px);color:var(--w);line-height:1.1}
-.page-rule{width:34px;height:1px;background:var(--w-faint);margin-top:16px}
+.page-rule{width:34px;height:1px;background:rgba(255,255,255,0.35);margin-top:16px}
 
 /* ═══ WORK ═══ */
 .about-body{max-width:580px;opacity:0;transform:translateY(12px);transition:opacity 0.5s ease 0.42s,transform 0.5s ease 0.42s}
 .page.visible .about-body{opacity:1;transform:translateY(0)}
-.about-para{font-size:11px;color:var(--w-dim);line-height:2.15;margin-bottom:20px}
+.about-para{font-size:12px;color:var(--w-dim);line-height:2.15;margin-bottom:20px}
 .about-para span{color:var(--w)}
 .skill-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--w-trace);margin-top:30px;max-width:580px;opacity:0;transform:translateY(10px);transition:opacity 0.5s ease 0.55s,transform 0.5s ease 0.55s}
 .page.visible .skill-grid{opacity:1;transform:translateY(0)}
 .skill-cell{background:var(--bg);padding:20px;transition:background 0.2s}
 .skill-cell:hover{background:var(--bg2)}
-.skill-cat{font-size:8px;letter-spacing:0.22em;color:var(--w-faint);margin-bottom:10px}
-.skill-items{font-size:11px;color:var(--w-dim);line-height:2}
+.skill-cat{font-size:8px;letter-spacing:0.22em;color:var(--w-dim);margin-bottom:10px}
+.skill-items{font-size:12px;color:var(--w-dim);line-height:2}
 
 /* ═══ EXPERIENCE ═══ */
 .exp-list{display:flex;flex-direction:column}
@@ -253,7 +277,7 @@ body:has(a:hover) #cursor-ring,body:has(button:hover) #cursor-ring,body:has([dat
 }
 @media(max-width:640px){
   .site-nav{padding:20px 20px}
-  .nav-links,.nav-sep,.snd-btn.dsk{display:none}
+  .nav-links,.nav-sep,.snd-btn.dsk,.bgm-btn.dsk{display:none}
   .nav-burger{display:flex}
   #mob-menu{display:flex}
   #home .home-wrap{padding:0 22px;padding-top:78px}
@@ -314,23 +338,21 @@ body:has(a:hover) #cursor-ring,body:has(button:hover) #cursor-ring,body:has([dat
   </div>
 </div>
 
+<!-- NAV TEMPLATE (injected via JS to keep DRY) -->
+<!-- Pages below each get nav injected by buildNav() -->
+
 <!-- ══════════════ HOME ══════════════ -->
 <div id="home" class="page">
-  <nav class="site-nav">
-    <span class="nav-logo" data-nav="home">[ ARJUN BHARATH ]</span>
-    <div class="nav-right">
-      <div class="nav-links">
-        <a href="#" data-nav="work">WORK</a>
-        <a href="#" data-nav="experience">EXPERIENCE</a>
-        <a href="#" data-nav="projects">PROJECTS</a>
-        <a href="#" data-nav="certifications">CERTIFICATIONS</a>
-        <a href="#" data-nav="contact">CONTACT</a>
-      </div>
-      <div class="nav-sep"></div>
-      <button class="snd-btn dsk" data-sound><div class="tog-icon"><span></span><span></span><span></span><span></span><span></span></div><span class="snd-lbl">SND:ON</span></button>
-    </div>
-    <button class="nav-burger" data-burger><span></span><span></span><span></span></button>
-  </nav>
+  <nav class="site-nav" id="nav-home"></nav>
+
+  <!-- VIDEO BACKGROUND -->
+  <div id="home-video-bg">
+    <video autoplay muted loop playsinline id="bg-video">
+      <source src="bg-video.mp4" type="video/mp4">
+    </video>
+    <div class="video-dim"></div>
+  </div>
+
   <div class="home-wrap">
     <div class="home-left">
       <div class="home-eyebrow">// SALESFORCE · FRONTEND · KERALA</div>
@@ -362,27 +384,13 @@ body:has(a:hover) #cursor-ring,body:has(button:hover) #cursor-ring,body:has([dat
       </div>
     </div>
   </div>
-  <div class="corner-tag">arjun200118bharath@gmail.com</div>
+  <div class="corner-tag"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="d6b7a4bca3b8e4e6e6e7e7eeb4beb7a4b7a2be96b1bbb7bfbaf8b5b9bb">[email&#160;protected]</a></div>
   <div class="status-dot"><div class="dot-pulse"></div><span class="dot-label">AVAILABLE FOR WORK</span></div>
 </div>
 
 <!-- ══════════════ WORK ══════════════ -->
 <div id="work" class="page">
-  <nav class="site-nav">
-    <span class="nav-logo" data-nav="home">[ ARJUN BHARATH ]</span>
-    <div class="nav-right">
-      <div class="nav-links">
-        <a href="#" data-nav="work" class="active">WORK</a>
-        <a href="#" data-nav="experience">EXPERIENCE</a>
-        <a href="#" data-nav="projects">PROJECTS</a>
-        <a href="#" data-nav="certifications">CERTIFICATIONS</a>
-        <a href="#" data-nav="contact">CONTACT</a>
-      </div>
-      <div class="nav-sep"></div>
-      <button class="snd-btn dsk" data-sound><div class="tog-icon"><span></span><span></span><span></span><span></span><span></span></div><span class="snd-lbl">SND:ON</span></button>
-    </div>
-    <button class="nav-burger" data-burger><span></span><span></span><span></span></button>
-  </nav>
+  <nav class="site-nav" id="nav-work"></nav>
   <div class="page-content">
     <div class="page-header">
       <div class="page-label">// 01 — OVERVIEW</div>
@@ -409,21 +417,7 @@ body:has(a:hover) #cursor-ring,body:has(button:hover) #cursor-ring,body:has([dat
 
 <!-- ══════════════ EXPERIENCE ══════════════ -->
 <div id="experience" class="page">
-  <nav class="site-nav">
-    <span class="nav-logo" data-nav="home">[ ARJUN BHARATH ]</span>
-    <div class="nav-right">
-      <div class="nav-links">
-        <a href="#" data-nav="work">WORK</a>
-        <a href="#" data-nav="experience" class="active">EXPERIENCE</a>
-        <a href="#" data-nav="projects">PROJECTS</a>
-        <a href="#" data-nav="certifications">CERTIFICATIONS</a>
-        <a href="#" data-nav="contact">CONTACT</a>
-      </div>
-      <div class="nav-sep"></div>
-      <button class="snd-btn dsk" data-sound><div class="tog-icon"><span></span><span></span><span></span><span></span><span></span></div><span class="snd-lbl">SND:ON</span></button>
-    </div>
-    <button class="nav-burger" data-burger><span></span><span></span><span></span></button>
-  </nav>
+  <nav class="site-nav" id="nav-experience"></nav>
   <div class="page-content">
     <div class="page-header">
       <div class="page-label">// 02 — HISTORY</div>
@@ -489,21 +483,7 @@ body:has(a:hover) #cursor-ring,body:has(button:hover) #cursor-ring,body:has([dat
 
 <!-- ══════════════ PROJECTS ══════════════ -->
 <div id="projects" class="page">
-  <nav class="site-nav">
-    <span class="nav-logo" data-nav="home">[ ARJUN BHARATH ]</span>
-    <div class="nav-right">
-      <div class="nav-links">
-        <a href="#" data-nav="work">WORK</a>
-        <a href="#" data-nav="experience">EXPERIENCE</a>
-        <a href="#" data-nav="projects" class="active">PROJECTS</a>
-        <a href="#" data-nav="certifications">CERTIFICATIONS</a>
-        <a href="#" data-nav="contact">CONTACT</a>
-      </div>
-      <div class="nav-sep"></div>
-      <button class="snd-btn dsk" data-sound><div class="tog-icon"><span></span><span></span><span></span><span></span><span></span></div><span class="snd-lbl">SND:ON</span></button>
-    </div>
-    <button class="nav-burger" data-burger><span></span><span></span><span></span></button>
-  </nav>
+  <nav class="site-nav" id="nav-projects"></nav>
   <div class="page-content">
     <div class="page-header">
       <div class="page-label">// 03 — BUILDS</div>
@@ -559,21 +539,7 @@ body:has(a:hover) #cursor-ring,body:has(button:hover) #cursor-ring,body:has([dat
 
 <!-- ══════════════ CERTIFICATIONS ══════════════ -->
 <div id="certifications" class="page">
-  <nav class="site-nav">
-    <span class="nav-logo" data-nav="home">[ ARJUN BHARATH ]</span>
-    <div class="nav-right">
-      <div class="nav-links">
-        <a href="#" data-nav="work">WORK</a>
-        <a href="#" data-nav="experience">EXPERIENCE</a>
-        <a href="#" data-nav="projects">PROJECTS</a>
-        <a href="#" data-nav="certifications" class="active">CERTIFICATIONS</a>
-        <a href="#" data-nav="contact">CONTACT</a>
-      </div>
-      <div class="nav-sep"></div>
-      <button class="snd-btn dsk" data-sound><div class="tog-icon"><span></span><span></span><span></span><span></span><span></span></div><span class="snd-lbl">SND:ON</span></button>
-    </div>
-    <button class="nav-burger" data-burger><span></span><span></span><span></span></button>
-  </nav>
+  <nav class="site-nav" id="nav-certifications"></nav>
   <div class="page-content">
     <div class="page-header">
       <div class="page-label">// 04 — CREDENTIALS</div>
@@ -622,21 +588,7 @@ body:has(a:hover) #cursor-ring,body:has(button:hover) #cursor-ring,body:has([dat
 
 <!-- ══════════════ CONTACT ══════════════ -->
 <div id="contact" class="page">
-  <nav class="site-nav">
-    <span class="nav-logo" data-nav="home">[ ARJUN BHARATH ]</span>
-    <div class="nav-right">
-      <div class="nav-links">
-        <a href="#" data-nav="work">WORK</a>
-        <a href="#" data-nav="experience">EXPERIENCE</a>
-        <a href="#" data-nav="projects">PROJECTS</a>
-        <a href="#" data-nav="certifications">CERTIFICATIONS</a>
-        <a href="#" data-nav="contact" class="active">CONTACT</a>
-      </div>
-      <div class="nav-sep"></div>
-      <button class="snd-btn dsk" data-sound><div class="tog-icon"><span></span><span></span><span></span><span></span><span></span></div><span class="snd-lbl">SND:ON</span></button>
-    </div>
-    <button class="nav-burger" data-burger><span></span><span></span><span></span></button>
-  </nav>
+  <nav class="site-nav" id="nav-contact"></nav>
   <div class="page-content">
     <div class="page-header">
       <div class="page-label">// 05 — REACH OUT</div>
@@ -645,7 +597,7 @@ body:has(a:hover) #cursor-ring,body:has(button:hover) #cursor-ring,body:has([dat
     </div>
     <div class="contact-wrap">
       <p class="contact-intro">Open to full-time roles, freelance Salesforce projects, and collaborations. Response within 24 hours.</p>
-      <a href="mailto:arjun200118bharath@gmail.com" class="contact-item">EMAIL <span>arjun200118bharath@gmail.com</span></a>
+      <a href="/cdn-cgi/l/email-protection#1776657d627925272726262f757f766576637f57707a767e7b3974787a" class="contact-item">EMAIL <span><span class="__cf_email__" data-cfemail="3a5b48504f54080a0a0b0b0258525b485b4e527a5d575b535614595557">[email&#160;protected]</span></span></a>
       <a href="https://linkedin.com/in/arjun-bharath-sr/" target="_blank" class="contact-item">LINKEDIN <span>linkedin.com/in/arjun-bharath-sr/</span></a>
       <a href="Arjun_Bharath_Resume.pdf" download="Arjun_Bharath_Resume.pdf" class="contact-item" id="resume-download">RESUME <span>Download PDF →</span></a>
       <a href="Arjun_Bharath_Resume.pdf" download="Arjun_Bharath_Resume.pdf" class="dl-btn" id="dl-btn-main">
@@ -665,15 +617,58 @@ body:has(a:hover) #cursor-ring,body:has(button:hover) #cursor-ring,body:has([dat
     <a href="#" data-nav="certifications">CERTIFICATIONS</a>
     <a href="#" data-nav="contact">CONTACT</a>
   </div>
-  <div class="mob-snd"><button class="snd-btn" data-sound><div class="tog-icon"><span></span><span></span><span></span><span></span><span></span></div><span class="snd-lbl">SND:ON</span></button></div>
+  <div class="mob-snd">
+    <button class="snd-btn" data-sound>
+      <div class="tog-icon"><span></span><span></span><span></span><span></span><span></span></div>
+      <span class="snd-lbl">SND:ON</span>
+    </button>
+    <button class="bgm-btn" data-bgm>
+      <div class="bgm-eq"><span></span><span></span><span></span><span></span></div>
+      <span class="bgm-lbl">BGM:ON</span>
+    </button>
+  </div>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+/* ════════════════════════════════════════════
+   NAV BUILDER — injects consistent nav into every page
+════════════════════════════════════════════ */
+const pages=['home','work','experience','projects','certifications','contact'];
+pages.forEach(pid=>{
+  const navEl=document.getElementById('nav-'+pid);
+  if(!navEl)return;
+  const links=pages.filter(p=>p!=='home').map(p=>`<a href="#" data-nav="${p}"${p===pid?' class="active"':''}>${p.toUpperCase()}</a>`).join('');
+  navEl.innerHTML=`
+    <span class="nav-logo" data-nav="home">[ ARJUN BHARATH ]</span>
+    <div class="nav-right">
+      <div class="nav-links">${links}</div>
+      <div class="nav-sep"></div>
+      <button class="bgm-btn dsk" data-bgm>
+        <div class="bgm-eq"><span></span><span></span><span></span><span></span></div>
+        <span class="bgm-lbl">BGM:ON</span>
+      </button>
+      <div class="nav-sep"></div>
+      <button class="snd-btn dsk" data-sound>
+        <div class="tog-icon"><span></span><span></span><span></span><span></span><span></span></div>
+        <span class="snd-lbl">SND:ON</span>
+      </button>
+    </div>
+    <button class="nav-burger" data-burger><span></span><span></span><span></span></button>
+  `;
+});
+
 /* ════ CURSOR ════ */
 const cur=document.getElementById('cursor'),ring=document.getElementById('cursor-ring');
-let mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});
-(function animRing(){rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing)})();
+let mx=-100,my=-100,rx=-100,ry=-100;
+document.addEventListener('mousemove',e=>{
+  mx=e.clientX;my=e.clientY;
+  cur.style.left=mx+'px';cur.style.top=my+'px';
+});
+(function animRing(){
+  rx+=(mx-rx)*0.12;ry+=(my-ry)*0.12;
+  ring.style.left=Math.round(rx)+'px';ring.style.top=Math.round(ry)+'px';
+  requestAnimationFrame(animRing);
+})();
 
 /* ════ DATA ════ */
 const logMessages=['Initializing Salesforce environment...','Compiling AMPscript modules...','Loading Journey Builder schemas...','Connecting API endpoints...','> System ready.'];
@@ -690,11 +685,22 @@ const logContainer=document.getElementById('log-container'),
 
 const delay=ms=>new Promise(r=>setTimeout(r,ms));
 
-/* ════ AUDIO ════ */
+/* ════════════════════════════════════════════
+   AUDIO ENGINE
+════════════════════════════════════════════ */
 let audioCtx=null,master=null;
-const getCtx=()=>{if(!audioCtx)audioCtx=new(window.AudioContext||window.webkitAudioContext)();return audioCtx};
-const getMaster=()=>{if(master)return master;const ctx=getCtx(),c=ctx.createDynamicsCompressor();c.threshold.value=-16;c.knee.value=8;c.ratio.value=5;c.attack.value=0.002;c.release.value=0.1;c.connect(ctx.destination);master=c;return master};
+const getCtx=()=>{
+  if(!audioCtx)audioCtx=new(window.AudioContext||window.webkitAudioContext)();
+  return audioCtx;
+};
+const getMaster=()=>{
+  if(master)return master;
+  const ctx=getCtx(),c=ctx.createDynamicsCompressor();
+  c.threshold.value=-16;c.knee.value=8;c.ratio.value=5;c.attack.value=0.002;c.release.value=0.1;
+  c.connect(ctx.destination);master=c;return master;
+};
 
+/* ── SFX ── */
 function noiseClick(freq=2400,vol=0.2,dur=0.016){
   const ctx=getCtx(),out=getMaster(),n=Math.floor(ctx.sampleRate*dur),buf=ctx.createBuffer(1,n,ctx.sampleRate),d=buf.getChannelData(0);
   for(let i=0;i<n;i++)d[i]=Math.random()*2-1;
@@ -742,7 +748,59 @@ function startHum(){
 }
 function stopHum(){if(!humGain||!audioCtx)return;humGain.gain.linearRampToValueAtTime(0,audioCtx.currentTime+0.5);setTimeout(()=>{try{humSrc.stop()}catch(e){}},600)}
 
-/* ════ LOADER ════ */
+
+
+/* ════ BGM — MP3 FILE ════ */
+let bgmPlaying=false;
+let bgmAudio=null;
+
+function getBgmAudio(){
+  if(!bgmAudio){
+    bgmAudio=new Audio('bgm.mp3'); /* ← rename your MP3 to bgm.mp3 and place it next to index.html */
+    bgmAudio.loop=true;
+    bgmAudio.volume=0;
+  }
+  return bgmAudio;
+}
+
+function startBgm(){
+  if(bgmPlaying)return;
+  bgmPlaying=true;
+  const a=getBgmAudio();
+  a.play().catch(err=>console.warn('BGM play failed:',err));
+  let vol=0;
+  const fade=setInterval(()=>{
+    vol=Math.min(vol+0.01,0.55);
+    a.volume=vol;
+    if(vol>=0.55)clearInterval(fade);
+  },50);
+  syncBgmUI();
+}
+
+function stopBgm(){
+  if(!bgmPlaying)return;
+  bgmPlaying=false;
+  const a=getBgmAudio();
+  const fade=setInterval(()=>{
+    a.volume=Math.max(a.volume-0.02,0);
+    if(a.volume<=0){clearInterval(fade);a.pause();}
+  },40);
+  syncBgmUI();
+}
+
+function toggleBgm(){
+  bgmPlaying?stopBgm():startBgm();
+}
+
+function syncBgmUI(){
+  document.querySelectorAll('[data-bgm]').forEach(btn=>{
+    btn.classList.toggle('playing',bgmPlaying);
+    const l=btn.querySelector('.bgm-lbl');
+    if(l)l.textContent=bgmPlaying?'BGM:ON':'BGM:ON';
+  });
+}
+
+
 async function typeLine(el,text){
   const line=document.createElement('div');line.className='log-line';el.appendChild(line);
   for(const ch of text){
@@ -785,6 +843,8 @@ async function runLoader(){
   await delay(75);flash.style.opacity='0.07';await delay(48);flash.style.opacity='0';
   loaderEl.classList.add('fade-out');await delay(300);loaderEl.style.display='none';
   navigateTo('home');
+  await delay(400);
+  startBgm();
 }
 
 /* ════ ROUTER ════ */
@@ -797,7 +857,7 @@ function navigateTo(pageId){
   closeMobMenu();
 }
 
-/* ════ SOUND ════ */
+/* ════ SFX SOUND ════ */
 let soundEnabled=true;
 function syncSound(){
   document.querySelectorAll('[data-sound]').forEach(btn=>{
@@ -807,8 +867,8 @@ function syncSound(){
 }
 function setSound(on){
   soundEnabled=on;
-  if(on){if(audioCtx&&audioCtx.state==='suspended')audioCtx.resume()}
-  else{if(audioCtx)audioCtx.suspend()}
+  if(on){if(audioCtx&&audioCtx.state==='suspended')audioCtx.resume();}
+  else{/* don't suspend full ctx — BGM may be playing; just mute SFX via soundEnabled flag */}
   syncSound();
 }
 
@@ -826,14 +886,20 @@ function animateDownload(el){
 /* ════ EVENT DELEGATION ════ */
 document.addEventListener('click',e=>{
   const nav=e.target.closest('[data-nav]');
-  if(nav){e.preventDefault();navigateTo(nav.dataset.nav);return}
+  if(nav){e.preventDefault();navigateTo(nav.dataset.nav);return;}
+
   const snd=e.target.closest('[data-sound]');
-  if(snd){setSound(!soundEnabled);return}
+  if(snd){setSound(!soundEnabled);return;}
+
+  const bgmBtn=e.target.closest('[data-bgm]');
+  if(bgmBtn){toggleBgm();return;}
+
   const burg=e.target.closest('[data-burger]');
-  if(burg){mobMenu.classList.contains('open')?closeMobMenu():openMobMenu();return}
+  if(burg){mobMenu.classList.contains('open')?closeMobMenu():openMobMenu();return;}
+
   const dl=e.target.closest('#dl-btn-main,#resume-download');
   if(dl&&soundEnabled)playNavClick();
-  if(document.getElementById('dl-btn-main')&&e.target.closest('#dl-btn-main')){animateDownload(document.getElementById('dl-btn-main'))}
+  if(document.getElementById('dl-btn-main')&&e.target.closest('#dl-btn-main')){animateDownload(document.getElementById('dl-btn-main'));}
 });
 
 /* ════ START ════ */
