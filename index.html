@@ -79,6 +79,8 @@ body:has(a:hover) #cursor-ring,body:has(button:hover) #cursor-ring,body:has([dat
 .nav-links a:hover::after,.nav-links a.active::after{right:0}
 .nav-sep{width:1px;height:12px;background:var(--w-dim);opacity:0.3}
 
+
+
 .snd-btn{display:flex;align-items:center;gap:6px;background:transparent;border:1px solid rgba(255,255,255,0.22);color:var(--w-dim);font-family:'Share Tech Mono',monospace;font-size:9px;letter-spacing:0.14em;padding:5px 10px;transition:color 0.2s,border-color 0.2s;user-select:none}
 .snd-btn:hover{color:var(--w);border-color:rgba(255,255,255,0.5)}
 .snd-btn.muted{color:var(--w-faint);border-color:rgba(255,255,255,0.1)}
@@ -115,6 +117,7 @@ body:has(a:hover) #cursor-ring,body:has(button:hover) #cursor-ring,body:has([dat
 .mob-links a::after{content:'';position:absolute;bottom:8px;left:50%;right:50%;height:1px;background:var(--w);transition:left 0.25s,right 0.25s}
 .mob-links a:hover,.mob-links a.active{color:var(--w)}
 .mob-links a:hover::after,.mob-links a.active::after{left:0;right:0}
+.mob-links a.mob-resume{color:var(--green)}
 .mob-snd{margin-top:32px;display:flex;gap:14px;align-items:center}
 
 #home-video-bg{position:absolute;inset:0;z-index:1;overflow:hidden}
@@ -247,79 +250,45 @@ body:has(a:hover) #cursor-ring,body:has(button:hover) #cursor-ring,body:has([dat
 .proj-arrow{font-size:10px;color:var(--w-faint);letter-spacing:0.1em;transition:color 0.2s,letter-spacing 0.25s;white-space:nowrap}
 .proj-card:hover .proj-arrow{color:var(--w);letter-spacing:0.22em}
 
-/* CERTIFICATIONS */
-.cert-header-meta{display:flex;align-items:center;justify-content:space-between;margin-bottom:32px;padding-bottom:20px;border-bottom:1px solid var(--w-trace);opacity:0;transition:opacity 0.5s ease 0.35s}
-.page.visible .cert-header-meta{opacity:1}
-.cert-counter{display:flex;align-items:center;gap:20px}
-.cert-count-item{display:flex;align-items:center;gap:8px;font-size:9px;letter-spacing:0.18em;color:var(--w-faint)}
+/* ══════════════════════════════════════════
+   CERTIFICATIONS — SIMPLIFIED
+══════════════════════════════════════════ */
+.cert-page-body{opacity:0;transform:translateY(12px);transition:opacity 0.5s ease 0.38s,transform 0.5s ease 0.38s}
+.page.visible .cert-page-body{opacity:1;transform:translateY(0)}
+
+.cert-meta-bar{display:flex;align-items:center;justify-content:space-between;padding-bottom:18px;border-bottom:1px solid var(--w-trace);margin-bottom:36px}
+.cert-meta-left{display:flex;align-items:center;gap:20px}
+.cert-count-badge{display:flex;align-items:center;gap:7px;font-size:9px;letter-spacing:0.18em;color:var(--w-faint)}
 .cert-count-dot{width:6px;height:6px;border-radius:50%}
 .cert-count-dot.sf{background:var(--sf-blue);box-shadow:0 0 6px rgba(0,161,224,0.5)}
 .cert-count-dot.oracle{background:var(--oracle-red);box-shadow:0 0 6px rgba(200,16,46,0.5)}
-.cert-year-filter{display:flex;gap:8px}
-.cert-filter-btn{font-size:8px;letter-spacing:0.18em;color:var(--w-faint);border:1px solid var(--w-trace);padding:4px 10px;background:transparent;font-family:'Share Tech Mono',monospace;transition:color 0.2s,border-color 0.2s}
-.cert-filter-btn.active,.cert-filter-btn:hover{color:var(--w);border-color:rgba(255,255,255,0.4)}
-.cert-layout{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--w-trace)}
-.cert-featured{background:var(--bg);position:relative;overflow:hidden;opacity:0;transform:translateY(16px);transition:opacity 0.5s ease 0.42s,transform 0.5s ease 0.42s}
-.page.visible .cert-featured{opacity:1;transform:none}
-.cert-featured-inner{padding:44px 44px;height:100%;display:flex;flex-direction:column;justify-content:space-between;min-height:380px}
-.cert-featured-brand{display:flex;align-items:center;justify-content:space-between;margin-bottom:32px}
-.cert-brand-logo{height:44px;display:flex;align-items:center;justify-content:center;padding:8px 14px;border:1px solid rgba(0,161,224,0.3);background:rgba(0,161,224,0.06)}
-.cert-brand-logo img{height:100%;object-fit:contain;filter:none;opacity:1}
-.cert-brand-logo.oracle-brand{border-color:rgba(200,16,46,0.3);background:rgba(200,16,46,0.06)}
-.cert-featured-badge{font-size:7px;letter-spacing:0.24em;color:var(--green);border:1px solid rgba(57,255,20,0.3);padding:4px 10px;background:rgba(57,255,20,0.04);display:flex;align-items:center;gap:6px}
-.cert-featured-issuer{font-size:8px;letter-spacing:0.32em;color:var(--w-faint);margin-bottom:14px}
-.cert-featured-name{font-size:22px;color:var(--w);line-height:1.2;letter-spacing:0.02em;margin-bottom:22px}
-.cert-featured-desc{font-size:11px;color:var(--w-dim);line-height:2;flex:1;margin-bottom:28px}
-.cert-featured-footer{display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(255,255,255,0.08);padding-top:22px}
-.cert-featured-meta{display:flex;flex-direction:column;gap:5px}
-.cert-featured-year{font-size:9px;letter-spacing:0.2em;color:var(--w-faint)}
-.cert-featured-id{font-size:8px;letter-spacing:0.1em;color:var(--w-trace)}
-.cert-view-btn{font-size:8px;letter-spacing:0.2em;color:var(--w);border:1px solid rgba(255,255,255,0.4);padding:10px 20px;background:transparent;font-family:'Share Tech Mono',monospace;transition:background 0.2s,border-color 0.2s;position:relative;overflow:hidden}
-.cert-view-btn::before{content:'';position:absolute;inset:0;background:rgba(255,255,255,0.06);transform:scaleX(0);transform-origin:left;transition:transform 0.3s}
-.cert-view-btn:hover::before{transform:scaleX(1)}
-.cert-view-btn:hover{border-color:var(--w)}
-.cert-featured::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--sf-blue),rgba(0,161,224,0))}
-.cert-featured.oracle-featured::before{background:linear-gradient(90deg,var(--oracle-red),rgba(200,16,46,0))}
-.cert-featured::after{content:'';position:absolute;top:0;left:-100%;width:50%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.02),transparent);transition:left 0.8s ease;pointer-events:none}
-.cert-featured:hover::after{left:200%}
-.cert-mini-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--w-trace)}
-.cert-mini-card{background:var(--bg);padding:28px 28px;cursor:pointer;position:relative;overflow:hidden;opacity:0;transform:translateY(12px);transition:opacity 0.4s ease,transform 0.4s ease,background 0.2s;display:flex;flex-direction:column;justify-content:space-between;min-height:190px}
-.page.visible .cert-mini-card:nth-child(1){opacity:1;transform:none;transition-delay:0.46s}
-.page.visible .cert-mini-card:nth-child(2){opacity:1;transform:none;transition-delay:0.54s}
-.page.visible .cert-mini-card:nth-child(3){opacity:1;transform:none;transition-delay:0.62s}
-.page.visible .cert-mini-card:nth-child(4){opacity:1;transform:none;transition-delay:0.70s}
-.cert-mini-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:0;background:var(--sf-blue);transition:height 0.3s ease}
-.cert-mini-card.oracle-mini::before{background:var(--oracle-red)}
-.cert-mini-card:hover{background:rgba(13,13,13,1)}
-.cert-mini-card:hover::before{height:100%}
-.cert-mini-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:14px}
-.cert-mini-logo{width:32px;height:32px;display:flex;align-items:center;justify-content:center;padding:5px;border:1px solid rgba(255,255,255,0.1);background:rgba(255,255,255,0.02)}
-.cert-mini-logo img{width:100%;height:100%;object-fit:contain}
-.cert-mini-logo.sf-mini{border-color:rgba(0,161,224,0.25);background:rgba(0,161,224,0.04)}
-.cert-mini-logo.oracle-mini-logo{border-color:rgba(200,16,46,0.25);background:rgba(200,16,46,0.04)}
-.cert-mini-logo img{filter:none;opacity:1}
-.cert-mini-year{font-size:8px;letter-spacing:0.16em;color:var(--w-faint);border:1px solid var(--w-trace);padding:2px 7px}
-.cert-mini-issuer{font-size:7px;letter-spacing:0.28em;color:var(--w-faint);margin-bottom:7px}
-.cert-mini-name{font-size:11px;color:var(--w);line-height:1.4;letter-spacing:0.02em;margin-bottom:10px}
-.cert-mini-footer{display:flex;align-items:center;justify-content:space-between}
-.cert-mini-status{font-size:7px;letter-spacing:0.18em;color:var(--green)}
-.cert-mini-arrow{font-size:10px;color:var(--w-faint);transition:color 0.2s,transform 0.2s}
-.cert-mini-card:hover .cert-mini-arrow{color:var(--w);transform:translateX(3px)}
-.cert-strip{margin-top:1px;background:var(--w-trace)}
-.cert-strip-inner{background:var(--bg);display:flex;align-items:center;justify-content:space-between;padding:0;opacity:0;transition:opacity 0.5s ease 0.78s}
-.page.visible .cert-strip-inner{opacity:1}
-.cert-strip-item{flex:1;padding:18px 24px;border-right:1px solid var(--w-trace);display:flex;align-items:center;gap:12px;cursor:pointer;transition:background 0.2s;position:relative;overflow:hidden}
-.cert-strip-item:last-child{border-right:none}
-.cert-strip-item:hover{background:rgba(14,14,14,1)}
-.cert-strip-item::after{content:'';position:absolute;bottom:0;left:0;right:100%;height:1px;background:var(--w-faint);transition:right 0.3s ease}
-.cert-strip-item:hover::after{right:0}
-.cert-strip-num{font-size:9px;letter-spacing:0.18em;color:var(--w-faint);opacity:0.5;flex-shrink:0}
-.cert-strip-name{font-size:9px;color:var(--w-dim);letter-spacing:0.04em;line-height:1.4;flex:1;transition:color 0.2s}
-.cert-strip-item:hover .cert-strip-name{color:var(--w)}
-.cert-strip-badge{font-size:7px;letter-spacing:0.12em;padding:2px 7px;border:1px solid;flex-shrink:0}
-.cert-strip-badge.sf{color:rgba(0,161,224,0.8);border-color:rgba(0,161,224,0.3)}
-.cert-strip-badge.oracle{color:rgba(200,16,46,0.8);border-color:rgba(200,16,46,0.3)}
+.cert-all-active{display:flex;align-items:center;gap:7px;font-size:9px;letter-spacing:0.18em;color:var(--green)}
 
+.cert-cards-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--w-trace);margin-bottom:1px}
+.cert-card{background:var(--bg);padding:36px 32px;display:flex;flex-direction:column;justify-content:space-between;min-height:220px;position:relative;overflow:hidden;cursor:pointer;transition:background 0.25s;opacity:0;transform:translateY(14px);transition:opacity 0.4s ease,transform 0.4s ease,background 0.25s}
+.page.visible .cert-card:nth-child(1){opacity:1;transform:none;transition-delay:0.38s}
+.page.visible .cert-card:nth-child(2){opacity:1;transform:none;transition-delay:0.46s}
+.page.visible .cert-card:nth-child(3){opacity:1;transform:none;transition-delay:0.54s}
+.page.visible .cert-card:nth-child(4){opacity:1;transform:none;transition-delay:0.62s}
+.page.visible .cert-card:nth-child(5){opacity:1;transform:none;transition-delay:0.70s}
+.cert-card:hover{background:rgba(13,13,13,1)}
+/* Top accent line per issuer */
+.cert-card::before{content:'';position:absolute;top:0;left:0;width:0;height:2px;transition:width 0.35s ease}
+.cert-card.sf-card::before{background:var(--sf-blue)}
+.cert-card.oracle-card::before{background:var(--oracle-red)}
+.cert-card:hover::before{width:100%}
+.cert-card-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:18px}
+.cert-card-logo{height:28px;display:flex;align-items:center}
+.cert-card-logo img{height:100%;object-fit:contain}
+.cert-card-year{font-size:8px;letter-spacing:0.16em;color:var(--w-faint);border:1px solid var(--w-trace);padding:2px 8px}
+.cert-card-issuer{font-size:7px;letter-spacing:0.32em;color:var(--w-faint);margin-bottom:8px}
+.cert-card-name{font-size:14px;color:var(--w);line-height:1.3;letter-spacing:0.02em;margin-bottom:auto}
+.cert-card-footer{display:flex;align-items:center;justify-content:space-between;margin-top:22px;padding-top:16px;border-top:1px solid rgba(255,255,255,0.06)}
+.cert-card-status{font-size:7px;letter-spacing:0.2em;color:var(--green);display:flex;align-items:center;gap:5px}
+.cert-card-view{font-size:8px;letter-spacing:0.16em;color:var(--w-faint);transition:color 0.2s,letter-spacing 0.2s}
+.cert-card:hover .cert-card-view{color:var(--w);letter-spacing:0.24em}
+
+/* CERT MODAL */
 #cert-modal{position:fixed;inset:0;z-index:999;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.3s ease;background:rgba(0,0,0,0.92);backdrop-filter:blur(14px)}
 #cert-modal.open{opacity:1;pointer-events:all}
 .cert-modal-inner{position:relative;max-width:860px;width:92%;max-height:90vh}
@@ -332,164 +301,239 @@ body:has(a:hover) #cursor-ring,body:has(button:hover) #cursor-ring,body:has([dat
 .cert-modal-label{font-size:10px;letter-spacing:0.14em;color:var(--w-dim)}
 .cert-modal-badge{font-size:7px;letter-spacing:0.2em;color:var(--green);border:1px solid rgba(57,255,20,0.3);padding:3px 10px;background:rgba(57,255,20,0.04)}
 
-/* CONTACT */
-.contact-outer{opacity:0;transform:translateY(12px);transition:opacity 0.5s ease 0.38s,transform 0.5s ease 0.38s}
-.page.visible .contact-outer{opacity:1;transform:translateY(0)}
-.contact-hero-section{padding:0 80px 0;margin-bottom:0;display:grid;grid-template-columns:1fr auto;align-items:end;gap:40px}
-.contact-big-text{font-size:clamp(28px,4vw,56px);color:var(--w);line-height:1.05;letter-spacing:-0.01em}
-.contact-big-text em{display:block;color:var(--w-faint);font-style:normal;font-size:clamp(14px,2vw,28px);margin-bottom:8px}
-.contact-big-text span{color:var(--w-dim)}
-.contact-hero-right{display:flex;flex-direction:column;align-items:flex-end;gap:12px;padding-bottom:6px;flex-shrink:0}
-.contact-avail-pill{display:flex;align-items:center;gap:8px;font-size:8px;letter-spacing:0.24em;color:var(--green);border:1px solid rgba(57,255,20,0.3);padding:10px 18px;background:rgba(57,255,20,0.04)}
-.contact-resp-time{font-size:8px;letter-spacing:0.16em;color:var(--w-faint)}
-.contact-data-strip{display:flex;align-items:stretch;height:56px;margin:0;background:var(--w-trace);gap:1px}
-.contact-data-item{flex:1;background:var(--bg);display:flex;align-items:center;justify-content:space-between;padding:0 28px;font-size:8px;letter-spacing:0.16em}
-.cdi-key{color:var(--w-faint)}
-.cdi-val{color:var(--w-dim)}
-.cdi-sep{color:var(--w-trace);margin:0 10px}
-.contact-channels-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--w-trace);margin-bottom:1px}
-.contact-tile{background:var(--bg);padding:36px 32px;text-decoration:none;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;min-height:196px;transition:background 0.25s}
-.contact-tile:hover{background:rgba(11,11,11,1)}
-.contact-tile.email-tile::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,rgba(255,255,255,0.5),transparent)}
-.contact-tile.li-tile::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,rgba(0,119,181,0.7),transparent)}
-.contact-tile.discord-tile::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,rgba(88,101,242,0.7),transparent)}
-.contact-tile.resume-tile::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,rgba(57,255,20,0.5),transparent)}
-.contact-tile::after{content:'';position:absolute;top:0;left:-100%;width:100%;height:2px;background:rgba(255,255,255,0.08);transition:left 0.6s ease}
-.contact-tile:hover::after{left:200%;top:100%}
-.ct-top{display:flex;align-items:flex-start;justify-content:space-between}
-.ct-icon{width:44px;height:44px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,0.12);font-size:16px;color:var(--w-dim);font-family:'Share Tech Mono',monospace;transition:border-color 0.2s,color 0.2s}
-.contact-tile:hover .ct-icon{border-color:rgba(255,255,255,0.4);color:var(--w)}
-.ct-ext{font-size:10px;color:var(--w-faint);opacity:0;transition:opacity 0.2s,transform 0.2s;transform:translate(-4px,4px)}
-.contact-tile:hover .ct-ext{opacity:1;transform:translate(0,0)}
-.ct-platform{font-size:7px;letter-spacing:0.32em;color:var(--w-faint);margin-bottom:8px;text-transform:uppercase}
-.ct-handle{font-size:12px;color:var(--w-dim);letter-spacing:0.04em;line-height:1.5;transition:color 0.2s;word-break:break-all}
-.contact-tile:hover .ct-handle{color:var(--w)}
-.ct-action{font-size:8px;letter-spacing:0.2em;color:var(--w-faint);margin-top:10px;display:flex;align-items:center;gap:6px;transition:color 0.2s}
-.ct-action::after{content:'→';transition:transform 0.2s}
-.contact-tile:hover .ct-action{color:var(--w)}
-.contact-tile:hover .ct-action::after{transform:translateX(4px)}
-.contact-lower{display:grid;grid-template-columns:1fr 340px;gap:1px;background:var(--w-trace)}
-.contact-form-panel{background:var(--bg);padding:44px 52px}
-.cfp-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:32px;padding-bottom:18px;border-bottom:1px solid var(--w-trace)}
-.cfp-title{font-size:8px;letter-spacing:0.32em;color:var(--w-dim);display:flex;align-items:center;gap:10px}
-.cfp-title::before{content:'';width:4px;height:4px;background:var(--w-dim);border-radius:50%;display:inline-block}
-.cfp-encrypt{font-size:7px;letter-spacing:0.16em;color:var(--w-faint);display:flex;align-items:center;gap:5px}
-.cfp-encrypt::before{content:'⊕';opacity:0.4}
-.cf-field{margin-bottom:22px;position:relative}
-.cf-field-label{font-size:7px;letter-spacing:0.26em;color:var(--w-faint);margin-bottom:8px;display:flex;align-items:center;justify-content:space-between}
-.cf-field-req{color:var(--w-trace);font-size:7px;letter-spacing:0.1em}
-.cf-field input,.cf-field textarea{width:100%;background:transparent;border:none;border-bottom:1px solid var(--w-trace);color:var(--w);font-family:'Share Tech Mono',monospace;font-size:12px;padding:10px 0;outline:none;transition:border-color 0.25s;resize:none;border-radius:0;display:block}
-.cf-field input:focus,.cf-field textarea:focus{border-bottom-color:rgba(255,255,255,0.5)}
-.cf-field input::placeholder,.cf-field textarea::placeholder{color:rgba(255,255,255,0.12)}
-.cf-field textarea{height:88px;padding-top:8px}
-.cf-field::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--w);transition:width 0.4s ease}
-.cf-field:focus-within::after{width:100%}
-.cf-submit-row{display:flex;align-items:center;gap:16px;margin-top:8px}
-.cf-submit-btn{flex:1;font-size:9px;letter-spacing:0.28em;color:var(--bg);border:1px solid var(--w);padding:14px 0;background:var(--w);font-family:'Share Tech Mono',monospace;transition:background 0.2s,color 0.2s,letter-spacing 0.2s;position:relative;overflow:hidden}
-.cf-submit-btn::before{content:'';position:absolute;inset:0;background:var(--bg);transform:translateX(-100%);transition:transform 0.3s}
-.cf-submit-btn:hover::before{transform:translateX(0)}
-.cf-submit-btn:hover{color:var(--w)}
-.cf-submit-btn:disabled{opacity:0.35}
-.cf-submit-btn span{position:relative;z-index:1}
-.cf-status{font-size:9px;letter-spacing:0.12em;min-height:18px}
-.cf-status.ok{color:var(--green)}.cf-status.err{color:#ff4040}
-.contact-resume-side{background:var(--bg);padding:44px 36px;display:flex;flex-direction:column}
-.crs-header{margin-bottom:28px;padding-bottom:18px;border-bottom:1px solid var(--w-trace)}
-.crs-title{font-size:8px;letter-spacing:0.32em;color:var(--w-dim);margin-bottom:18px;display:flex;align-items:center;gap:10px}
-.crs-title::before{content:'';width:4px;height:4px;background:var(--w-dim);border-radius:50%;display:inline-block}
-.crs-identity{display:flex;align-items:center;gap:14px}
-.crs-initials{width:52px;height:52px;border:1px solid rgba(255,255,255,0.14);display:flex;align-items:center;justify-content:center;font-size:17px;color:var(--w);letter-spacing:0.05em;background:rgba(255,255,255,0.02);flex-shrink:0}
-.crs-name{font-size:14px;color:var(--w);letter-spacing:0.04em;margin-bottom:3px}
-.crs-role{font-size:7px;letter-spacing:0.2em;color:var(--w-faint)}
-.crs-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--w-trace);margin-bottom:24px}
-.crs-stat{background:var(--bg);padding:14px 16px;transition:background 0.2s}
-.crs-stat:hover{background:var(--bg2)}
-.crs-stat-num{font-size:22px;color:var(--w);line-height:1;margin-bottom:3px}
-.crs-stat-label{font-size:7px;letter-spacing:0.18em;color:var(--w-faint)}
-.crs-skills{margin-bottom:28px;flex:1}
-.crs-skill-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.04)}
-.crs-skill-row:last-child{border-bottom:none}
-.crs-skill-name{font-size:8px;letter-spacing:0.1em;color:var(--w-dim);width:110px;flex-shrink:0}
-.crs-skill-track{flex:1;height:2px;background:var(--w-trace);position:relative}
-.crs-skill-fill{height:100%;background:linear-gradient(90deg,var(--w-faint),var(--w));width:0;transition:width 1.4s ease}
-#contact.visible .crs-skill-fill{width:var(--skill-pct)}
-.crs-skill-pct{font-size:7px;letter-spacing:0.1em;color:var(--w-faint);width:26px;text-align:right;flex-shrink:0}
-.crs-dl-btn{display:flex;align-items:center;justify-content:center;gap:10px;font-size:8px;letter-spacing:0.24em;color:var(--w);border:1px solid rgba(255,255,255,0.3);padding:16px 0;text-decoration:none;background:transparent;font-family:'Share Tech Mono',monospace;transition:background 0.2s,border-color 0.2s,letter-spacing 0.2s;position:relative;overflow:hidden}
-.crs-dl-btn::before{content:'';position:absolute;left:-100%;top:0;width:100%;height:100%;background:rgba(255,255,255,0.04);transition:left 0.3s}
-.crs-dl-btn:hover::before{left:0}
-.crs-dl-btn:hover{border-color:var(--w);letter-spacing:0.34em}
+/* ══════════════════════════════════════════
+   CONTACT — FORM TOP + MINIMAL FOOTER
+══════════════════════════════════════════ */
+#contact .page-content{overflow-y:auto}
 
-/* ═══════════════════════════════════════════════
-   FEEDBACK POPUP — NEW
-   ═══════════════════════════════════════════════ */
+.cx-wrap{
+  max-width:680px;
+  margin:0 auto;
+  padding:40px 60px 0;
+  opacity:0;transform:translateY(14px);
+  transition:opacity 0.5s ease 0.3s,transform 0.5s ease 0.3s;
+}
+#contact.visible .cx-wrap{opacity:1;transform:translateY(0)}
+
+.cx-page-tag{font-size:8px;letter-spacing:0.34em;color:var(--w-faint);margin-bottom:10px}
+.cx-page-title{font-size:clamp(28px,4vw,44px);color:var(--w);line-height:1.1;margin-bottom:6px}
+.cx-page-rule{width:28px;height:1px;background:rgba(255,255,255,0.28);margin-bottom:36px}
+
+/* Floating label fields */
+.cx-ff{position:relative;margin-bottom:24px}
+.cx-ff input,.cx-ff textarea{
+  width:100%;
+  background:transparent;
+  border:none;
+  border-bottom:1px solid var(--w-trace);
+  color:var(--w);
+  font-family:'Share Tech Mono',monospace;
+  font-size:12px;
+  padding:20px 0 8px;
+  outline:none;
+  resize:none;
+  display:block;
+  border-radius:0;
+  transition:border-color 0.2s;
+}
+.cx-ff textarea{height:96px;padding-top:22px}
+.cx-ff input:focus,.cx-ff textarea:focus{border-bottom-color:rgba(255,255,255,0.4)}
+.cx-ff input::placeholder,.cx-ff textarea::placeholder{color:transparent}
+.cx-ff label{
+  position:absolute;
+  top:20px;left:0;
+  font-size:8px;letter-spacing:0.24em;color:var(--w-faint);
+  pointer-events:none;
+  transition:top 0.18s,font-size 0.18s,color 0.18s;
+}
+.cx-ff input:focus ~ label,
+.cx-ff input:not(:placeholder-shown) ~ label,
+.cx-ff textarea:focus ~ label,
+.cx-ff textarea:not(:placeholder-shown) ~ label{
+  top:4px;font-size:7px;letter-spacing:0.26em;color:var(--w-dim);
+}
+.cx-ff::after{
+  content:'';position:absolute;bottom:0;left:0;
+  width:0;height:1px;
+  background:var(--w-dim);
+  transition:width 0.35s ease;
+}
+.cx-ff:focus-within::after{width:100%}
+
+.cx-ff-hint{font-size:7px;letter-spacing:0.1em;color:var(--w-faint);margin-top:4px;text-align:right}
+
+.cx-two-col{display:grid;grid-template-columns:1fr 1fr;gap:0 32px}
+
+.cx-submit-btn{
+  width:100%;margin-top:8px;
+  font-size:9px;letter-spacing:0.28em;
+  color:var(--bg);background:var(--w);
+  border:1px solid var(--w);
+  padding:14px 0;
+  font-family:'Share Tech Mono',monospace;
+  position:relative;overflow:hidden;
+  transition:letter-spacing 0.22s;
+}
+.cx-submit-btn::before{
+  content:'';position:absolute;inset:0;
+  background:var(--bg);transform:translateX(-100%);
+  transition:transform 0.3s ease;
+}
+.cx-submit-btn:hover::before{transform:translateX(0)}
+.cx-submit-btn:hover{color:var(--w);letter-spacing:0.4em}
+.cx-submit-btn:disabled{opacity:0.3;pointer-events:none}
+.cx-submit-btn span{position:relative;z-index:1}
+
+.cx-submit-status{
+  font-size:9px;letter-spacing:0.12em;
+  min-height:16px;text-align:center;margin-top:10px;
+}
+.cx-submit-status.ok{color:var(--w-dim)}
+.cx-submit-status.err{color:#ff4444}
+
+/* ── FOOTER ── */
+.cx-footer{
+  border-top:1px solid var(--w-trace);
+  margin-top:52px;
+  padding:24px 60px;
+  max-width:none;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  flex-wrap:wrap;
+  opacity:0;transform:translateY(8px);
+  transition:opacity 0.5s ease 0.5s,transform 0.5s ease 0.5s;
+}
+#contact.visible .cx-footer{opacity:1;transform:translateY(0)}
+
+.cx-footer-info{
+  display:flex;align-items:center;gap:28px;flex-wrap:wrap;
+}
+.cx-footer-item{
+  font-size:8px;letter-spacing:0.16em;color:var(--w-faint);
+}
+.cx-footer-item span{color:var(--w-dim);margin-left:6px}
+
+.cx-footer-links{
+  display:flex;align-items:center;gap:16px;
+}
+.cx-footer-link{
+  font-size:8px;letter-spacing:0.18em;color:var(--w-faint);
+  text-decoration:none;
+  transition:color 0.2s;
+  display:flex;align-items:center;gap:5px;
+}
+.cx-footer-link:hover{color:var(--w)}
+.cx-footer-sep{color:var(--w-trace);font-size:10px}
+
+@media(max-width:768px){
+  .cx-wrap{padding:40px 28px 0}
+  .cx-footer{padding:22px 28px;flex-direction:column;align-items:flex-start;gap:16px}
+  .cx-two-col{grid-template-columns:1fr}
+}
+@media(max-width:480px){
+  .cx-wrap{padding:36px 20px 0}
+  .cx-footer{padding:20px 20px}
+}
+
+/* ══════════════════════════════════════════
+   RESUME PAGE — NEW
+══════════════════════════════════════════ */
+.resume-page-body{opacity:0;transform:translateY(12px);transition:opacity 0.5s ease 0.38s,transform 0.5s ease 0.38s}
+.page.visible .resume-page-body{opacity:1;transform:translateY(0)}
+
+.resume-top-bar{display:flex;align-items:center;justify-content:space-between;padding:0 80px;margin-bottom:1px;gap:20px}
+.resume-identity{display:flex;align-items:center;gap:20px;background:var(--bg);border:1px solid var(--w-trace);padding:24px 32px;flex:1}
+.resume-initials{width:56px;height:56px;border:1px solid rgba(255,255,255,0.18);display:flex;align-items:center;justify-content:center;font-size:18px;color:var(--w);letter-spacing:0.04em;background:rgba(255,255,255,0.03);flex-shrink:0}
+.resume-id-name{font-size:18px;color:var(--w);letter-spacing:0.06em;margin-bottom:4px}
+.resume-id-role{font-size:8px;letter-spacing:0.24em;color:var(--w-faint)}
+.resume-dl-block{background:var(--bg);border:1px solid rgba(57,255,20,0.35);padding:24px 32px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;min-width:240px;position:relative;overflow:hidden}
+.resume-dl-block::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--green),rgba(57,255,20,0))}
+.resume-dl-label{font-size:7px;letter-spacing:0.3em;color:var(--w-faint)}
+.resume-dl-btn{display:inline-flex;align-items:center;gap:10px;font-size:9px;letter-spacing:0.28em;color:var(--bg);background:var(--green);border:1px solid var(--green);padding:12px 28px;text-decoration:none;font-family:'Share Tech Mono',monospace;transition:background 0.2s,color 0.2s,letter-spacing 0.25s;position:relative;overflow:hidden}
+.resume-dl-btn:hover{background:transparent;color:var(--green);letter-spacing:0.38em}
+
+.resume-stats-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--w-trace);margin:0 80px 1px}
+.resume-stat{background:var(--bg);padding:20px 28px;display:flex;align-items:center;gap:16px;transition:background 0.2s}
+.resume-stat:hover{background:var(--bg2)}
+.resume-stat-num{font-size:28px;color:var(--w);line-height:1}
+.resume-stat-label{font-size:8px;letter-spacing:0.18em;color:var(--w-faint)}
+
+.resume-sections{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--w-trace);margin:0 80px}
+.resume-section{background:var(--bg);padding:36px 40px}
+.resume-sec-label{font-size:8px;letter-spacing:0.3em;color:var(--w-dim);margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid var(--w-trace);display:flex;align-items:center;gap:10px}
+.resume-sec-label::before{content:'//';color:var(--w-faint);font-size:9px}
+
+/* Experience summary rows */
+.resume-exp-row{display:flex;align-items:flex-start;gap:16px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,0.04)}
+.resume-exp-row:last-child{border-bottom:none}
+.resume-exp-dot{width:5px;height:5px;border-radius:50%;background:var(--w-faint);flex-shrink:0;margin-top:6px}
+.resume-exp-company{font-size:10px;color:var(--w);margin-bottom:2px;letter-spacing:0.03em}
+.resume-exp-role{font-size:9px;color:var(--w-dim);letter-spacing:0.04em;margin-bottom:2px}
+.resume-exp-period{font-size:8px;color:var(--w-faint);letter-spacing:0.1em}
+
+/* Skills list */
+.resume-skill-item{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.04)}
+.resume-skill-item:last-child{border-bottom:none}
+.resume-skill-name{font-size:9px;letter-spacing:0.1em;color:var(--w-dim);width:130px;flex-shrink:0}
+.resume-skill-track{flex:1;height:2px;background:var(--w-trace)}
+.resume-skill-fill{height:100%;background:linear-gradient(90deg,var(--w-faint),var(--w));width:0;transition:width 1.4s ease}
+#resume.visible .resume-skill-fill{width:var(--skill-pct)}
+.resume-skill-pct{font-size:8px;letter-spacing:0.1em;color:var(--w-faint);width:26px;text-align:right;flex-shrink:0}
+
+/* Certs summary list */
+.resume-cert-item{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.04)}
+.resume-cert-item:last-child{border-bottom:none}
+.resume-cert-name{font-size:9px;color:var(--w-dim);letter-spacing:0.04em;flex:1}
+.resume-cert-badge{font-size:7px;letter-spacing:0.14em;padding:2px 8px;border:1px solid;flex-shrink:0}
+.resume-cert-badge.sf{color:rgba(0,161,224,0.8);border-color:rgba(0,161,224,0.3)}
+.resume-cert-badge.oracle{color:rgba(200,16,46,0.8);border-color:rgba(200,16,46,0.3)}
+
+/* education */
+.resume-edu-item{padding:14px 0;border-bottom:1px solid rgba(255,255,255,0.04)}
+.resume-edu-item:last-child{border-bottom:none}
+.resume-edu-degree{font-size:11px;color:var(--w);margin-bottom:3px}
+.resume-edu-school{font-size:9px;color:var(--w-dim);margin-bottom:2px}
+.resume-edu-year{font-size:8px;color:var(--w-faint);letter-spacing:0.1em}
+
+/* ════════════════════════
+   FEEDBACK POPUP
+════════════════════════ */
 #feedback-popup{
   position:fixed;inset:0;z-index:1200;
   display:flex;align-items:center;justify-content:center;
   opacity:0;pointer-events:none;
   transition:opacity 0.5s ease;
-  /* blurred red-tinted backdrop */
   background:rgba(0,0,0,0.85);
   backdrop-filter:blur(18px) saturate(1.2);
   -webkit-backdrop-filter:blur(18px) saturate(1.2);
 }
 #feedback-popup::before{
-  content:'';
-  position:absolute;inset:0;
+  content:'';position:absolute;inset:0;
   background:radial-gradient(ellipse at center, rgba(180,0,0,0.22) 0%, rgba(100,0,0,0.12) 45%, transparent 70%);
-  pointer-events:none;
-  animation:fpBgPulse 3s ease-in-out infinite;
+  pointer-events:none;animation:fpBgPulse 3s ease-in-out infinite;
 }
 @keyframes fpBgPulse{0%,100%{opacity:0.7}50%{opacity:1}}
 #feedback-popup.open{opacity:1;pointer-events:all}
-
-.fp-box{
-  position:relative;
-  max-width:520px;width:92%;
-  background:rgba(8,8,8,0.95);
-  border:1px solid rgba(180,0,0,0.4);
-  box-shadow:0 0 60px rgba(180,0,0,0.18), 0 0 0 1px rgba(255,255,255,0.04) inset;
-  transform:translateY(24px) scale(0.97);
-  transition:transform 0.5s cubic-bezier(0.34,1.56,0.64,1),opacity 0.5s ease;
-  opacity:0;
-}
+.fp-box{position:relative;max-width:520px;width:92%;background:rgba(8,8,8,0.95);border:1px solid rgba(180,0,0,0.4);box-shadow:0 0 60px rgba(180,0,0,0.18),0 0 0 1px rgba(255,255,255,0.04) inset;transform:translateY(24px) scale(0.97);transition:transform 0.5s cubic-bezier(0.34,1.56,0.64,1),opacity 0.5s ease;opacity:0;}
 #feedback-popup.open .fp-box{transform:translateY(0) scale(1);opacity:1}
-
-/* Corner decorations */
 .fp-box::before,.fp-box::after{content:'';position:absolute;width:16px;height:16px;border-color:rgba(180,0,0,0.6);border-style:solid}
 .fp-box::before{top:-1px;left:-1px;border-width:2px 0 0 2px}
 .fp-box::after{bottom:-1px;right:-1px;border-width:0 2px 2px 0}
-
-/* Top accent bar */
 .fp-accent{height:2px;background:linear-gradient(90deg,rgba(180,0,0,0.8),rgba(255,60,60,0.5),transparent);width:100%}
-
 .fp-inner{padding:40px 44px 36px}
 .fp-sys-tag{font-size:8px;letter-spacing:0.32em;color:rgba(180,0,0,0.7);margin-bottom:20px;display:flex;align-items:center;gap:8px}
 .fp-sys-tag::before{content:'';width:4px;height:4px;border-radius:50%;background:rgba(200,50,50,0.8);box-shadow:0 0 6px rgba(200,50,50,0.6);animation:dotpulse 1.5s ease-in-out infinite}
-
 .fp-question{font-size:clamp(18px,3vw,26px);color:var(--w);line-height:1.35;margin-bottom:8px;letter-spacing:0.01em}
 .fp-sub{font-size:10px;letter-spacing:0.18em;color:var(--w-faint);margin-bottom:36px}
-
 .fp-btns{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:28px}
-.fp-btn-yes{
-  font-size:10px;letter-spacing:0.28em;color:var(--bg);
-  background:var(--w);border:1px solid var(--w);
-  padding:16px 0;font-family:'Share Tech Mono',monospace;
-  transition:background 0.2s,letter-spacing 0.25s,box-shadow 0.2s;
-  position:relative;overflow:hidden;
-}
+.fp-btn-yes{font-size:10px;letter-spacing:0.28em;color:var(--bg);background:var(--w);border:1px solid var(--w);padding:16px 0;font-family:'Share Tech Mono',monospace;transition:background 0.2s,letter-spacing 0.25s,box-shadow 0.2s;position:relative;overflow:hidden;}
 .fp-btn-yes:hover{background:rgba(57,255,20,0.9);border-color:rgba(57,255,20,0.9);color:#000;letter-spacing:0.36em;box-shadow:0 0 20px rgba(57,255,20,0.25)}
-.fp-btn-no{
-  font-size:10px;letter-spacing:0.28em;color:var(--w-dim);
-  background:transparent;border:1px solid rgba(255,255,255,0.25);
-  padding:16px 0;font-family:'Share Tech Mono',monospace;
-  transition:color 0.2s,border-color 0.2s,letter-spacing 0.25s,box-shadow 0.2s;
-}
+.fp-btn-no{font-size:10px;letter-spacing:0.28em;color:var(--w-dim);background:transparent;border:1px solid rgba(255,255,255,0.25);padding:16px 0;font-family:'Share Tech Mono',monospace;transition:color 0.2s,border-color 0.2s,letter-spacing 0.25s,box-shadow 0.2s;}
 .fp-btn-no:hover{color:var(--w);border-color:rgba(255,60,60,0.6);letter-spacing:0.36em;box-shadow:0 0 20px rgba(255,0,0,0.1)}
-
 .fp-dismiss{font-size:8px;letter-spacing:0.2em;color:var(--w-faint);background:transparent;border:none;font-family:'Share Tech Mono',monospace;transition:color 0.2s;display:block;width:100%;text-align:center;padding:4px 0}
 .fp-dismiss:hover{color:var(--w-dim)}
-
-/* ─── THANK YOU state ─── */
 .fp-thankyou{display:none;text-align:center;padding:20px 0 10px}
 .fp-ty-icon{font-size:32px;margin-bottom:16px;animation:tyPop 0.6s cubic-bezier(0.34,1.56,0.64,1)}
 @keyframes tyPop{from{transform:scale(0) rotate(-20deg);opacity:0}to{transform:scale(1) rotate(0);opacity:1}}
@@ -498,43 +542,24 @@ body:has(a:hover) #cursor-ring,body:has(button:hover) #cursor-ring,body:has([dat
 .fp-ty-bar{width:0;height:2px;background:linear-gradient(90deg,var(--green),rgba(57,255,20,0));margin:20px auto 0;transition:width 1.8s ease}
 .fp-ty-bar.go{width:100%}
 
-/* ─── VIDEO OVERLAY (NO response) ─── */
-#fp-video-overlay{
-  position:fixed;inset:0;z-index:1300;
-  background:#000;
-  opacity:0;pointer-events:none;
-  transition:opacity 0.6s ease;
-  display:flex;flex-direction:column;
-  align-items:center;justify-content:center;
-}
+#fp-video-overlay{position:fixed;inset:0;z-index:1300;background:#000;opacity:0;pointer-events:none;transition:opacity 0.6s ease;display:flex;flex-direction:column;align-items:center;justify-content:center;}
 #fp-video-overlay.open{opacity:1;pointer-events:all}
-#fp-video-overlay video{
-  max-width:90vw;max-height:80vh;
-  object-fit:contain;
-  border:1px solid rgba(255,255,255,0.1);
-  box-shadow:0 0 80px rgba(0,0,0,0.8);
-}
-.fpv-close{
-  position:absolute;top:24px;right:28px;
-  font-size:9px;letter-spacing:0.24em;color:var(--w-dim);
-  background:transparent;border:1px solid rgba(255,255,255,0.22);
-  padding:8px 18px;font-family:'Share Tech Mono',monospace;
-  transition:color 0.2s,border-color 0.2s;
-}
+#fp-video-overlay video{max-width:90vw;max-height:80vh;object-fit:contain;border:1px solid rgba(255,255,255,0.1);box-shadow:0 0 80px rgba(0,0,0,0.8);}
+.fpv-close{position:absolute;top:24px;right:28px;font-size:9px;letter-spacing:0.24em;color:var(--w-dim);background:transparent;border:1px solid rgba(255,255,255,0.22);padding:8px 18px;font-family:'Share Tech Mono',monospace;transition:color 0.2s,border-color 0.2s;}
 .fpv-close:hover{color:var(--w);border-color:var(--w)}
-.fpv-label{
-  position:absolute;bottom:32px;
-  font-size:8px;letter-spacing:0.28em;color:var(--w-faint);
-}
+.fpv-label{position:absolute;bottom:32px;font-size:8px;letter-spacing:0.28em;color:var(--w-faint);}
 
 /* RESPONSIVE */
 @media(max-width:1100px){
   .proj-grid{grid-template-columns:repeat(2,1fr)}
   .work-body{grid-template-columns:1fr}
-  .cert-layout{grid-template-columns:1fr}
-  .cert-mini-grid{grid-template-columns:repeat(2,1fr)}
+  .cert-cards-grid{grid-template-columns:repeat(2,1fr)}
   .contact-lower{grid-template-columns:1fr}
   .contact-channels-grid{grid-template-columns:repeat(2,1fr)}
+  .resume-sections{grid-template-columns:1fr}
+  .resume-stats-bar{grid-template-columns:repeat(2,1fr)}
+  .contact-form-grid{grid-template-columns:1fr 1fr}
+  .cf-msg-col{grid-column:1/-1}
 }
 @media(max-width:900px){
   #home .home-wrap{grid-template-columns:1fr;padding:0 40px;padding-top:90px;align-items:flex-start;overflow-y:auto}
@@ -546,14 +571,14 @@ body:has(a:hover) #cursor-ring,body:has(button:hover) #cursor-ring,body:has([dat
   .contact-data-strip{flex-wrap:wrap;height:auto}
   .contact-data-item{padding:12px 20px}
   .page-content.fw .page-header{padding-left:40px;padding-right:40px}
-  .contact-form-panel{padding:32px 36px}
-  .contact-resume-side{padding:32px 28px}
-  .cert-featured-inner{padding:32px 32px;min-height:320px}
-  .fp-inner{padding:32px 28px 28px}
+  .contact-form-full{padding:36px 40px}
+  .resume-top-bar,.resume-stats-bar,.resume-sections{margin-left:40px;margin-right:40px}
+  .resume-top-bar{flex-direction:column;align-items:stretch}
+  .resume-dl-block{min-width:unset}
+  .cert-cards-grid{grid-template-columns:1fr 1fr}
 }
 @media(max-width:640px){
   .site-nav{padding:16px 18px}
-  /* On mobile show BGM in nav right area, hide desktop-only items */
   .nav-links,.nav-sep,.snd-btn.dsk{display:none}
   .bgm-btn.dsk{display:flex !important}
   .nav-burger{display:flex}
@@ -571,14 +596,14 @@ body:has(a:hover) #cursor-ring,body:has(button:hover) #cursor-ring,body:has([dat
   #cursor,#cursor-ring{display:none}
   .contact-channels-grid{grid-template-columns:1fr 1fr}
   .contact-hero-section{padding:0 20px}
-  .contact-form-panel{padding:24px 20px}
-  .contact-resume-side{padding:24px 20px}
-  .cert-layout{grid-template-columns:1fr}
-  .cert-mini-grid{grid-template-columns:1fr 1fr}
-  .cert-strip-inner{flex-wrap:wrap}
-  .cert-header-meta{flex-direction:column;align-items:flex-start;gap:12px}
+  .contact-form-full{padding:28px 20px}
+  .cert-cards-grid{grid-template-columns:1fr}
+  .resume-top-bar,.resume-stats-bar,.resume-sections{margin-left:0;margin-right:0}
+  .resume-stats-bar{grid-template-columns:repeat(2,1fr)}
   .fp-inner{padding:28px 22px 24px}
   .fp-btns{grid-template-columns:1fr}
+  .contact-form-grid{grid-template-columns:1fr}
+  .cf-msg-col{grid-column:1}
 }
 </style>
 </head>
@@ -671,7 +696,7 @@ body:has(a:hover) #cursor-ring,body:has(button:hover) #cursor-ring,body:has([dat
       </div>
     </div>
   </div>
-  <div class="corner-tag"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="08697a627d663a38383939306a60697a697c60486f65696164266b6765">[email&#160;protected]</a></div>
+  <div class="corner-tag"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="8beaf9e1fee5e9e3eaf9eaffe3cbeee6eae2e7a5e8e4e6">[email&#160;protected]</a></div>
   <div class="status-dot"><div class="dot-pulse"></div><span class="dot-label">KOCHI, KERALA</span></div>
 </div>
 
@@ -748,7 +773,7 @@ body:has(a:hover) #cursor-ring,body:has(button:hover) #cursor-ring,body:has([dat
   </div>
 </div>
 
-<!-- CERTIFICATIONS -->
+<!-- CERTIFICATIONS — SIMPLIFIED -->
 <div id="certifications" class="page">
   <nav class="site-nav" id="nav-certifications"></nav>
   <div class="page-content">
@@ -757,66 +782,96 @@ body:has(a:hover) #cursor-ring,body:has(button:hover) #cursor-ring,body:has([dat
       <div class="page-title">Certifications</div>
       <div class="page-rule"></div>
     </div>
-    <div class="cert-header-meta">
-      <div class="cert-counter">
-        <div class="cert-count-item"><div class="cert-count-dot sf"></div>3 SALESFORCE</div>
-        <div class="cert-count-item"><div class="cert-count-dot oracle"></div>2 ORACLE</div>
-        <div class="cert-count-item" style="color:var(--green)"><div class="avail-dot"></div>ALL ACTIVE · 2025</div>
+    <div class="cert-page-body">
+      <div class="cert-meta-bar">
+        <div class="cert-meta-left">
+          <div class="cert-count-badge"><div class="cert-count-dot sf"></div>3 SALESFORCE</div>
+          <div class="cert-count-badge"><div class="cert-count-dot oracle"></div>2 ORACLE</div>
+          <div class="cert-all-active"><div class="avail-dot"></div>ALL ACTIVE · 2025</div>
+        </div>
       </div>
-      <div class="cert-year-filter">
-        <button class="cert-filter-btn active">2025</button>
-        <button class="cert-filter-btn">ALL</button>
-      </div>
-    </div>
-    <div class="cert-layout">
-      <div class="cert-featured" data-cert-img="images/marketingemailcertificate.jpg" data-cert-name="Salesforce Certified Marketing Cloud Email Specialist" style="cursor:pointer">
-        <div class="cert-featured-inner">
+      <div class="cert-cards-grid">
+
+        <!-- SF 1 -->
+        <div class="cert-card sf-card" data-cert-img="images/marketingemailcertificate.jpg" data-cert-name="Salesforce Certified Marketing Cloud Email Specialist">
           <div>
-            <div class="cert-featured-brand">
-              <div class="cert-brand-logo">
-                <img src="images/Salesforce.com_logo.svg.png" alt="Salesforce" style="height:28px;object-fit:contain">
-              </div>
-              <div class="cert-featured-badge"><div class="avail-dot"></div>ACTIVE · VERIFIED</div>
+            <div class="cert-card-top">
+              <div class="cert-card-logo"><img src="images/Salesforce.com_logo.svg.png" alt="Salesforce" style="height:24px"></div>
+              <span class="cert-card-year">2025</span>
             </div>
-            <div class="cert-featured-issuer">SALESFORCE</div>
-            <div class="cert-featured-name">Marketing Cloud<br>Email Specialist</div>
-            <div class="cert-featured-desc">Validates deep expertise in SFMC email marketing — AMPscript dynamic scripting, Journey Builder campaign design, subscriber management, data extensions, and campaign performance analytics. The definitive Salesforce email certification.</div>
+            <div class="cert-card-issuer">SALESFORCE</div>
+            <div class="cert-card-name">Marketing Cloud<br>Email Specialist</div>
           </div>
-          <div class="cert-featured-footer">
-            <div class="cert-featured-meta">
-              <div class="cert-featured-year">ISSUED · 2025</div>
-              <div class="cert-featured-id">CREDENTIAL · SALESFORCE.COM</div>
-            </div>
-            <button class="cert-view-btn">VIEW CERTIFICATE →</button>
+          <div class="cert-card-footer">
+            <div class="cert-card-status"><span style="width:5px;height:5px;border-radius:50%;background:var(--green);display:inline-block"></span>ACTIVE</div>
+            <span class="cert-card-view">VIEW →</span>
           </div>
         </div>
-      </div>
-      <div class="cert-mini-grid">
-        <div class="cert-mini-card oracle-mini" data-cert-img="images/agentforce certificate.jpg" data-cert-name="Salesforce Certified Agentforce Specialist">
-          <div><div class="cert-mini-top"><div class="cert-mini-logo sf-mini"><img src="images/Salesforce.com_logo.svg.png" alt="Salesforce"></div><span class="cert-mini-year">2025</span></div><div class="cert-mini-issuer">SALESFORCE</div><div class="cert-mini-name">Agentforce Specialist</div></div>
-          <div class="cert-mini-footer"><span class="cert-mini-status">● ACTIVE</span><span class="cert-mini-arrow">→</span></div>
+
+        <!-- SF 2 -->
+        <div class="cert-card sf-card" data-cert-img="images/agentforce certificate.jpg" data-cert-name="Salesforce Certified Agentforce Specialist">
+          <div>
+            <div class="cert-card-top">
+              <div class="cert-card-logo"><img src="images/Salesforce.com_logo.svg.png" alt="Salesforce" style="height:24px"></div>
+              <span class="cert-card-year">2025</span>
+            </div>
+            <div class="cert-card-issuer">SALESFORCE</div>
+            <div class="cert-card-name">Agentforce<br>Specialist</div>
+          </div>
+          <div class="cert-card-footer">
+            <div class="cert-card-status"><span style="width:5px;height:5px;border-radius:50%;background:var(--green);display:inline-block"></span>ACTIVE</div>
+            <span class="cert-card-view">VIEW →</span>
+          </div>
         </div>
-        <div class="cert-mini-card" data-cert-img="images/AI certificate.jpg" data-cert-name="Salesforce Certified AI Associate">
-          <div><div class="cert-mini-top"><div class="cert-mini-logo sf-mini"><img src="images/Salesforce.com_logo.svg.png" alt="Salesforce"></div><span class="cert-mini-year">2025</span></div><div class="cert-mini-issuer">SALESFORCE</div><div class="cert-mini-name">AI Associate</div></div>
-          <div class="cert-mini-footer"><span class="cert-mini-status">● ACTIVE</span><span class="cert-mini-arrow">→</span></div>
+
+        <!-- SF 3 -->
+        <div class="cert-card sf-card" data-cert-img="images/AI certificate.jpg" data-cert-name="Salesforce Certified AI Associate">
+          <div>
+            <div class="cert-card-top">
+              <div class="cert-card-logo"><img src="images/Salesforce.com_logo.svg.png" alt="Salesforce" style="height:24px"></div>
+              <span class="cert-card-year">2025</span>
+            </div>
+            <div class="cert-card-issuer">SALESFORCE</div>
+            <div class="cert-card-name">AI Associate</div>
+          </div>
+          <div class="cert-card-footer">
+            <div class="cert-card-status"><span style="width:5px;height:5px;border-radius:50%;background:var(--green);display:inline-block"></span>ACTIVE</div>
+            <span class="cert-card-view">VIEW →</span>
+          </div>
         </div>
-        <div class="cert-mini-card oracle-mini" data-cert-img="images/oracle ai certificate.jpg" data-cert-name="Oracle Certified Generative AI Professional">
-          <div><div class="cert-mini-top"><div class="cert-mini-logo oracle-mini-logo"><img src="images/oracle logo.png" alt="Oracle"></div><span class="cert-mini-year">2025</span></div><div class="cert-mini-issuer">ORACLE</div><div class="cert-mini-name">Generative AI Professional</div></div>
-          <div class="cert-mini-footer"><span class="cert-mini-status">● ACTIVE</span><span class="cert-mini-arrow">→</span></div>
+
+        <!-- Oracle 1 -->
+        <div class="cert-card oracle-card" data-cert-img="images/oracle ai certificate.jpg" data-cert-name="Oracle Certified Generative AI Professional">
+          <div>
+            <div class="cert-card-top">
+              <div class="cert-card-logo"><img src="images/oracle logo.png" alt="Oracle" style="height:24px"></div>
+              <span class="cert-card-year">2025</span>
+            </div>
+            <div class="cert-card-issuer">ORACLE</div>
+            <div class="cert-card-name">Generative AI<br>Professional</div>
+          </div>
+          <div class="cert-card-footer">
+            <div class="cert-card-status"><span style="width:5px;height:5px;border-radius:50%;background:var(--green);display:inline-block"></span>ACTIVE</div>
+            <span class="cert-card-view">VIEW →</span>
+          </div>
         </div>
-        <div class="cert-mini-card oracle-mini" data-cert-img="images/oracle dsa certificate.jpg" data-cert-name="Oracle Certified OCI Data Science Professional">
-          <div><div class="cert-mini-top"><div class="cert-mini-logo oracle-mini-logo"><img src="images/oracle logo.png" alt="Oracle"></div><span class="cert-mini-year">2025</span></div><div class="cert-mini-issuer">ORACLE</div><div class="cert-mini-name">OCI Data Science Professional</div></div>
-          <div class="cert-mini-footer"><span class="cert-mini-status">● ACTIVE</span><span class="cert-mini-arrow">→</span></div>
+
+        <!-- Oracle 2 -->
+        <div class="cert-card oracle-card" data-cert-img="images/oracle dsa certificate.jpg" data-cert-name="Oracle Certified OCI Data Science Professional">
+          <div>
+            <div class="cert-card-top">
+              <div class="cert-card-logo"><img src="images/oracle logo.png" alt="Oracle" style="height:24px"></div>
+              <span class="cert-card-year">2025</span>
+            </div>
+            <div class="cert-card-issuer">ORACLE</div>
+            <div class="cert-card-name">OCI Data Science<br>Professional</div>
+          </div>
+          <div class="cert-card-footer">
+            <div class="cert-card-status"><span style="width:5px;height:5px;border-radius:50%;background:var(--green);display:inline-block"></span>ACTIVE</div>
+            <span class="cert-card-view">VIEW →</span>
+          </div>
         </div>
-      </div>
-    </div>
-    <div class="cert-strip">
-      <div class="cert-strip-inner">
-        <div class="cert-strip-item" data-cert-img="images/marketingemailcertificate.jpg" data-cert-name="Salesforce Certified Marketing Cloud Email Specialist"><span class="cert-strip-num">01</span><span class="cert-strip-name">Marketing Cloud Email Specialist</span><span class="cert-strip-badge sf">SF</span></div>
-        <div class="cert-strip-item" data-cert-img="images/agentforce certificate.jpg" data-cert-name="Salesforce Certified Agentforce Specialist"><span class="cert-strip-num">02</span><span class="cert-strip-name">Agentforce Specialist</span><span class="cert-strip-badge sf">SF</span></div>
-        <div class="cert-strip-item" data-cert-img="images/AI certificate.jpg" data-cert-name="Salesforce Certified AI Associate"><span class="cert-strip-num">03</span><span class="cert-strip-name">AI Associate</span><span class="cert-strip-badge sf">SF</span></div>
-        <div class="cert-strip-item" data-cert-img="images/oracle ai certificate.jpg" data-cert-name="Oracle Certified Generative AI Professional"><span class="cert-strip-num">04</span><span class="cert-strip-name">Generative AI Professional</span><span class="cert-strip-badge oracle">OCI</span></div>
-        <div class="cert-strip-item" data-cert-img="images/oracle dsa certificate.jpg" data-cert-name="Oracle Certified OCI Data Science Professional"><span class="cert-strip-num">05</span><span class="cert-strip-name">OCI Data Science Professional</span><span class="cert-strip-badge oracle">OCI</span></div>
+
       </div>
     </div>
   </div>
@@ -841,86 +896,175 @@ body:has(a:hover) #cursor-ring,body:has(button:hover) #cursor-ring,body:has([dat
 <div id="contact" class="page">
   <nav class="site-nav" id="nav-contact"></nav>
   <div class="page-content fw">
+
+    <!-- Form -->
+    <div class="cx-wrap">
+      <div class="cx-page-tag">// 05 — REACH OUT</div>
+      <div class="cx-page-title">Contact</div>
+      <div class="cx-page-rule"></div>
+
+      <form id="contact-form">
+        <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_KEY_HERE">
+        <input type="hidden" name="subject" value="New message from Portfolio — Arjun Bharath">
+        <input type="checkbox" name="botcheck" style="display:none">
+
+        <div class="cx-two-col">
+          <div class="cx-ff">
+            <input type="text" name="name" id="cx-name" placeholder="name" required>
+            <label for="cx-name">YOUR NAME</label>
+          </div>
+          <div class="cx-ff">
+            <input type="email" name="email" id="cx-email" placeholder="email" required>
+            <label for="cx-email">EMAIL ADDRESS</label>
+          </div>
+        </div>
+
+        <div class="cx-ff">
+          <input type="text" name="subject_line" id="cx-subject" placeholder="subject">
+          <label for="cx-subject">SUBJECT</label>
+        </div>
+
+        <div class="cx-ff">
+          <textarea name="message" id="cx-msg" placeholder="message" required></textarea>
+          <label for="cx-msg">MESSAGE</label>
+          <div class="cx-ff-hint" id="cx-char-hint">0 / 1000</div>
+        </div>
+
+        <button type="submit" class="cx-submit-btn" id="cf-submit">
+          <span>SEND MESSAGE →</span>
+        </button>
+        <div class="cx-submit-status" id="cf-status"></div>
+      </form>
+    </div>
+
+    <!-- Footer -->
+    <div class="cx-footer">
+      <div class="cx-footer-info">
+        <div class="cx-footer-item">LOCATION<span>Kochi, Kerala, IN</span></div>
+        <div class="cx-footer-item">TIMEZONE<span>IST · UTC+5:30</span></div>
+        <div class="cx-footer-item">RESPONSE<span>Within 24 hrs</span></div>
+        <div class="cx-footer-item">STATUS<span>Open to Work</span></div>
+      </div>
+      <div class="cx-footer-links">
+        <a href="mailto:arjunbharath@email.com" class="cx-footer-link">✉ EMAIL</a>
+        <span class="cx-footer-sep">·</span>
+        <a href="https://linkedin.com/in/arjun-bharath-sr/" target="_blank" class="cx-footer-link">in LINKEDIN</a>
+        <span class="cx-footer-sep">·</span>
+        <a href="https://discord.com/users/arjunnbharath" target="_blank" class="cx-footer-link"># DISCORD</a>
+        <span class="cx-footer-sep">·</span>
+        <a href="Arjun_Bharath_Resume.pdf" download class="cx-footer-link" id="resume-download">↓ RESUME</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- RESUME — NEW PAGE -->
+<div id="resume" class="page">
+  <nav class="site-nav" id="nav-resume"></nav>
+  <div class="page-content fw">
     <div class="page-header">
-      <div class="page-label">// 05 — REACH OUT</div>
-      <div class="page-title">Contact</div>
+      <div class="page-label">// 06 — CURRICULUM VITAE</div>
+      <div class="page-title">Resume</div>
       <div class="page-rule"></div>
     </div>
-    <div class="contact-outer">
-      <div class="contact-hero-section">
-        <div class="contact-big-text">
-          <em>// LET'S WORK TOGETHER</em>
-          Open to full-time roles,<br><span>freelance Salesforce</span><br>projects & collabs.
-        </div>
-        <div class="contact-hero-right">
-          <div class="contact-avail-pill"><div class="avail-dot"></div>AVAILABLE NOW</div>
-          <div class="contact-resp-time">// RESPONDS WITHIN 24 HRS</div>
-        </div>
-      </div>
-      <div class="contact-data-strip" style="margin-top:28px;margin-bottom:1px">
-        <div class="contact-data-item"><span class="cdi-key">LOCATION</span><span class="cdi-sep">·</span><span class="cdi-val">KOCHI, KERALA, IN</span></div>
-        <div class="contact-data-item"><span class="cdi-key">TIMEZONE</span><span class="cdi-sep">·</span><span class="cdi-val">IST UTC+5:30</span></div>
-        <div class="contact-data-item"><span class="cdi-key">ROLE</span><span class="cdi-sep">·</span><span class="cdi-val">SFMC DEVELOPER</span></div>
-        <div class="contact-data-item"><span class="cdi-key">STATUS</span><span class="cdi-sep">·</span><span class="cdi-val" style="color:var(--green)">OPEN TO WORK</span></div>
-      </div>
-      <div class="contact-channels-grid">
-        <a href="/cdn-cgi/l/email-protection#2647544c534814161617171e444e475447524e66414b474f4a0845494b" class="contact-tile email-tile">
-          <div class="ct-top"><div class="ct-icon">✉</div><span class="ct-ext">↗</span></div>
-          <div class="ct-bottom"><div class="ct-platform">EMAIL</div><div class="ct-handle"><span class="__cf_email__" data-cfemail="5435263e213a66646465656c363c352635203c143339353d387a373b39">[email&#160;protected]</span></div><div class="ct-action">SEND EMAIL</div></div>
-        </a>
-        <a href="https://linkedin.com/in/arjun-bharath-sr/" target="_blank" class="contact-tile li-tile">
-          <div class="ct-top"><div class="ct-icon" style="font-size:12px;font-weight:700">in</div><span class="ct-ext">↗</span></div>
-          <div class="ct-bottom"><div class="ct-platform">LINKEDIN</div><div class="ct-handle">arjun-bharath-sr</div><div class="ct-action">CONNECT</div></div>
-        </a>
-        <a href="https://discord.com/users/arjunnbharath" target="_blank" class="contact-tile discord-tile">
-          <div class="ct-top"><div class="ct-icon" style="font-size:12px">#</div><span class="ct-ext">↗</span></div>
-          <div class="ct-bottom"><div class="ct-platform">DISCORD</div><div class="ct-handle">arjunnbharath</div><div class="ct-action">MESSAGE</div></div>
-        </a>
-        <a href="Arjun_Bharath_Resume.pdf" download class="contact-tile resume-tile" id="resume-download">
-          <div class="ct-top"><div class="ct-icon">↓</div><span class="ct-ext" style="color:var(--green)">PDF</span></div>
-          <div class="ct-bottom"><div class="ct-platform">RESUME</div><div class="ct-handle">Arjun_Bharath_Resume.pdf</div><div class="ct-action" style="color:var(--green)">DOWNLOAD</div></div>
-        </a>
-      </div>
-      <div class="contact-lower">
-        <div class="contact-form-panel">
-          <div class="cfp-header">
-            <div class="cfp-title">SEND A MESSAGE</div>
-            <div class="cfp-encrypt">DIRECT DELIVERY · NO SPAM</div>
+    <div class="resume-page-body">
+
+      <!-- Identity + download -->
+      <div class="resume-top-bar">
+        <div class="resume-identity">
+          <div class="resume-initials">AB</div>
+          <div>
+            <div class="resume-id-name">ARJUN BHARATH</div>
+            <div class="resume-id-role">SALESFORCE MARKETING CLOUD DEVELOPER · KOCHI, KERALA</div>
           </div>
-          <form id="contact-form">
-            <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_KEY_HERE">
-            <input type="hidden" name="subject" value="New message from Portfolio — Arjun Bharath">
-            <input type="checkbox" name="botcheck" style="display:none">
-            <div class="cf-field"><div class="cf-field-label">NAME<span class="cf-field-req">REQUIRED</span></div><input type="text" name="name" placeholder="Your full name" required></div>
-            <div class="cf-field"><div class="cf-field-label">EMAIL<span class="cf-field-req">REQUIRED</span></div><input type="email" name="email" placeholder="your@email.com" required></div>
-            <div class="cf-field"><div class="cf-field-label">MESSAGE<span class="cf-field-req">REQUIRED</span></div><textarea name="message" placeholder="Tell me about your project or opportunity..." required></textarea></div>
-            <div class="cf-submit-row"><button type="submit" class="cf-submit-btn" id="cf-submit"><span>SEND MESSAGE →</span></button></div>
-            <div class="cf-status" id="cf-status"></div>
-          </form>
         </div>
-        <div class="contact-resume-side">
-          <div class="crs-header">
-            <div class="crs-title">RESUME SNAPSHOT</div>
-            <div class="crs-identity">
-              <div class="crs-initials">AB</div>
-              <div><div class="crs-name">Arjun Bharath</div><div class="crs-role">SFMC DEVELOPER · KOCHI, KERALA</div></div>
+        <div class="resume-dl-block">
+          <div class="resume-dl-label">// DOWNLOAD FULL RESUME</div>
+          <a href="Arjun_Bharath_Resume.pdf" download class="resume-dl-btn" id="resume-main-dl">↓ &nbsp;RESUME PDF</a>
+        </div>
+      </div>
+
+      <!-- Stats -->
+      <div class="resume-stats-bar">
+        <div class="resume-stat"><div class="resume-stat-num">3+</div><div class="resume-stat-label">YEARS EXP.</div></div>
+        <div class="resume-stat"><div class="resume-stat-num">5+</div><div class="resume-stat-label">CERTIFICATIONS</div></div>
+        <div class="resume-stat"><div class="resume-stat-num">2</div><div class="resume-stat-label">COMPANIES</div></div>
+        <div class="resume-stat"><div class="resume-stat-num">∞</div><div class="resume-stat-label">LINES DEPLOYED</div></div>
+      </div>
+
+      <!-- Sections grid -->
+      <div class="resume-sections">
+
+        <!-- Experience -->
+        <div class="resume-section">
+          <div class="resume-sec-label">EXPERIENCE</div>
+          <div class="resume-exp-row">
+            <div class="resume-exp-dot"></div>
+            <div>
+              <div class="resume-exp-company">G10X Technology Pvt. Ltd.</div>
+              <div class="resume-exp-role">Software Engineer</div>
+              <div class="resume-exp-period">APR 2025 — PRESENT · INFOPARK, KOCHI</div>
             </div>
           </div>
-          <div class="crs-stats">
-            <div class="crs-stat"><div class="crs-stat-num">3+</div><div class="crs-stat-label">YEARS EXP.</div></div>
-            <div class="crs-stat"><div class="crs-stat-num">5+</div><div class="crs-stat-label">CERTS</div></div>
-            <div class="crs-stat"><div class="crs-stat-num">2</div><div class="crs-stat-label">COMPANIES</div></div>
-            <div class="crs-stat"><div class="crs-stat-num">∞</div><div class="crs-stat-label">DEPLOYED</div></div>
+          <div class="resume-exp-row">
+            <div class="resume-exp-dot"></div>
+            <div>
+              <div class="resume-exp-company">G10X Technology Pvt. Ltd.</div>
+              <div class="resume-exp-role">Associate Software Engineer</div>
+              <div class="resume-exp-period">MAR 2024 — APR 2025 · INFOPARK, KOCHI</div>
+            </div>
           </div>
-          <div class="crs-skills">
-            <div class="crs-skill-row"><span class="crs-skill-name">AMPscript / SFMC</span><div class="crs-skill-track"><div class="crs-skill-fill" style="--skill-pct:92%"></div></div><span class="crs-skill-pct">92%</span></div>
-            <div class="crs-skill-row"><span class="crs-skill-name">Journey Builder</span><div class="crs-skill-track"><div class="crs-skill-fill" style="--skill-pct:88%"></div></div><span class="crs-skill-pct">88%</span></div>
-            <div class="crs-skill-row"><span class="crs-skill-name">Apex / LWC</span><div class="crs-skill-track"><div class="crs-skill-fill" style="--skill-pct:75%"></div></div><span class="crs-skill-pct">75%</span></div>
-            <div class="crs-skill-row"><span class="crs-skill-name">REST APIs</span><div class="crs-skill-track"><div class="crs-skill-fill" style="--skill-pct:80%"></div></div><span class="crs-skill-pct">80%</span></div>
-            <div class="crs-skill-row"><span class="crs-skill-name">Java / Spring Boot</span><div class="crs-skill-track"><div class="crs-skill-fill" style="--skill-pct:65%"></div></div><span class="crs-skill-pct">65%</span></div>
+          <div class="resume-exp-row">
+            <div class="resume-exp-dot"></div>
+            <div>
+              <div class="resume-exp-company">QUEST Innovative Solutions</div>
+              <div class="resume-exp-role">Java Full Stack Web Developer Trainee</div>
+              <div class="resume-exp-period">MAY 2023 — JAN 2024 · KERALA</div>
+            </div>
           </div>
-          <a href="Arjun_Bharath_Resume.pdf" download class="crs-dl-btn" id="dl-btn-main">↓ &nbsp;DOWNLOAD RESUME PDF</a>
         </div>
+
+        <!-- Skills -->
+        <div class="resume-section">
+          <div class="resume-sec-label">CORE SKILLS</div>
+          <div class="resume-skill-item"><span class="resume-skill-name">AMPscript / SFMC</span><div class="resume-skill-track"><div class="resume-skill-fill" style="--skill-pct:92%"></div></div><span class="resume-skill-pct">92%</span></div>
+          <div class="resume-skill-item"><span class="resume-skill-name">Journey Builder</span><div class="resume-skill-track"><div class="resume-skill-fill" style="--skill-pct:88%"></div></div><span class="resume-skill-pct">88%</span></div>
+          <div class="resume-skill-item"><span class="resume-skill-name">Apex / LWC</span><div class="resume-skill-track"><div class="resume-skill-fill" style="--skill-pct:75%"></div></div><span class="resume-skill-pct">75%</span></div>
+          <div class="resume-skill-item"><span class="resume-skill-name">REST APIs</span><div class="resume-skill-track"><div class="resume-skill-fill" style="--skill-pct:80%"></div></div><span class="resume-skill-pct">80%</span></div>
+          <div class="resume-skill-item"><span class="resume-skill-name">Java / Spring Boot</span><div class="resume-skill-track"><div class="resume-skill-fill" style="--skill-pct:65%"></div></div><span class="resume-skill-pct">65%</span></div>
+          <div class="resume-skill-item"><span class="resume-skill-name">HTML / CSS / JS</span><div class="resume-skill-track"><div class="resume-skill-fill" style="--skill-pct:82%"></div></div><span class="resume-skill-pct">82%</span></div>
+        </div>
+
+        <!-- Certifications -->
+        <div class="resume-section">
+          <div class="resume-sec-label">CERTIFICATIONS</div>
+          <div class="resume-cert-item"><span class="resume-cert-name">Marketing Cloud Email Specialist</span><span class="resume-cert-badge sf">SF</span></div>
+          <div class="resume-cert-item"><span class="resume-cert-name">Agentforce Specialist</span><span class="resume-cert-badge sf">SF</span></div>
+          <div class="resume-cert-item"><span class="resume-cert-name">AI Associate</span><span class="resume-cert-badge sf">SF</span></div>
+          <div class="resume-cert-item"><span class="resume-cert-name">Generative AI Professional</span><span class="resume-cert-badge oracle">OCI</span></div>
+          <div class="resume-cert-item"><span class="resume-cert-name">OCI Data Science Professional</span><span class="resume-cert-badge oracle">OCI</span></div>
+        </div>
+
+        <!-- Education -->
+        <div class="resume-section">
+          <div class="resume-sec-label">EDUCATION</div>
+          <div class="resume-edu-item">
+            <div class="resume-edu-degree">Bachelor of Technology</div>
+            <div class="resume-edu-school">Computer Science &amp; Engineering</div>
+            <div class="resume-edu-year">KERALA · 2023</div>
+          </div>
+          <div style="margin-top:28px">
+            <div class="resume-sec-label" style="margin-bottom:14px">CONTACT</div>
+            <div style="font-size:9px;color:var(--w-faint);line-height:2.4;letter-spacing:0.1em">
+              <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="2a4b58405f4448424b584b5e426a4f474b434604494547">[email&#160;protected]</a><br>
+              linkedin.com/in/arjun-bharath-sr<br>
+              Kochi, Kerala, India<br>
+              IST · UTC+5:30
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
@@ -936,6 +1080,7 @@ body:has(a:hover) #cursor-ring,body:has(button:hover) #cursor-ring,body:has([dat
     <a href="#" data-nav="projects">PROJECTS</a>
     <a href="#" data-nav="certifications">CERTIFICATIONS</a>
     <a href="#" data-nav="contact">CONTACT</a>
+    <a href="#" data-nav="resume">RESUME</a>
   </div>
   <div class="mob-snd">
     <button class="snd-btn" data-sound><div class="tog-icon"><span></span><span></span><span></span><span></span><span></span></div><span class="snd-lbl">SND:ON</span></button>
@@ -943,14 +1088,12 @@ body:has(a:hover) #cursor-ring,body:has(button:hover) #cursor-ring,body:has([dat
   </div>
 </div>
 
-<!-- ═══════════ FEEDBACK POPUP ═══════════ -->
+<!-- FEEDBACK POPUP -->
 <div id="feedback-popup">
   <div class="fp-box">
     <div class="fp-accent"></div>
     <div class="fp-inner">
       <div class="fp-sys-tag">// FEEDBACK_REQUEST · AUTO</div>
-
-      <!-- Question state -->
       <div id="fp-question-state">
         <div class="fp-question">Did this portfolio make a strong first impression?</div>
         <div class="fp-sub">// YOUR HONEST FEEDBACK MATTERS</div>
@@ -960,8 +1103,6 @@ body:has(a:hover) #cursor-ring,body:has(button:hover) #cursor-ring,body:has([dat
         </div>
         <button class="fp-dismiss" id="fp-dismiss">[ skip · continue browsing ]</button>
       </div>
-
-      <!-- Thank you state -->
       <div class="fp-thankyou" id="fp-thankyou">
         <div class="fp-ty-icon">✦</div>
         <div class="fp-ty-title">THANK YOU!</div>
@@ -972,22 +1113,26 @@ body:has(a:hover) #cursor-ring,body:has(button:hover) #cursor-ring,body:has([dat
   </div>
 </div>
 
-<!-- ═══════════ VIDEO OVERLAY (shown on NO) ═══════════ -->
+<!-- VIDEO OVERLAY -->
 <div id="fp-video-overlay">
   <button class="fpv-close" id="fpv-close">[ ✕ CLOSE ]</button>
   <video id="fp-video" playsinline loop>
-    <!-- Replace with your actual video file path -->
     <source src="feedback-video.mp4" type="video/mp4">
   </video>
   <div class="fpv-label">// PRESS ESC OR CLOSE TO RETURN</div>
 </div>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-const pages=['home','work','experience','projects','certifications','contact'];
+// ── Pages list now includes resume ──
+const pages=['home','work','experience','projects','certifications','contact','resume'];
+
 pages.forEach(pid=>{
   const navEl=document.getElementById('nav-'+pid);if(!navEl)return;
-  const links=pages.map(p=>`<a href="#" data-nav="${p}"${p===pid?' class="active"':''}>${p.toUpperCase()}</a>`).join('');
-  // On mobile (<640px) show BGM button in nav; on desktop show both BGM + SND
+  const links=pages.map(p=>{
+    const isResume=p==='resume';
+    const cls=[p===pid?'active':'',isResume?'nav-resume':''].filter(Boolean).join(' ');
+    return `<a href="#" data-nav="${p}"${cls?` class="${cls}"`:''}>${p.toUpperCase()}</a>`;
+  }).join('');
   navEl.innerHTML=`
     <span class="nav-logo" data-nav="home" id="nl-${pid}">[ ARJUN BHARATH ]</span>
     <div class="nav-right">
@@ -1001,7 +1146,6 @@ pages.forEach(pid=>{
   `;
 });
 
-/* On mobile screens: keep bgm-btn.dsk visible in nav, but hide snd-btn.dsk */
 const mobileStyle=document.createElement('style');
 mobileStyle.textContent=`
   @media(max-width:640px){
@@ -1038,7 +1182,8 @@ const delay=ms=>new Promise(r=>setTimeout(r,ms));
 
 let audioCtx=null,master=null;
 const getCtx=()=>{if(!audioCtx)audioCtx=new(window.AudioContext||window.webkitAudioContext)();return audioCtx;};
-const getMaster=()=>{if(master)return master;const ctx=getCtx(),c=ctx.createDynamicsCompressor();c.threshold.value=-16;c.knee.value=8;c.ratio.value=5;c.attack.value=0.002;c.release.value=0.1;c.connect(ctx.destination);master=c;return master;};
+let muteGain=null;
+const getMaster=()=>{if(master)return master;const ctx=getCtx(),c=ctx.createDynamicsCompressor();c.threshold.value=-16;c.knee.value=8;c.ratio.value=5;c.attack.value=0.002;c.release.value=0.1;muteGain=ctx.createGain();muteGain.gain.value=1;c.connect(muteGain);muteGain.connect(ctx.destination);master=c;return master;};
 function noiseClick(freq=2400,vol=0.2,dur=0.016){const ctx=getCtx(),out=getMaster(),n=Math.floor(ctx.sampleRate*dur),buf=ctx.createBuffer(1,n,ctx.sampleRate),d=buf.getChannelData(0);for(let i=0;i<n;i++)d[i]=Math.random()*2-1;const src=ctx.createBufferSource();src.buffer=buf;const bp=ctx.createBiquadFilter();bp.type='bandpass';bp.frequency.value=freq+Math.random()*1400;bp.Q.value=1.6;const g=ctx.createGain();g.gain.setValueAtTime(vol,ctx.currentTime);g.gain.exponentialRampToValueAtTime(0.0001,ctx.currentTime+dur);src.connect(bp);bp.connect(g);g.connect(out);src.start();src.stop(ctx.currentTime+dur+0.004);}
 const playTypingClick=()=>noiseClick(2400,0.18,0.016);
 function playGlitch(vol=0.14,dur=0.06){const ctx=getCtx(),out=getMaster(),n=Math.floor(ctx.sampleRate*dur),buf=ctx.createBuffer(1,n,ctx.sampleRate),d=buf.getChannelData(0);for(let i=0;i<n;i++)d[i]=Math.random()<0.5?(Math.random()*2-1):0;const src=ctx.createBufferSource();src.buffer=buf;src.playbackRate.value=0.6+Math.random()*0.9;const bp=ctx.createBiquadFilter();bp.type='bandpass';bp.frequency.value=800+Math.random()*2400;bp.Q.value=0.5+Math.random()*1.2;const g=ctx.createGain();g.gain.setValueAtTime(vol,ctx.currentTime);g.gain.exponentialRampToValueAtTime(0.0001,ctx.currentTime+dur);src.connect(bp);bp.connect(g);g.connect(out);src.start();src.stop(ctx.currentTime+dur+0.01);}
@@ -1059,103 +1204,54 @@ async function typeLine(el,text){const line=document.createElement('div');line.c
 async function animateProgress(){progressRow.style.display='flex';startHum();const total=20;for(let i=1;i<=total;i++){await delay(38+Math.random()*28);assetsLabel.textContent=`Assets : ${i} / ${total}`;barFill.style.width=`${(i/total)*100}%`;playTick();if(Math.random()<0.22)setTimeout(()=>playGlitch(0.09,0.04),15);}stopHum();await delay(120);}
 async function showWelcome(){welcomeSection.style.display='block';for(const[k,v]of infoData){const row=document.createElement('div');row.className='info-row';row.innerHTML=`<span class="info-key">${k}</span><span class="info-sep"> : </span><span class="info-val">${v}</span>`;infoContainer.appendChild(row);await delay(16);row.classList.add('visible');playTypingClick();await delay(68);}}
 async function runLoader(){playGlitch(0.18,0.1);setTimeout(()=>playGlitch(0.11,0.07),75);await delay(200);for(const msg of logMessages)await typeLine(logContainer,msg);await animateProgress();logContainer.querySelectorAll('.log-line').forEach(l=>l.classList.add('dimmed'));await delay(120);await showWelcome();await delay(260);transitionSection.style.display='block';await delay(40);transLine1.classList.add('visible');playGlitch(0.08,0.05);await delay(180);transLine2.classList.add('visible');await delay(620);flash.style.opacity='0.18';await delay(55);flash.style.opacity='0';await delay(75);flash.style.opacity='0.07';await delay(48);flash.style.opacity='0';loaderEl.classList.add('fade-out');await delay(300);loaderEl.style.display='none';navigateTo('home');await delay(400);startBgm();
-  // Schedule the feedback popup 25 seconds after site loads
-  setTimeout(showFeedbackPopup, 25000);
+  setTimeout(showFeedbackPopup,25000);
 }
 
 let currentPage=null;
 function navigateTo(pid){if(pid===currentPage)return;if(currentPage){playNavClick();document.getElementById(currentPage).classList.remove('visible')}currentPage=pid;document.getElementById(pid).classList.add('visible');closeMobMenu();}
 
 let soundEnabled=true;
-function syncSound(){document.querySelectorAll('[data-sound]').forEach(b=>{b.classList.toggle('muted',!soundEnabled);const l=b.querySelector('.snd-lbl');if(l)l.textContent=soundEnabled?'SND:ON':'SND:OFF';});}
-function setSound(on){soundEnabled=on;if(on&&audioCtx&&audioCtx.state==='suspended')audioCtx.resume();syncSound();}
+function syncSound(){
+  document.querySelectorAll('[data-sound]').forEach(b=>{
+    b.classList.toggle('muted',!soundEnabled);
+    const l=b.querySelector('.snd-lbl');
+    if(l)l.textContent=soundEnabled?'SND:ON':'SND:OFF';
+  });
+  // mute/unmute master compressor output via a mute gain node
+  if(muteGain) muteGain.gain.setTargetAtTime(soundEnabled?1:0, (audioCtx||{currentTime:0}).currentTime||0, 0.015);
+}
+function setSound(on){
+  soundEnabled=on;
+  if(audioCtx&&audioCtx.state==='suspended')audioCtx.resume();
+  syncSound();
+}
 
 function openMobMenu(){mobMenu.classList.add('open');document.querySelectorAll('[data-burger]').forEach(b=>b.classList.add('open'))}
 function closeMobMenu(){mobMenu.classList.remove('open');document.querySelectorAll('[data-burger]').forEach(b=>b.classList.remove('open'))}
 
-/* ══════════════════════════════════════════
-   FEEDBACK POPUP LOGIC
-══════════════════════════════════════════ */
-const feedbackPopup = document.getElementById('feedback-popup');
-const fpQuestionState = document.getElementById('fp-question-state');
-const fpThankyou = document.getElementById('fp-thankyou');
-const fpYes = document.getElementById('fp-yes');
-const fpNo = document.getElementById('fp-no');
-const fpDismiss = document.getElementById('fp-dismiss');
-const fpTyBar = document.getElementById('fp-ty-bar');
+/* Feedback popup */
+const feedbackPopup=document.getElementById('feedback-popup');
+const fpQuestionState=document.getElementById('fp-question-state');
+const fpThankyou=document.getElementById('fp-thankyou');
+const fpYes=document.getElementById('fp-yes');
+const fpNo=document.getElementById('fp-no');
+const fpDismiss=document.getElementById('fp-dismiss');
+const fpTyBar=document.getElementById('fp-ty-bar');
+const fpVideoOverlay=document.getElementById('fp-video-overlay');
+const fpVideo=document.getElementById('fp-video');
+const fpvClose=document.getElementById('fpv-close');
 
-const fpVideoOverlay = document.getElementById('fp-video-overlay');
-const fpVideo = document.getElementById('fp-video');
-const fpvClose = document.getElementById('fpv-close');
+function showFeedbackPopup(){feedbackPopup.classList.add('open');if(soundEnabled)playGlitch(0.1,0.06);}
+function closeFeedbackPopup(){feedbackPopup.classList.remove('open');}
 
-function showFeedbackPopup(){
-  feedbackPopup.classList.add('open');
-  if(soundEnabled) playGlitch(0.1, 0.06);
-}
-
-function closeFeedbackPopup(){
-  feedbackPopup.classList.remove('open');
-}
-
-// YES — show thank you, then auto-close
-fpYes.addEventListener('click', ()=>{
-  if(soundEnabled) playNavClick();
-  fpQuestionState.style.display = 'none';
-  fpThankyou.style.display = 'block';
-  // trigger bar animation
-  requestAnimationFrame(()=>{
-    requestAnimationFrame(()=>{ fpTyBar.classList.add('go'); });
-  });
-  // close popup after 2.4s
-  setTimeout(closeFeedbackPopup, 2400);
-});
-
-// NO — close popup, pause BGM, show video overlay with audio
-fpNo.addEventListener('click', ()=>{
-  if(soundEnabled) playNavClick();
-  closeFeedbackPopup();
-  setTimeout(()=>{
-    // Pause BGM before playing feedback video
-    if(bgmPlaying) stopBgm();
-    fpVideoOverlay.classList.add('open');
-    fpVideo.currentTime = 0;
-    fpVideo.muted = false;
-    fpVideo.play().catch(e=>{
-      fpVideo.muted = true;
-      fpVideo.play().then(()=>{ fpVideo.muted = false; }).catch(()=>{});
-    });
-  }, 350);
-});
-
-// Dismiss — just close
-fpDismiss.addEventListener('click', ()=>{
-  if(soundEnabled) noiseClick(1800,0.1,0.02);
-  closeFeedbackPopup();
-});
-
-// Force loop manually — most reliable cross-browser approach
-fpVideo.addEventListener('ended', ()=>{
-  fpVideo.currentTime = 0;
-  fpVideo.play().catch(()=>{});
-});
-
-// Close video overlay
-function closeVideoOverlay(){
-  fpVideo.pause();
-  fpVideo.currentTime = 0;
-  fpVideoOverlay.classList.remove('open');
-  // Resume BGM after video closes
-  startBgm();
-}
-fpvClose.addEventListener('click', closeVideoOverlay);
-fpVideoOverlay.addEventListener('click', e=>{
-  if(e.target === fpVideoOverlay) closeVideoOverlay();
-});
-
-// Backdrop click closes feedback popup
-feedbackPopup.addEventListener('click', e=>{
-  if(e.target === feedbackPopup) closeFeedbackPopup();
-});
+fpYes.addEventListener('click',()=>{if(soundEnabled)playNavClick();fpQuestionState.style.display='none';fpThankyou.style.display='block';requestAnimationFrame(()=>requestAnimationFrame(()=>{fpTyBar.classList.add('go');}));setTimeout(closeFeedbackPopup,2400);});
+fpNo.addEventListener('click',()=>{if(soundEnabled)playNavClick();closeFeedbackPopup();setTimeout(()=>{if(bgmPlaying)stopBgm();fpVideoOverlay.classList.add('open');fpVideo.currentTime=0;fpVideo.muted=false;fpVideo.play().catch(()=>{fpVideo.muted=true;fpVideo.play().then(()=>{fpVideo.muted=false;}).catch(()=>{});});},350);});
+fpDismiss.addEventListener('click',()=>{if(soundEnabled)noiseClick(1800,0.1,0.02);closeFeedbackPopup();});
+fpVideo.addEventListener('ended',()=>{fpVideo.currentTime=0;fpVideo.play().catch(()=>{});});
+function closeVideoOverlay(){fpVideo.pause();fpVideo.currentTime=0;fpVideoOverlay.classList.remove('open');startBgm();}
+fpvClose.addEventListener('click',closeVideoOverlay);
+fpVideoOverlay.addEventListener('click',e=>{if(e.target===fpVideoOverlay)closeVideoOverlay();});
+feedbackPopup.addEventListener('click',e=>{if(e.target===feedbackPopup)closeFeedbackPopup();});
 
 document.addEventListener('click',e=>{
   const nav=e.target.closest('[data-nav]');if(nav){e.preventDefault();navigateTo(nav.dataset.nav);return;}
@@ -1163,9 +1259,9 @@ document.addEventListener('click',e=>{
   const bgmB=e.target.closest('[data-bgm]');if(bgmB){toggleBgm();return;}
   const burg=e.target.closest('[data-burger]');if(burg){mobMenu.classList.contains('open')?closeMobMenu():openMobMenu();return;}
   const mc=e.target.closest('#mob-close-btn');if(mc){closeMobMenu();return;}
-  if(e.target.closest('#dl-btn-main,#resume-download,#home-dl-btn')&&soundEnabled)playNavClick();
+  if(e.target.closest('#resume-download,#home-dl-btn,#resume-main-dl')&&soundEnabled)playNavClick();
   if(e.target.closest('#home-dl-btn')){const b=document.getElementById('home-dl-btn');const o=b.innerHTML;b.innerHTML='↓ DOWNLOADING...';setTimeout(()=>b.innerHTML=o,2000);}
-  if(e.target.closest('#dl-btn-main')){const b=document.getElementById('dl-btn-main');const o=b.innerHTML;b.innerHTML='<span style="color:var(--green)">↓ DOWNLOADING...</span>';setTimeout(()=>b.innerHTML=o,2000);}
+  if(e.target.closest('#resume-main-dl')){const b=document.getElementById('resume-main-dl');const o=b.innerHTML;b.innerHTML='<span>↓ &nbsp;DOWNLOADING...</span>';setTimeout(()=>b.innerHTML=o,2000);}
 });
 
 /* Cert modal */
@@ -1176,19 +1272,16 @@ document.getElementById('cert-modal-close').addEventListener('click',()=>certMod
 certModal.addEventListener('click',e=>{if(e.target===certModal)certModal.classList.remove('open');});
 
 document.addEventListener('keydown',e=>{
-  if(e.key==='Escape'){
-    certModal.classList.remove('open');
-    closeFeedbackPopup();
-    closeVideoOverlay();
-  }
+  if(e.key==='Escape'){certModal.classList.remove('open');closeFeedbackPopup();closeVideoOverlay();}
 });
-
-/* Cert filter btns */
-document.querySelectorAll('.cert-filter-btn').forEach(btn=>{btn.addEventListener('click',()=>{document.querySelectorAll('.cert-filter-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');if(soundEnabled)playNavClick();});});
 
 /* Contact form */
 const contactForm=document.getElementById('contact-form'),cfSubmit=document.getElementById('cf-submit'),cfStatus=document.getElementById('cf-status');
-if(contactForm){contactForm.addEventListener('submit',async e=>{e.preventDefault();cfSubmit.disabled=true;cfSubmit.querySelector('span').textContent='SENDING...';cfStatus.textContent='';cfStatus.className='cf-status';const data=new FormData(contactForm);try{const res=await fetch('https://api.web3forms.com/submit',{method:'POST',body:data});const json=await res.json();if(json.success){cfStatus.textContent="✓ MESSAGE SENT — I'LL REPLY WITHIN 24 HRS";cfStatus.className='cf-status ok';contactForm.reset();}else{cfStatus.textContent='✗ SOMETHING WENT WRONG. TRY EMAIL INSTEAD.';cfStatus.className='cf-status err';}}catch(err){cfStatus.textContent='✗ NETWORK ERROR. TRY EMAIL INSTEAD.';cfStatus.className='cf-status err';}cfSubmit.disabled=false;cfSubmit.querySelector('span').textContent='SEND MESSAGE →';});}
+if(contactForm){contactForm.addEventListener('submit',async e=>{e.preventDefault();cfSubmit.disabled=true;cfSubmit.querySelector('span').textContent='SENDING...';cfStatus.textContent='';cfStatus.className='cx-submit-status';const data=new FormData(contactForm);try{const res=await fetch('https://api.web3forms.com/submit',{method:'POST',body:data});const json=await res.json();if(json.success){cfStatus.textContent="✓ TRANSMITTED — I'LL REPLY WITHIN 24 HRS";cfStatus.className='cx-submit-status ok';contactForm.reset();}else{cfStatus.textContent='✗ TRANSMISSION FAILED. TRY EMAIL INSTEAD.';cfStatus.className='cx-submit-status err';}}catch(err){cfStatus.textContent='✗ NETWORK ERROR. TRY EMAIL INSTEAD.';cfStatus.className='cx-submit-status err';}cfSubmit.disabled=false;cfSubmit.querySelector('span').textContent='TRANSMIT MESSAGE →';});}
+
+// Char counter
+const cxMsg=document.getElementById('cx-msg'),cxHint=document.getElementById('cx-char-hint');
+if(cxMsg&&cxHint){cxMsg.addEventListener('input',()=>{const n=cxMsg.value.length;cxHint.textContent=n+' / 1000';cxHint.style.color=n>900?'rgba(255,68,68,0.8)':n>600?'rgba(255,200,50,0.6)':'';if(n>1000)cxMsg.value=cxMsg.value.slice(0,1000);});}
 
 startScreen.addEventListener('click',()=>{getCtx().resume();startScreen.classList.add('hide');setTimeout(()=>{startScreen.style.display='none'},600);runLoader();},{once:true});
 </script>
