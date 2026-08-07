@@ -77,7 +77,7 @@ body.light-mode .sm-theme-toggle .theme-dot {
   min-height: 38px;
   padding: 0 2px;
   color: rgba(241, 241, 237, 0.92);
-  font-size: 12px;
+  font-size: 10px;
   letter-spacing: 0.12em;
   transition: color 0.25s ease, opacity 0.25s ease;
 }
@@ -106,7 +106,7 @@ body.light-mode[data-scrolled="true"] .sm-toggle {
 
   .sm-toggle {
     min-height: 36px;
-    font-size: 11px;
+    font-size: 9px;
   }
 
   .hero {
