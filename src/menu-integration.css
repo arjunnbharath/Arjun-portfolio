@@ -42,9 +42,19 @@ body.light-mode .sm-theme-toggle .theme-dot {
   pointer-events: none;
 }
 
-.staggered-menu-wrapper.fixed-wrapper .staggered-menu-header,
+.staggered-menu-wrapper.fixed-wrapper .staggered-menu-header {
+  pointer-events: auto;
+}
+
+/* The panel stays mounted at full height on the right edge while closed, so it
+   must not swallow clicks aimed at the nav actions underneath it. */
 .staggered-menu-wrapper.fixed-wrapper .staggered-menu-panel,
 .staggered-menu-wrapper.fixed-wrapper .sm-prelayers {
+  pointer-events: none;
+}
+
+.staggered-menu-wrapper.fixed-wrapper[data-open] .staggered-menu-panel,
+.staggered-menu-wrapper.fixed-wrapper[data-open] .sm-prelayers {
   pointer-events: auto;
 }
 

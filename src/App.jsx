@@ -1,21 +1,29 @@
 import { useEffect, useState } from 'react';
+import { Link, Route, Routes, useLocation } from 'react-router-dom';
 import StaggeredMenu from './components/StaggeredMenu';
 import SiteNav from './components/SiteNav';
+import PhysicalAIPage from './pages/PhysicalAI';
+import ProjectsPage from './pages/Projects';
+import ProjectDetailPage from './pages/ProjectDetail';
+import projects from './data/projects';
 import './styles.css';
 import './menu-integration.css';
 
+const featuredProject = projects[0];
+const secondaryProjects = projects.slice(1, 3);
+
 const menuItems = [
-  { label: 'Home', ariaLabel: 'Go to home', link: '#home' },
-  { label: 'About', ariaLabel: 'Learn about me', link: '#about' },
-  { label: 'Experience', ariaLabel: 'View experience', link: '#experience' },
-  { label: 'Projects', ariaLabel: 'View projects', link: '#projects' },
-  { label: 'Contact', ariaLabel: 'Get in touch', link: '#contact' }
+  { label: 'Home', ariaLabel: 'Go to home', link: '/' },
+  { label: 'About', ariaLabel: 'Learn about me', link: '/#about' },
+  { label: 'Experience', ariaLabel: 'View experience', link: '/#experience' },
+  { label: 'Projects', ariaLabel: 'View projects', link: '/#projects' },
+  { label: 'Contact', ariaLabel: 'Get in touch', link: '/#contact' }
 ];
 
 const featuredMenuItem = {
   label: 'Explore Physical AI',
   ariaLabel: 'Explore Physical AI',
-  link: '#physical-ai',
+  link: '/physical-ai',
   badge: 'Now Exploring'
 };
 
@@ -72,6 +80,8 @@ function App() {
   const [formStatus, setFormStatus] = useState('');
   const [activeCert, setActiveCert] = useState(null);
   const isLight = theme === 'light';
+  const location = useLocation();
+  const isHome = location.pathname === '/';
 
   useEffect(() => {
     document.body.classList.toggle('light-mode', isLight);
@@ -79,8 +89,25 @@ function App() {
   }, [isLight]);
 
   useEffect(() => {
+    if (!isHome) return undefined;
+    if (!location.hash) {
+      window.scrollTo(0, 0);
+      return undefined;
+    }
+
+    const id = location.hash.slice(1);
+    const timer = window.setTimeout(() => {
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    }, 60);
+
+    return () => window.clearTimeout(timer);
+  }, [isHome, location.hash, location.pathname]);
+
+  useEffect(() => {
+    if (!isHome) return undefined;
+
     const revealElements = document.querySelectorAll(
-      '.section h2, .about-grid > *, .about-copy > *, .services-grid > img, .service-list article, .project-card, .physical-ai-copy, .cert-item, .education, .contact-grid > *'
+      '.section h2, .about-grid > *, .about-copy > *, .services-grid > img, .service-list article, .project-card, .cert-item, .education, .contact-grid > *'
     );
 
     revealElements.forEach((element, index) => {
@@ -102,7 +129,7 @@ function App() {
 
     revealElements.forEach((element) => revealObserver.observe(element));
     return () => revealObserver.disconnect();
-  }, []);
+  }, [isHome]);
 
   useEffect(() => {
     if (!activeCert) return undefined;
@@ -142,45 +169,7 @@ function App() {
     document.body.style.overflow = '';
   };
 
-  return (
-    <>
-      <SiteNav
-        name="Arjun Bharath SR"
-        physicalAiLink="#physical-ai"
-        isLight={isLight}
-        onThemeToggle={toggleTheme}
-      />
-      <StaggeredMenu
-        position="right"
-        items={menuItems}
-        socialItems={socialItems}
-        displaySocials
-        displayItemNumbering
-        menuButtonColor={isLight ? '#1b1a16' : '#ffffff'}
-        openMenuButtonColor="#1b1a16"
-        changeMenuColorOnOpen
-        colors={['#1b1a16', '#4f4b42']}
-        logoUrl="/logo.svg"
-        accentColor="#4f4b42"
-        isFixed
-        closeOnClickAway
-        onMenuOpen={lockScroll}
-        onMenuClose={unlockScroll}
-        featuredItem={featuredMenuItem}
-        panelActions={
-          <button
-            className="sm-theme-toggle"
-            type="button"
-            aria-label={`Switch to ${isLight ? 'dark' : 'light'} mode`}
-            aria-pressed={isLight}
-            onClick={toggleTheme}
-          >
-            <span className="theme-dot" />
-            <span>{isLight ? 'Dark' : 'Light'}</span>
-          </button>
-        }
-      />
-
+  const homePage = (
       <div className="page-shell">
         <header className="hero" id="home">
           <div className="hero-overlay" aria-hidden="true" />
@@ -263,43 +252,38 @@ function App() {
 
           <section id="projects" className="section projects">
             <h2>Projects</h2>
-            <div className="project-grid">
-              <article className="project-card">
-                <h3>Jira Spillover Analyzer</h3>
-                <p>Web app to analyse Jira CSV data and identify sprint spillover patterns. Built with Node.js, Express.js, PostgreSQL, and Firebase auth for upload, processing, and visualization workflows.</p>
-              </article>
-              <article className="project-card">
-                <h3>AI / RAG Knowledge Application</h3>
-                <p>Explored RAG pipelines with document chunking, embeddings, FAISS/vector search, and LLMs. Focused on semantic retrieval, prompt engineering, and improving LLM response accuracy.</p>
-              </article>
-              <article className="project-card">
-                <h3>OneMoreRep</h3>
-                <p>Fitness &amp; workout tracking application concept for exercises, progress, and calorie-related activities across desktop and mobile experiences.</p>
-              </article>
-              <article className="project-card">
-                <h3>Jewelry E-commerce Platform</h3>
-                <p>E-commerce concept with product browsing, inventory, discounts, promotions, and an admin dashboard for stock, pricing, and campaigns.</p>
-              </article>
-              <article className="project-card">
-                <h3>LoopLab Studios</h3>
-                <p>Modern clothing e-commerce website concept with responsive UI and product-focused shopping experiences.</p>
-              </article>
-              <article className="project-card">
-                <h3>Restrobar</h3>
-                <p>Restaurant website concept with responsive layouts, menu presentation, and customer-focused web design.</p>
-              </article>
-            </div>
-          </section>
 
-          <section id="physical-ai" className="section physical-ai">
-            <h2>Explore Physical AI</h2>
-            <div className="physical-ai-copy">
-              <p>
-                Exploring the intersection of AI, robotics, and real-world systems — building intelligent applications that connect software, sensors, and physical environments. Focus areas include embodied AI, agentic systems, edge inference, and human-machine interaction.
-              </p>
-              <p>
-                From RAG and LLM workflows to automation and data-driven decision making, I&apos;m interested in how AI moves beyond screens into machines, devices, and everyday physical workflows.
-              </p>
+            <Link className="project-feature" to={`/projects/${featuredProject.slug}`}>
+              <img src={featuredProject.image} alt="" loading="lazy" />
+              <div className="project-feature-body">
+                <h3>{featuredProject.title}</h3>
+                <p>{featuredProject.summary}</p>
+                <span className="project-feature-cta">View project →</span>
+              </div>
+            </Link>
+
+            <div className="project-showcase">
+              <div className="project-explore">
+                <h3>Explore more</h3>
+                <p>
+                  Full-stack applications, AI experiments, and product concepts — browse the
+                  complete set of work.
+                </p>
+                <Link className="project-explore-btn" to="/projects">
+                  All projects
+                </Link>
+              </div>
+
+              {secondaryProjects.map((project) => (
+                <Link
+                  key={project.slug}
+                  className="project-thumb"
+                  to={`/projects/${project.slug}`}
+                >
+                  <img src={project.image} alt="" loading="lazy" />
+                  <span className="project-thumb-title">{project.title}</span>
+                </Link>
+              ))}
             </div>
           </section>
 
@@ -375,6 +359,53 @@ function App() {
           <small>© 2026 AB. All rights reserved.</small>
         </footer>
       </div>
+  );
+
+  return (
+    <>
+      <SiteNav
+        name="Arjun Bharath SR"
+        physicalAiLink="/physical-ai"
+        isLight={isLight}
+        onThemeToggle={toggleTheme}
+      />
+      <StaggeredMenu
+        position="right"
+        items={menuItems}
+        socialItems={socialItems}
+        displaySocials
+        displayItemNumbering
+        menuButtonColor={isLight ? '#1b1a16' : '#ffffff'}
+        openMenuButtonColor="#1b1a16"
+        changeMenuColorOnOpen
+        colors={['#1b1a16', '#4f4b42']}
+        logoUrl="/logo.svg"
+        accentColor="#4f4b42"
+        isFixed
+        closeOnClickAway
+        onMenuOpen={lockScroll}
+        onMenuClose={unlockScroll}
+        featuredItem={featuredMenuItem}
+        panelActions={
+          <button
+            className="sm-theme-toggle"
+            type="button"
+            aria-label={`Switch to ${isLight ? 'dark' : 'light'} mode`}
+            aria-pressed={isLight}
+            onClick={toggleTheme}
+          >
+            <span className="theme-dot" />
+            <span>{isLight ? 'Dark' : 'Light'}</span>
+          </button>
+        }
+      />
+
+      <Routes>
+        <Route path="/" element={homePage} />
+        <Route path="/physical-ai" element={<PhysicalAIPage />} />
+        <Route path="/projects" element={<ProjectsPage />} />
+        <Route path="/projects/:slug" element={<ProjectDetailPage />} />
+      </Routes>
 
       {activeCert && (
         <div

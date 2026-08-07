@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import './SiteNav.css';
 
 const SECTIONS = [
@@ -10,11 +11,13 @@ const SECTIONS = [
 
 const SiteNav = ({
   name = 'Arjun Bharath SR',
-  physicalAiLink = '#physical-ai',
+  physicalAiLink = '/physical-ai',
   physicalAiLabel = 'Explore Physical AI',
   isLight = false,
   onThemeToggle
 }) => {
+  const location = useLocation();
+  const isHome = location.pathname === '/';
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('');
 
@@ -34,6 +37,11 @@ const SiteNav = ({
   }, []);
 
   useEffect(() => {
+    if (!isHome) {
+      setActiveSection('');
+      return undefined;
+    }
+
     const sections = SECTIONS.map(section => document.getElementById(section.id)).filter(Boolean);
     if (!sections.length) return undefined;
 
@@ -55,24 +63,24 @@ const SiteNav = ({
 
     sections.forEach(section => observer.observe(section));
     return () => observer.disconnect();
-  }, []);
+  }, [isHome]);
 
   return (
     <header className={`site-nav${scrolled ? ' is-scrolled' : ''}`}>
       <div className="site-nav-shell">
-        <a className="site-nav-brand" href="#home">
+        <Link className="site-nav-brand" to="/">
           {name}
-        </a>
+        </Link>
 
         <nav className="site-nav-links" aria-label="Page sections">
           {SECTIONS.map(section => (
-            <a
+            <Link
               key={section.id}
-              href={`#${section.id}`}
+              to={isHome ? `#${section.id}` : `/#${section.id}`}
               className={activeSection === section.id ? 'is-active' : ''}
             >
               {section.label}
-            </a>
+            </Link>
           ))}
         </nav>
 
@@ -89,9 +97,12 @@ const SiteNav = ({
               <span>{isLight ? 'Dark' : 'Light'}</span>
             </button>
           )}
-          <a className="site-nav-cta" href={physicalAiLink}>
+          <Link
+            className={`site-nav-cta${location.pathname === physicalAiLink ? ' is-active' : ''}`}
+            to={physicalAiLink}
+          >
             {physicalAiLabel}
-          </a>
+          </Link>
         </div>
       </div>
     </header>

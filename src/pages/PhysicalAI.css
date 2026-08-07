@@ -1,0 +1,107 @@
+.physical-ai-page {
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+.physical-ai-main {
+  width: min(920px, 100%);
+  margin: 0 auto;
+  padding: calc(var(--site-nav-height, 52px) + 48px) clamp(20px, 5vw, 80px) 72px;
+}
+
+.physical-ai-eyebrow {
+  margin: 0 0 14px;
+  color: rgba(241, 241, 237, 0.62);
+  font-size: clamp(10px, 0.85vw, 12px);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.physical-ai-main h1 {
+  margin: 0 0 22px;
+  font-size: clamp(42px, 7vw, 88px);
+  font-weight: 300;
+  line-height: 0.92;
+  letter-spacing: -0.05em;
+  text-transform: uppercase;
+}
+
+.physical-ai-lead {
+  max-width: 640px;
+  margin: 0 0 42px;
+  color: rgba(241, 241, 237, 0.78);
+  font-size: clamp(13px, 1.2vw, 17px);
+  line-height: 1.7;
+}
+
+.physical-ai-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(24px, 4vw, 48px);
+  margin-bottom: 42px;
+}
+
+.physical-ai-grid article {
+  padding: 22px 20px;
+  border: 1px solid rgba(241, 241, 237, 0.12);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.physical-ai-grid h2 {
+  margin: 0 0 16px;
+  font-size: clamp(16px, 1.4vw, 22px);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.physical-ai-grid ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.physical-ai-grid li,
+.physical-ai-grid p {
+  margin: 0 0 12px;
+  color: rgba(221, 222, 218, 0.86);
+  font-size: clamp(11px, 0.95vw, 14px);
+  line-height: 1.65;
+}
+
+.physical-ai-grid li:last-child,
+.physical-ai-grid p:last-child {
+  margin-bottom: 0;
+}
+
+.physical-ai-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+body.light-mode .physical-ai-eyebrow {
+  color: rgba(79, 75, 66, 0.72);
+}
+
+body.light-mode .physical-ai-lead,
+body.light-mode .physical-ai-grid li,
+body.light-mode .physical-ai-grid p {
+  color: rgba(27, 26, 22, 0.78);
+}
+
+body.light-mode .physical-ai-grid article {
+  border-color: rgba(27, 26, 22, 0.1);
+  background: rgba(255, 255, 255, 0.45);
+}
+
+@media (max-width: 720px) {
+  .physical-ai-main {
+    padding-top: calc(var(--site-nav-height, 48px) + 28px);
+    padding-bottom: 48px;
+  }
+
+  .physical-ai-grid {
+    grid-template-columns: 1fr;
+  }
+}

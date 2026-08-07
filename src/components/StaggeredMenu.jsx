@@ -392,7 +392,7 @@ const StaggeredMenu = ({
         })()}
       </div>
       <header className="staggered-menu-header" aria-label="Main navigation header">
-        <a className="sm-logo" href="#home" aria-label="Arjun Bharath SR home">
+        <a className="sm-logo" href="/" aria-label="Arjun Bharath SR home">
           <img
             src={logoUrl || '/logo.svg'}
             alt="Arjun"
