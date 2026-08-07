@@ -532,10 +532,177 @@ h1 {
 }
 
 .cert-list li {
-  padding: 12px 0;
+  padding: 0;
   border-bottom: 1px solid var(--line);
   color: #dddeda;
   font-size: 11px;
+}
+
+.cert-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  padding: 12px 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: color .2s ease, opacity .2s ease;
+}
+
+.cert-item:hover,
+.cert-item:focus-visible {
+  color: #fff;
+}
+
+.cert-item:focus-visible {
+  outline: 1px solid rgba(241, 241, 237, .4);
+  outline-offset: 4px;
+}
+
+.cert-logo {
+  width: 28px;
+  height: 28px;
+  flex: 0 0 auto;
+  object-fit: contain;
+  background: rgba(255, 255, 255, .92);
+  border-radius: 6px;
+  padding: 3px;
+}
+
+.cert-title {
+  flex: 1 1 auto;
+  min-width: 0;
+  line-height: 1.45;
+}
+
+.cert-view {
+  flex: 0 0 auto;
+  color: var(--muted);
+  font-size: 8px;
+  letter-spacing: .12em;
+  opacity: .7;
+  transition: opacity .2s ease, color .2s ease;
+}
+
+.cert-item:hover .cert-view,
+.cert-item:focus-visible .cert-view {
+  color: inherit;
+  opacity: 1;
+}
+
+.cert-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(5, 6, 5, .78);
+  backdrop-filter: blur(10px);
+}
+
+.cert-modal-panel {
+  width: min(920px, 100%);
+  max-height: min(90vh, 920px);
+  overflow: auto;
+  padding: 18px;
+  border: 1px solid rgba(241, 241, 237, .14);
+  border-radius: 16px;
+  background: #111311;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, .45);
+}
+
+.cert-modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.cert-modal-heading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.cert-modal-logo {
+  width: 34px;
+  height: 34px;
+  flex: 0 0 auto;
+  object-fit: contain;
+  background: #fff;
+  border-radius: 8px;
+  padding: 4px;
+}
+
+.cert-modal-heading h3 {
+  margin: 0;
+  color: #f1f1ed;
+  font-size: clamp(12px, 1.2vw, 16px);
+  font-weight: 400;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+
+.cert-modal-close {
+  width: 36px;
+  height: 36px;
+  flex: 0 0 auto;
+  border: 1px solid rgba(241, 241, 237, .18);
+  border-radius: 999px;
+  background: transparent;
+  color: #f1f1ed;
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color .2s ease, border-color .2s ease;
+}
+
+.cert-modal-close:hover,
+.cert-modal-close:focus-visible {
+  background: rgba(241, 241, 237, .08);
+  border-color: rgba(241, 241, 237, .34);
+}
+
+.cert-modal-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  background: #0b0d0b;
+}
+
+body.light-mode .cert-item:hover,
+body.light-mode .cert-item:focus-visible {
+  color: #1b1a16;
+}
+
+body.light-mode .cert-modal {
+  background: rgba(27, 26, 22, .55);
+}
+
+body.light-mode .cert-modal-panel {
+  background: #f7f3ee;
+  border-color: rgba(27, 26, 22, .1);
+}
+
+body.light-mode .cert-modal-heading h3,
+body.light-mode .cert-modal-close {
+  color: #1b1a16;
+}
+
+body.light-mode .cert-modal-close {
+  border-color: rgba(27, 26, 22, .14);
+}
+
+body.light-mode .cert-modal-close:hover,
+body.light-mode .cert-modal-close:focus-visible {
+  background: rgba(27, 26, 22, .06);
 }
 
 .education {
@@ -861,7 +1028,7 @@ footer small {
 
 @media (min-width: 621px) {
   body {
-    font-size: 14px;
+    font-size: 12px;
   }
 
   .hero {
@@ -870,13 +1037,13 @@ footer small {
     justify-content: flex-end;
     min-height: 100vh;
     min-height: 100dvh;
-    padding: 5.5rem clamp(32px, 6vw, 100px) clamp(48px, 7vh, 88px);
+    padding: 4.5rem clamp(28px, 5vw, 80px) clamp(40px, 6vh, 70px);
   }
 
   .hero-inner {
     min-height: calc(100vh - 9rem);
     min-height: calc(100dvh - 9rem);
-    gap: clamp(28px, 4vh, 48px);
+    gap: clamp(22px, 3vh, 38px);
   }
 
   .hero-eyebrow {
@@ -903,7 +1070,7 @@ footer small {
   }
 
   h1 {
-    font-size: clamp(80px, 10vw, 170px);
+    font-size: clamp(64px, 7.5vw, 128px);
     flex: 0 1 auto;
     line-height: 0.88;
   }
@@ -923,7 +1090,7 @@ footer small {
   }
 
   .hero-copy {
-    width: min(34vw, 470px);
+    width: min(28vw, 360px);
     flex: 0 0 auto;
     padding-bottom: 0.15em;
     display: flex;
@@ -932,8 +1099,8 @@ footer small {
   }
 
   .hero-copy p {
-    margin-bottom: 32px;
-    font-size: clamp(11px, .9vw, 15px);
+    margin-bottom: 24px;
+    font-size: clamp(10px, .72vw, 12px);
   }
 
   .hero-actions {
@@ -941,9 +1108,9 @@ footer small {
   }
 
   .hero-btn {
-    min-height: 44px;
-    padding: 0 22px;
-    font-size: clamp(9px, .75vw, 11px);
+    min-height: 38px;
+    padding: 0 18px;
+    font-size: clamp(8px, .65vw, 10px);
   }
 
   .hero-scroll {
@@ -951,21 +1118,21 @@ footer small {
   }
 
   .section {
-    padding: 70px clamp(32px, 6vw, 100px) 55px;
+    padding: 48px clamp(26px, 4.5vw, 70px) 38px;
   }
 
   .section h2 {
-    margin-bottom: 60px;
-    font-size: clamp(44px, 4vw, 66px);
+    margin-bottom: 42px;
+    font-size: clamp(34px, 3vw, 50px);
   }
 
   .about-grid {
-    grid-template-columns: minmax(250px, 28%) 1fr;
-    gap: clamp(45px, 7vw, 120px);
+    grid-template-columns: minmax(220px, 25%) 1fr;
+    gap: clamp(36px, 5.5vw, 90px);
   }
 
   .portrait {
-    height: clamp(360px, 38vw, 620px);
+    height: clamp(260px, 28vw, 430px);
   }
 
   .about-copy {
@@ -973,21 +1140,21 @@ footer small {
   }
 
   .about-copy p {
-    font-size: clamp(11px, .9vw, 15px);
+    font-size: clamp(10px, .72vw, 12px);
   }
 
   .about-copy blockquote {
-    width: min(500px, 70%);
-    margin-top: 45px;
-    font-size: clamp(30px, 3vw, 48px);
+    width: min(440px, 70%);
+    margin-top: 34px;
+    font-size: clamp(23px, 2.2vw, 35px);
   }
 
   .works {
-    padding-top: 80px;
+    padding-top: 64px;
   }
 
   .works h2 {
-    margin-bottom: 80px;
+    margin-bottom: 60px;
   }
 
   .section-note {
@@ -997,7 +1164,7 @@ footer small {
   }
 
   .gallery-track img {
-    height: clamp(260px, 28vw, 480px);
+    height: clamp(190px, 20vw, 330px);
   }
 
   .skills-track {
@@ -1005,16 +1172,16 @@ footer small {
   }
 
   .skill-card {
-    min-height: clamp(240px, 24vw, 320px);
-    padding: 28px 24px;
+    min-height: clamp(175px, 17vw, 230px);
+    padding: 18px 16px;
   }
 
   .skill-card h3 {
-    font-size: clamp(14px, 1.1vw, 18px);
+    font-size: clamp(12px, .9vw, 15px);
   }
 
   .skill-card p {
-    font-size: clamp(10px, .75vw, 13px);
+    font-size: clamp(9px, .62vw, 11px);
   }
 
   .project-grid {
@@ -1023,28 +1190,42 @@ footer small {
   }
 
   .project-card {
-    min-height: 220px;
-    padding: 28px 24px;
+    min-height: 160px;
+    padding: 18px 16px;
   }
 
   .project-card h3 {
-    font-size: clamp(16px, 1.2vw, 20px);
+    font-size: clamp(13px, .94vw, 16px);
   }
 
   .project-card p {
-    font-size: clamp(10px, .75vw, 13px);
+    font-size: clamp(9px, .62vw, 11px);
   }
 
   .cert-list li {
-    font-size: clamp(12px, .9vw, 15px);
+    font-size: clamp(10px, .75vw, 13px);
+  }
+
+  .cert-item {
+    gap: 16px;
+    padding: 14px 0;
+  }
+
+  .cert-logo {
+    width: 32px;
+    height: 32px;
+  }
+
+  .cert-view {
+    font-size: 9px;
   }
 
   .education h3 {
-    font-size: 24px;
+    font-size: 20px;
   }
 
   .education p {
-    font-size: 12px;
+    font-size: 10px;
   }
 
   .role-meta {
@@ -1064,7 +1245,7 @@ footer small {
   }
 
   .services {
-    padding-top: 90px;
+    padding-top: 68px;
   }
 
   .services-grid {
@@ -1072,24 +1253,24 @@ footer small {
   }
 
   .services-grid > img {
-    height: clamp(270px, 30vw, 490px);
+    height: clamp(200px, 22vw, 340px);
   }
 
   .service-list article {
-    padding: 18px 0;
+    padding: 14px 0;
   }
 
   .service-list h3 {
-    margin-bottom: 10px;
-    font-size: clamp(16px, 1.35vw, 22px);
+    margin-bottom: 8px;
+    font-size: clamp(13px, 1vw, 17px);
   }
 
   .service-list p {
-    font-size: clamp(9px, .7vw, 12px);
+    font-size: clamp(8px, .6vw, 10px);
   }
 
   .contact {
-    padding-top: 100px;
+    padding-top: 72px;
   }
 
   .contact-grid {
@@ -1108,24 +1289,24 @@ footer small {
   }
 
   .contact-form h3 {
-    margin-bottom: 20px;
-    font-size: clamp(18px, 1.5vw, 24px);
+    margin-bottom: 16px;
+    font-size: clamp(14px, 1.1vw, 18px);
   }
 
   .contact-form input,
   .contact-form button {
-    height: 42px;
+    height: 36px;
     margin-bottom: 10px;
     padding: 0 14px;
     font-size: 10px;
   }
 
   footer {
-    padding: 100px 30px 45px;
+    padding: 72px 30px 36px;
   }
 
   footer > a {
-    font-size: 24px;
+    font-size: 20px;
   }
 
   footer p,
@@ -1166,7 +1347,7 @@ footer small {
 /* Refined phone layout */
 @media (max-width: 620px) {
   body {
-    font-size: 12px;
+    font-size: 11px;
     overflow-x: hidden;
   }
 
@@ -1222,12 +1403,12 @@ footer small {
   .hero-content {
     flex-direction: column;
     align-items: flex-start;
-    gap: 28px;
+    gap: 22px;
   }
 
   h1 {
     max-width: 100%;
-    font-size: clamp(45px, 14vw, 62px);
+    font-size: clamp(39px, 11.5vw, 52px);
     line-height: .9;
     overflow-wrap: normal;
   }
@@ -1250,7 +1431,7 @@ footer small {
   .hero-copy p {
     max-width: 320px;
     margin: 0 0 20px;
-    font-size: 10px;
+    font-size: 9px;
     line-height: 1.5;
   }
 
@@ -1259,9 +1440,9 @@ footer small {
   }
 
   .hero-btn {
-    min-height: 40px;
-    padding: 0 16px;
-    font-size: 8px;
+    min-height: 36px;
+    padding: 0 14px;
+    font-size: 7px;
   }
 
   .hero-scroll {
@@ -1269,12 +1450,12 @@ footer small {
   }
 
   .section {
-    padding: 58px 20px 38px;
+    padding: 42px 20px 28px;
   }
 
   .section h2 {
-    margin-bottom: 32px;
-    font-size: 34px;
+    margin-bottom: 24px;
+    font-size: 28px;
   }
 
   .about-grid {
@@ -1283,7 +1464,7 @@ footer small {
 
   .portrait {
     width: 100%;
-    height: min(105vw, 430px);
+    height: min(82vw, 320px);
   }
 
   .about-copy {
@@ -1292,7 +1473,7 @@ footer small {
   }
 
   .about-copy p {
-    font-size: 11px;
+    font-size: 10px;
     line-height: 1.65;
   }
 
@@ -1300,12 +1481,12 @@ footer small {
     grid-column: auto;
     width: 100%;
     margin-top: 14px;
-    font-size: 25px;
+    font-size: 21px;
     line-height: 1.08;
   }
 
   .services {
-    padding-top: 58px;
+    padding-top: 48px;
   }
 
   .services-grid {
@@ -1313,16 +1494,16 @@ footer small {
   }
 
   .services-grid > img {
-    height: 230px;
+    height: 165px;
   }
 
   .service-list article {
-    padding: 18px 0;
+    padding: 14px 0;
   }
 
   .service-list h3 {
     margin-bottom: 10px;
-    font-size: 14px;
+    font-size: 12px;
     line-height: 1.35;
   }
 
@@ -1333,7 +1514,7 @@ footer small {
   }
 
   .projects {
-    padding-top: 50px;
+    padding-top: 44px;
     padding-bottom: 28px;
   }
 
@@ -1353,30 +1534,56 @@ footer small {
   }
 
   .project-card {
-    flex: 0 0 min(78vw, 300px);
-    min-height: 190px;
-    padding: 20px 18px;
+    flex: 0 0 min(68vw, 245px);
+    min-height: 145px;
+    padding: 15px 13px;
     scroll-snap-align: start;
   }
 
   .project-card h3 {
     margin-bottom: 10px;
-    font-size: 14px;
+    font-size: 12px;
   }
 
   .project-card p {
-    font-size: 9px;
+    font-size: 8px;
     line-height: 1.55;
   }
 
   .certs {
-    padding-top: 58px;
+    padding-top: 48px;
   }
 
   .cert-list li {
-    padding: 15px 0;
-    font-size: 10px;
+    font-size: 9px;
     line-height: 1.5;
+  }
+
+  .cert-item {
+    gap: 12px;
+    padding: 12px 0;
+  }
+
+  .cert-logo {
+    width: 24px;
+    height: 24px;
+  }
+
+  .cert-view {
+    display: none;
+  }
+
+  .cert-modal {
+    padding: 14px;
+  }
+
+  .cert-modal-panel {
+    padding: 12px;
+    border-radius: 12px;
+  }
+
+  .cert-modal-heading h3 {
+    font-size: 11px;
   }
 
   .education {
@@ -1384,16 +1591,16 @@ footer small {
   }
 
   .education h3 {
-    font-size: 20px;
+    font-size: 16px;
   }
 
   .education p {
-    font-size: 10px;
+    font-size: 9px;
     line-height: 1.55;
   }
 
   .contact {
-    padding-top: 58px;
+    padding-top: 48px;
   }
 
   .contact-grid {
@@ -1402,7 +1609,7 @@ footer small {
   }
 
   address {
-    font-size: 10px;
+    font-size: 9px;
     line-height: 1.9;
   }
 
@@ -1413,28 +1620,28 @@ footer small {
   .socials {
     gap: 18px;
     margin-top: 16px;
-    font-size: 15px;
+    font-size: 13px;
   }
 
   .contact-form h3 {
     margin-bottom: 18px;
-    font-size: 18px;
+    font-size: 16px;
   }
 
   .contact-form input,
   .contact-form button {
-    height: 44px;
+    height: 34px;
     margin-bottom: 10px;
     padding: 0 13px;
     font-size: 9px;
   }
 
   footer {
-    padding: 70px 20px 30px;
+    padding: 56px 20px 26px;
   }
 
   footer > a {
-    font-size: 20px;
+    font-size: 16px;
   }
 
   footer p,

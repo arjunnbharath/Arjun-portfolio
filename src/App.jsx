@@ -25,6 +25,44 @@ const socialItems = [
   { label: 'Email', link: 'mailto:arjun200118bharath@gmail.com' }
 ];
 
+const certifications = [
+  {
+    id: 'oracle-genai',
+    title: 'Oracle Certified Generative AI Professional — 2025',
+    issuer: 'Oracle',
+    logo: '/oracle logo.png',
+    image: '/oracle ai certificate.jpg'
+  },
+  {
+    id: 'oracle-dsa',
+    title: 'Oracle Certified OCI Data Science Professional — 2025',
+    issuer: 'Oracle',
+    logo: '/oracle logo.png',
+    image: '/oracle dsa certificate.jpg'
+  },
+  {
+    id: 'sf-agentforce',
+    title: 'Salesforce Certified Agentforce Specialist — 2025',
+    issuer: 'Salesforce',
+    logo: '/Salesforce.com_logo.svg.png',
+    image: '/agentforce certificate.jpg'
+  },
+  {
+    id: 'sf-ai',
+    title: 'Salesforce Certified AI Associate — 2025',
+    issuer: 'Salesforce',
+    logo: '/Salesforce.com_logo.svg.png',
+    image: '/AI certificate.jpg'
+  },
+  {
+    id: 'sf-email',
+    title: 'Salesforce Certified Marketing Cloud Email Specialist — 2025',
+    issuer: 'Salesforce',
+    logo: '/Salesforce.com_logo.svg.png',
+    image: '/marketingemailcertificate.jpg'
+  }
+];
+
 function App() {
   const [theme, setTheme] = useState(() => {
     const saved = localStorage.getItem('portfolio-theme');
@@ -32,6 +70,7 @@ function App() {
     return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
   });
   const [formStatus, setFormStatus] = useState('');
+  const [activeCert, setActiveCert] = useState(null);
   const isLight = theme === 'light';
 
   useEffect(() => {
@@ -41,7 +80,7 @@ function App() {
 
   useEffect(() => {
     const revealElements = document.querySelectorAll(
-      '.section h2, .about-grid > *, .about-copy > *, .services-grid > img, .service-list article, .project-card, .physical-ai-copy, .cert-list li, .education, .contact-grid > *'
+      '.section h2, .about-grid > *, .about-copy > *, .services-grid > img, .service-list article, .project-card, .physical-ai-copy, .cert-item, .education, .contact-grid > *'
     );
 
     revealElements.forEach((element, index) => {
@@ -64,6 +103,23 @@ function App() {
     revealElements.forEach((element) => revealObserver.observe(element));
     return () => revealObserver.disconnect();
   }, []);
+
+  useEffect(() => {
+    if (!activeCert) return undefined;
+
+    const onKeyDown = (event) => {
+      if (event.key === 'Escape') setActiveCert(null);
+    };
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    window.addEventListener('keydown', onKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener('keydown', onKeyDown);
+    };
+  }, [activeCert]);
 
   const toggleTheme = () => {
     const nextTheme = isLight ? 'dark' : 'light';
@@ -250,11 +306,25 @@ function App() {
           <section id="certs" className="section certs">
             <h2>Certifications</h2>
             <ul className="cert-list">
-              <li>Oracle Certified Generative AI Professional — 2025</li>
-              <li>Oracle Certified OCI Data Science Professional — 2025</li>
-              <li>Salesforce Certified Agentforce Specialist — 2025</li>
-              <li>Salesforce Certified AI Associate — 2025</li>
-              <li>Salesforce Certified Marketing Cloud Email Specialist — 2025</li>
+              {certifications.map((cert) => (
+                <li key={cert.id}>
+                  <button
+                    type="button"
+                    className="cert-item"
+                    onClick={() => setActiveCert(cert)}
+                    aria-label={`View ${cert.title} certificate`}
+                  >
+                    <img
+                      className="cert-logo"
+                      src={cert.logo}
+                      alt={`${cert.issuer} logo`}
+                      loading="lazy"
+                    />
+                    <span className="cert-title">{cert.title}</span>
+                    <span className="cert-view">View</span>
+                  </button>
+                </li>
+              ))}
             </ul>
             <div className="education">
               <h3>Education</h3>
@@ -305,6 +375,45 @@ function App() {
           <small>© 2026 AB. All rights reserved.</small>
         </footer>
       </div>
+
+      {activeCert && (
+        <div
+          className="cert-modal"
+          role="dialog"
+          aria-modal="true"
+          aria-label={activeCert.title}
+          onClick={() => setActiveCert(null)}
+        >
+          <div
+            className="cert-modal-panel"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <div className="cert-modal-header">
+              <div className="cert-modal-heading">
+                <img
+                  className="cert-modal-logo"
+                  src={activeCert.logo}
+                  alt=""
+                />
+                <h3>{activeCert.title}</h3>
+              </div>
+              <button
+                type="button"
+                className="cert-modal-close"
+                aria-label="Close certificate"
+                onClick={() => setActiveCert(null)}
+              >
+                ×
+              </button>
+            </div>
+            <img
+              className="cert-modal-image"
+              src={activeCert.image}
+              alt={activeCert.title}
+            />
+          </div>
+        </div>
+      )}
     </>
   );
 }

@@ -74,10 +74,10 @@ body.light-mode .sm-theme-toggle .theme-dot {
 }
 
 .sm-toggle {
-  min-height: 38px;
+  min-height: 32px;
   padding: 0 2px;
   color: rgba(241, 241, 237, 0.92);
-  font-size: 10px;
+  font-size: 9px;
   letter-spacing: 0.12em;
   transition: color 0.25s ease, opacity 0.25s ease;
 }
@@ -105,8 +105,8 @@ body.light-mode[data-scrolled="true"] .sm-toggle {
   }
 
   .sm-toggle {
-    min-height: 36px;
-    font-size: 9px;
+    min-height: 30px;
+    font-size: 8px;
   }
 
   .hero {
@@ -116,7 +116,7 @@ body.light-mode[data-scrolled="true"] .sm-toggle {
 
 @media (max-width: 620px) {
   .staggered-menu-header {
-    height: var(--site-nav-height, 56px);
+    height: var(--site-nav-height, 48px);
   }
 }
 
